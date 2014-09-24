@@ -4,9 +4,9 @@
 <div data-role="page">
   <div data-role="content">
 
-  {{ Form::open(array('url' => 'wx/'.$crid.'/customer/save', 'files'=>true,'data-ajax'=>'false')) }}
+  {{ Form::open(array('url' => 'customer/save', 'files'=>true,'data-ajax'=>'false')) }}
 
-    <ul data-role="listview" data-inset="true">
+    <ul data-role="listview" data-inset="true" >
     	<li data-role="list-divider">客户信息</li>
     	<li>
 		{{ Form::text('name','',array('placeholder'=>'姓名')) }}
@@ -45,7 +45,7 @@
 		 </li>
     </ul>
 
-    <p>{{ Form::submit('提交') }}</p>
+    <p>{{ Form::submit('保存') }}</p>
 
   	{{ Form::close() }}
 

@@ -13,15 +13,18 @@
 
 //id 匹配模式
 Route::pattern('id', '[0-9]+');
-Route::pattern('crid', '[0-9]+');
 
 //微信获得菜单
-Route::get('wx/menu','WxMenuController@menu');
+Route::get('menu','MenuController@index');
+Route::get('menu/to','MenuController@to');
 
 //添加客户
-Route::get('wx/{crid}/customer/add','WxCustomerController@toAdd');
-Route::post('wx/{crid}/customer/save','WxCustomerController@save');
-Route::get('wx/{crid}/customer/edit/{id}','WxCustomerController@toEdit');
+Route::get('customer/add','CustomerController@toAdd');
+Route::post('customer/save','CustomerController@save');
+Route::get('customer/{id}/edit','CustomerController@toEdit');
+
+//公共客户
+Route::post('customer/purpose','CPurposeController@tolist');
 
 
 //客户意向

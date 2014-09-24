@@ -1,15 +1,15 @@
 @extends('layouts.mobile')
 
 @section('content')
-<div data-role="page" class="purpose_list" data-url="{{ URL::to('customer/1/purpose/list') }}">
+<div data-role="page" class="purpose_list" data-url='{{ URL::to("customer/$customer_id/purpose/list") }}'>
     <div data-role="content">
      <h3 class="ui-bar ui-bar-a">意向信息</h3>
 
-	 <a href="{{ URL::to('customer/1/purpose/add') }}" data-ajax="true" class="ui-btn ui-shadow ui-corner-all">新增</a>
+	 <a href='{{ URL::to("customer/$customer_id/purpose/add") }}' data-ajax="true" class="ui-btn ui-shadow ui-corner-all">新增</a>
 
 	@foreach($purposeList as $purpose)
 	 <ul class="item" data-role="listview" data-inset="true">
-	 	 <li><a href="{{ URL::to("customer/1/purpose/$purpose->id/edit") }}">&nbsp;</a></li>
+	 	 <li><a href='{{ URL::to("customer/$customer_id/purpose/$purpose->id/edit") }}' >&nbsp;</a></li>
     	<li>
     	<div class="ui-grid-a">
 		    <div class="ui-block-a">客户级别:{{$purpose->khjb}}</div>
@@ -63,7 +63,7 @@
 		page.find(".btn_delete").click(function(){
 			var id=$(this).data("id");
 			var item=$(this).parents(".item");
-			$.post("{{ URL::to('customer/1/purpose') }}/"+id+"/delete",function(){
+			$.post('{{ URL::to("customer/$customer_id/purpose") }}/'+id+"/delete",function(){
 				item.remove();
 			});
 		})

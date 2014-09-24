@@ -15,8 +15,8 @@
 	</div>
 	@endif
 
-  {{ Form::open(array('url' => 'wx/'.$crid.'/customer/save', 'files'=>true,'data-ajax'=>'false')) }}
-
+    {{ Form::open(array('url' =>'customer/save','data-ajax'=>'false')) }}
+	{{ Form::hidden('id',$customer->id) }}
     <ul data-role="listview" data-inset="true">
     	<li data-role="list-divider">客户信息</li>
     	<li>
@@ -59,13 +59,13 @@
     </ul>
 
     <ul data-role="listview" data-inset="true">
-	    <li><a href="#">意向信息</a></li>
+	    <li><a href='{{ URL::to("customer/$customer->id/purpose/list") }}' >意向信息</a></li>
 	    <li><a href="#">意向房源</a></li>
 	    <li><a href="#">跟进记录</a></li>
 	    <li><a href="#">成交记录</a></li>
 	</ul>
 
-    <p>{{ Form::submit('提交') }}</p>
+    <p>{{ Form::submit('保存') }}</p>
 
   	{{ Form::close() }}
 
