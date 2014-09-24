@@ -1,0 +1,22 @@
+{
+  "name" : "fc-customer",
+  "description" : "The Laravel Framework.",
+  "require" : {
+    "laravel/framework" : "4.2.*",
+    "raveren/kint" : "v0.9"
+  },
+  "scripts" : {
+    "post-install-cmd" : [ "php artisan clear-compiled", "php artisan optimize" ],
+    "post-update-cmd" : [ "php artisan clear-compiled", "php artisan optimize" ],
+    "post-create-project-cmd" : [ "php artisan key:generate" ]
+  },
+  "keywords" : [ "framework", "laravel" ],
+  "minimum-stability" : "stable",
+  "autoload" : {
+    "classmap" : [ "app/commands", "app/controllers", "app/service", "app/models", "app/database/migrations", "app/database/seeds", "app/tests/TestCase.php" ]
+  },
+  "config" : {
+    "preferred-install" : "dist"
+  },
+  "license" : "MIT"
+}
