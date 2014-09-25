@@ -14,7 +14,7 @@ class CreatePurpose extends Migration {
 	{
 		Schema::create('fc_purpose', function($table)
 		{
-			$table->increments('id');//编号
+			$table->increments('id');//id
 			$table->integer('customer_id');//客户
 			$table->integer('creater_id');//创建人
 			$table->dateTime('create_at');//创建时间

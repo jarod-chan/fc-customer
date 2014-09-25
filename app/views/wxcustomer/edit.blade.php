@@ -1,7 +1,7 @@
 @extends('layouts.mobile')
 
 @section('content')
-<div data-role="page">
+<div data-role="page" class="customer_edit" data-url='{{ URL::to("customer/$customer->id/edit") }}' >
     <div data-role="content">
 
     @if (Session::has('message'))
@@ -15,7 +15,7 @@
 	</div>
 	@endif
 
-    {{ Form::open(array('url' =>'customer/save','data-ajax'=>'false')) }}
+    {{ Form::open(array('data-ajax'=>'true')) }}
 	{{ Form::hidden('id',$customer->id) }}
     <ul data-role="listview" data-inset="true">
     	<li data-role="list-divider">客户信息</li>
@@ -61,14 +61,27 @@
     <ul data-role="listview" data-inset="true">
 	    <li><a href='{{ URL::to("customer/$customer->id/purpose/list") }}' >意向信息</a></li>
 	    <li><a href="#">意向房源</a></li>
-	    <li><a href="#">跟进记录</a></li>
+	    <li><a href='{{ URL::to("customer/$customer->id/inrecord/list") }}'>跟进记录</a></li>
 	    <li><a href="#">成交记录</a></li>
 	</ul>
 
-    <p>{{ Form::submit('保存') }}</p>
+    <p><button class="btn_delete ui-btn  ui-shadow  ui-corner-all"  >保存</button></p>
 
   	{{ Form::close() }}
+  	<script type="text/javascript">
+	$(function(){
+		var page=$(".customer_edit").last();
+		var form=page.find("form");
+ 		page.find(".btn_delete").click(function(){
+			$("body").pagecontainer("change",'{{ URL::to("customer/save") }}',{type:'post',data:form.serialize(),changeHash:false});
+			return false;
+		});
+	})
+	</script>
 
   </div>
 </div>
+
+
+
 @stop

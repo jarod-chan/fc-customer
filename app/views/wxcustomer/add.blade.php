@@ -4,7 +4,7 @@
 <div data-role="page">
   <div data-role="content">
 
-  {{ Form::open(array('url' => 'customer/save', 'files'=>true,'data-ajax'=>'false')) }}
+  {{ Form::open(array('url' => 'customer/save', 'files'=>true,'data-ajax'=>'true')) }}
 
     <ul data-role="listview" data-inset="true" >
     	<li data-role="list-divider">客户信息</li>

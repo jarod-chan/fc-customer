@@ -23,9 +23,12 @@ Route::get('customer/add','CustomerController@toAdd');
 Route::post('customer/save','CustomerController@save');
 Route::get('customer/{id}/edit','CustomerController@toEdit');
 
+//意向客户
+Route::get('customer/purpose','CPurposeController@index');
+//签约客户
+Route::get('customer/sign','CSignController@index');
 //公共客户
-Route::post('customer/purpose','CPurposeController@tolist');
-
+Route::get('customer/public','CPublicController@index');
 
 //客户意向
 Route::get('customer/{customer_id}/purpose/list','PurposeController@toList');
@@ -34,4 +37,9 @@ Route::get('customer/{customer_id}/purpose/{id}/edit','PurposeController@toEdit'
 Route::post('customer/{customer_id}/purpose/save','PurposeController@save');
 Route::post('customer/{customer_id}/purpose/{id}/delete','PurposeController@delete');
 
-
+//跟进记录
+Route::get('customer/{customer_id}/inrecord/list','InrecordController@toList');
+Route::get('customer/{customer_id}/inrecord/add','InrecordController@toAdd');
+Route::get('customer/{customer_id}/inrecord/{id}/edit','InrecordController@toEdit');
+Route::post('customer/{customer_id}/inrecord/save','InrecordController@save');
+Route::post('customer/{customer_id}/inrecord/{id}/delete','InrecordController@delete');

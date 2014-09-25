@@ -1,0 +1,55 @@
+<?php
+class InrecordController extends Controller{
+
+	public function  toList($customer_id){
+		$inrecordList=Inrecord::where('customer_id',$customer_id)
+		->orderBy('id','desc')
+		->get();
+		return View::make('inrecord.list')
+		->with('inrecordList',$inrecordList)
+		->with('customer_id',$customer_id);
+	}
+
+	public function toAdd($customer_id){
+		$counselor_id=Session::get("counselor_id");
+		$inrecord=new Inrecord;
+		$inrecord->updater_id=$counselor_id;
+		return View::make('inrecord.edit')
+		->with('inrecord',$inrecord)
+		->with('customer_id',$customer_id);
+	}
+
+	public function save($customer_id){
+		$counselor_id=Session::get("counselor_id");
+		$arr=Input::all();
+		if(Input::has("id")){
+			$arr['updater_id']=$counselor_id;
+			$arr['update_at']=new DateTime();
+			$inrecord=Inrecord::find(Input::get("id"));
+		}else{
+			$arr['customer_id']=$customer_id;
+			$arr['creater_id']=$counselor_id;
+			$arr['create_at']=new DateTime();
+			$arr['updater_id']=$counselor_id;
+			$arr['update_at']=new DateTime();
+			$inrecord=new Inrecord;
+		}
+
+		$inrecord->fill($arr);
+		$inrecord->save($arr);
+		return Redirect::action('InrecordController@toList', array('customer_id'=>$customer_id));
+	}
+
+	public function toEdit($customer_id,$id){
+		$inrecord=Inrecord::find($id);
+		return View::make('inrecord.edit')
+		->with('customer_id',$customer_id)
+		->with('inrecord',$inrecord);
+	}
+
+	public function delete($customer_id,$id){
+		Inrecord::destroy($id);
+		return Redirect::action('InrecordController@toList', array('customer_id'=>$customer_id));
+	}
+
+}
