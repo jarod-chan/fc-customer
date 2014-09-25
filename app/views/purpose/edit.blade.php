@@ -59,6 +59,12 @@
 
   	{{ Form::close() }}
 
+  	 @if($purpose->id)
+  	{{ Form::open(array('url' => "customer/$customer_id/purpose/$purpose->id/delete",'data-ajax'=>'true')) }}
+  	<p>{{ Form::submit('删除') }}</p>
+	{{ Form::close() }}
+  	@endif
+
   </div>
 </div>
 @stop

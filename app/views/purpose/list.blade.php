@@ -9,7 +9,7 @@
 
 	@foreach($purposeList as $purpose)
 	 <ul class="item" data-role="listview" data-inset="true">
-	 	 <li><a href='{{ URL::to("customer/$customer_id/purpose/$purpose->id/edit") }}' >&nbsp;</a></li>
+	 	 <li><a href='{{ URL::to("customer/$customer_id/purpose/$purpose->id/edit") }}' >{{$purpose->id}}</a></li>
     	<li>
     	<div class="ui-grid-a">
 		    <div class="ui-block-a">客户级别:{{$purpose->khjb}}</div>
@@ -52,23 +52,8 @@
 		    <div class="ui-block-b">学区房:{{$purpose->xqf}}</div>
 		</div>
 		</li>
-		<li class="ui-grid-a">
-			<button class="btn_delete ui-btn  ui-shadow  ui-corner-all" data-id="{{$purpose->id}}" >删除</button>
-		</li>
 	 </ul>
 	 @endforeach
-	 <script type="text/javascript">
-	 $(function(){
-		var page=$(".purpose_list").last();
-		page.find(".btn_delete").click(function(){
-			var id=$(this).data("id");
-			var item=$(this).parents(".item");
-			$.post('{{ URL::to("customer/$customer_id/purpose") }}/'+id+"/delete",function(){
-				item.remove();
-			});
-		})
-	 })
-	</script>
 	</div>
 </div>
 @stop

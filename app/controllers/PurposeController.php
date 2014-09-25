@@ -47,5 +47,6 @@ class PurposeController extends Controller{
 
 	public function delete($customer_id,$id){
 		Purpose::destroy($id);
+		return Redirect::action('PurposeController@toList', array('customer_id'=>$customer_id));
 	}
 }
