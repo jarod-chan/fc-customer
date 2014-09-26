@@ -60,9 +60,9 @@
 
     <ul data-role="listview" data-inset="true">
 	    <li><a href='{{ URL::to("customer/$customer->id/purpose/list") }}' >意向信息</a></li>
-	    <li><a href="#">意向房源</a></li>
+	    <li><a href='{{ URL::to("customer/$customer->id/purposeroom/list") }}'>意向房源</a></li>
 	    <li><a href='{{ URL::to("customer/$customer->id/inrecord/list") }}'>跟进记录</a></li>
-	    <li><a href="#">成交记录</a></li>
+	    <li><a href='{{ URL::to("customer/$customer->id/dealrecord/list") }}'>成交记录</a></li>
 	</ul>
 
     <p><button class="btn_delete ui-btn  ui-shadow  ui-corner-all"  >保存</button></p>

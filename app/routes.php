@@ -43,3 +43,46 @@ Route::get('customer/{customer_id}/inrecord/add','InrecordController@toAdd');
 Route::get('customer/{customer_id}/inrecord/{id}/edit','InrecordController@toEdit');
 Route::post('customer/{customer_id}/inrecord/save','InrecordController@save');
 Route::post('customer/{customer_id}/inrecord/{id}/delete','InrecordController@delete');
+
+Route::group(array('prefix' => 'customer/{customer_id}'), function()
+{
+	//意向房源
+	Route::get('purposeroom/list','PurposeroomController@toList');
+	Route::get('purposeroom/add','PurposeroomController@toAdd');
+	Route::get('purposeroom/{id}/edit','PurposeroomController@toEdit');
+	Route::post('purposeroom/save','PurposeroomController@save');
+	Route::post('purposeroom/{id}/delete','PurposeroomController@delete');
+
+	//成交记录
+	Route::get('dealrecord/list','DealrecordController@toList');
+	Route::get('dealrecord/add','DealrecordController@toAdd');
+	Route::get('dealrecord/{id}/edit','DealrecordController@toEdit');
+	Route::post('dealrecord/save','DealrecordController@save');
+	Route::post('dealrecord/{id}/delete','DealrecordController@delete');
+
+});
+
+
+//
+Route::get('curl',function (){
+	$url="http://172.22.1.30/fc-customer/public/menu?openid=a1";
+
+	//  Initiate curl
+	$ch = curl_init();
+	// Disable SSL verification
+	curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+	// Will return the response, if false it print the response
+	curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+	// Set the url
+	curl_setopt($ch, CURLOPT_URL,$url);
+	// Execute
+	$result=curl_exec($ch);
+	// Closing
+	curl_close($ch);
+
+	// Will dump a beauty json :3
+	$x=json_decode($result, true);
+	d($x);
+	d($x["result"]);
+	return ;
+});
