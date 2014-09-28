@@ -30,22 +30,28 @@ Route::get('customer/sign','CSignController@index');
 //公共客户
 Route::get('customer/public','CPublicController@index');
 
-//客户意向
-Route::get('customer/{customer_id}/purpose/list','PurposeController@toList');
-Route::get('customer/{customer_id}/purpose/add','PurposeController@toAdd');
-Route::get('customer/{customer_id}/purpose/{id}/edit','PurposeController@toEdit');
-Route::post('customer/{customer_id}/purpose/save','PurposeController@save');
-Route::post('customer/{customer_id}/purpose/{id}/delete','PurposeController@delete');
+//佣金结算
+Route::get('commission','CommissionController@index');
+Route::get('commission/{dr_id}/deal','CommissionController@toDeal');
+Route::post('commission/{dr_id}/save','CommissionController@save');
 
-//跟进记录
-Route::get('customer/{customer_id}/inrecord/list','InrecordController@toList');
-Route::get('customer/{customer_id}/inrecord/add','InrecordController@toAdd');
-Route::get('customer/{customer_id}/inrecord/{id}/edit','InrecordController@toEdit');
-Route::post('customer/{customer_id}/inrecord/save','InrecordController@save');
-Route::post('customer/{customer_id}/inrecord/{id}/delete','InrecordController@delete');
 
 Route::group(array('prefix' => 'customer/{customer_id}'), function()
 {
+	//客户意向
+	Route::get('purpose/list','PurposeController@toList');
+	Route::get('purpose/add','PurposeController@toAdd');
+	Route::get('purpose/{id}/edit','PurposeController@toEdit');
+	Route::post('purpose/save','PurposeController@save');
+	Route::post('purpose/{id}/delete','PurposeController@delete');
+
+	//跟进记录
+	Route::get('inrecord/list','InrecordController@toList');
+	Route::get('inrecord/add','InrecordController@toAdd');
+	Route::get('inrecord/{id}/edit','InrecordController@toEdit');
+	Route::post('inrecord/save','InrecordController@save');
+	Route::post('inrecord/{id}/delete','InrecordController@delete');
+
 	//意向房源
 	Route::get('purposeroom/list','PurposeroomController@toList');
 	Route::get('purposeroom/add','PurposeroomController@toAdd');

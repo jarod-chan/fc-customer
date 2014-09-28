@@ -12,7 +12,7 @@ class MenuController extends Controller{
 					array('name'=>'意向客户','url'=>URL::to("menu/to?counselor_id=$counselor->id&to=customer/purpose")),
 					array('name'=>'签约客户','url'=>URL::to("menu/to?counselor_id=$counselor->id&to=customer/sign")),
 					array('name'=>'公共客户','url'=>URL::to("menu/to?counselor_id=$counselor->id&to=customer/public")),
-					array('name'=>'佣金结算','url'=>URL::to('wx/accept/history?openid='.$openid))
+					array('name'=>'佣金结算','url'=>URL::to("menu/to?counselor_id=$counselor->id&to=commission"))
 			)
 		);
 	}

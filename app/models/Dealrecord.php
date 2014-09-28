@@ -18,4 +18,9 @@ class Dealrecord extends Eloquent{
 	public function updater(){
 		return $this->belongsTo('Counselor', 'updater_id');
 	}
+
+	public function commissions()
+	{
+		return $this->hasMany('Commission','dealrecord_id');
+	}
 }
