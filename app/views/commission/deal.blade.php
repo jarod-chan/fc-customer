@@ -16,13 +16,11 @@
     <div class="item_div">
     @foreach($dealrecord->commissions as $commission)
     <ul data-role="listview" data-inset="true">
+		<li data-icon="delete" class="btn_delete"><a href="#">&nbsp;</a></li>
 		<li><input type="hidden"  name="commissionSet[-][id]" value="{{$commission->id}}"  ><input type="text"  name="commissionSet[-][percent]" value="{{$commission->percent}}"  placeholder="结算比例"></li>
 		<li><input type="text"  name="commissionSet[-][commission]" value="{{$commission->commission}}"  placeholder='金额'></li>
 		<li>{{ Form::select("commissionSet[-][counselor_id]",H::prepend($counselorSet,"销售顾问"),$commission->counselor_id,array("data-native-menu"=>"false"))}}</li>
-		<li><input type="text"  name="commissionSet[-][comdate_at]" value="{{$commission->comdate_at}}"  placeholder="日期"></li>
-		<li>
-			<button class="btn_delete ui-btn  ui-shadow  ui-corner-all" >删除</button>
-		</li>
+		<li><input type="date"  name="commissionSet[-][comdate_at]" value="{{$commission->comdate_at}}"  placeholder="日期"></li>
     </ul>
     @endforeach
     </div>
@@ -38,11 +36,12 @@
 		var item=page.find(".item_div");
 		page.find(".btn_add").click(function(){
 			var ul=$('<ul data-role="listview" data-inset="true"></ul>');
+			$('<li data-icon="delete" class="btn_delete"><a href="#">&nbsp;</a></li>').appendTo(ul);
 			$('<li><input type="hidden"  name="commissionSet[-][id]" value="" ><input type="text"  name="commissionSet[-][percent]" value=""  placeholder="结算比例"></li>').appendTo(ul);
 			$('<li><input type="text"  name="commissionSet[-][commission]" value=""  placeholder="金额"></li>').appendTo(ul);
 			$('<li>{{ Form::select("commissionSet[-][counselor_id]",H::prepend($counselorSet,"销售顾问"),'',array("data-native-menu"=>"false"))}}</li>').appendTo(ul);
-			$('<li><input type="text"  name="commissionSet[-][comdate_at]" value=""  placeholder="日期"></li>').appendTo(ul);
-			$('<li><button class="btn_delete ui-btn  ui-shadow  ui-corner-all" >删除</button></li>').appendTo(ul);
+			$('<li><input type="date"  name="commissionSet[-][comdate_at]" value=""  placeholder="日期"></li>').appendTo(ul);
+
 			item.append(ul).trigger("create");
 			ul.listview("refresh");
 			ul.find(".btn_delete").click(function(){

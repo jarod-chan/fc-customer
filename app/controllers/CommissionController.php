@@ -37,7 +37,6 @@ class CommissionController extends Controller{
 					$commission=Commission::find($arr_id);
 				}
 				$arr["dealrecord_id"]=$dr_id;
-				$arr["comdate_at"]=null;
 				$commission->fill($arr);
 				$commission->save();
 			}
