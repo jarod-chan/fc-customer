@@ -1,5 +1,6 @@
 <?php
 class C{
+
 	public static function isSale(){
 		return Session::get('counselor_role')=='s';
 	}

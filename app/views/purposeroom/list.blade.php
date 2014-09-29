@@ -11,7 +11,7 @@
 	 <ul class="item" data-role="listview" data-inset="true">
 	 	 <li><a href='{{ URL::to("customer/$customer_id/purposeroom/$purposeroom->id/edit") }}' >{{$purposeroom->id}}</a></li>
     	<li>
-			意向房源信息
+				房间:{{$purposeroom->room()["fname_l2"]}}
 		</li>
 		<li>
     	<div class="ui-grid-a">

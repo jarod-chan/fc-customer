@@ -19,4 +19,8 @@ class Purposeroom extends Eloquent{
 		return $this->belongsTo('Counselor', 'updater_id');
 	}
 
+	public function room(){
+		return S::roomofid($this->room_id);
+	}
+
 }

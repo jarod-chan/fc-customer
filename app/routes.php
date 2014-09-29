@@ -69,9 +69,19 @@ Route::group(array('prefix' => 'customer/{customer_id}'), function()
 });
 
 
+//房间查询
+Route::get('selroom/sellproject','SelRoomController@sellproject');
+Route::get('selroom/building','SelRoomController@building');
+Route::get('selroom/buildingunit','SelRoomController@buildingunit');
+Route::get('selroom/room','SelRoomController@room');
+
+
+
+
+
 //
 Route::get('curl',function (){
-	$url="http://172.22.1.30/fc-customer/public/menu?openid=a1";
+	$url="http://172.22.1.30/ser/public/serroom/sellproject";
 
 	//  Initiate curl
 	$ch = curl_init();
@@ -86,9 +96,9 @@ Route::get('curl',function (){
 	// Closing
 	curl_close($ch);
 
+
 	// Will dump a beauty json :3
 	$x=json_decode($result, true);
-	d($x);
-	d($x["result"]);
+	s($x);
 	return ;
 });
