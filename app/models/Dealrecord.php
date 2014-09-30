@@ -23,4 +23,8 @@ class Dealrecord extends Eloquent{
 	{
 		return $this->hasMany('Commission','dealrecord_id');
 	}
+
+	public function room(){
+		return S::roomofid($this->room_id);
+	}
 }

@@ -11,15 +11,8 @@
 	 <ul class="item" data-role="listview" data-inset="true">
 	 	 <li><a href='{{ URL::to("customer/$customer_id/dealrecord/$dealrecord->id/edit") }}' >{{$dealrecord->id}}</a></li>
     	<li>
-			房间信息
+			房间:{{$dealrecord->room()["fname_l2"]}}
 		</li>
-		<li>
-    	<div class="ui-grid-a">
-		    <div class="ui-block-a">xxx</div>
-		    <div class="ui-block-b"></div>
-		</div>
-		</li>
-
 	 </ul>
 	 @endforeach
 	</div>

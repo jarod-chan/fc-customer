@@ -9,7 +9,7 @@
     <ul data-role="listview" data-inset="true">
     	<li data-role="list-divider">佣金结算</li>
 		<li>
-			房间信息
+			房间:{{$dealrecord->room()["fname_l2"]}}
 		</li>
     </ul>
 

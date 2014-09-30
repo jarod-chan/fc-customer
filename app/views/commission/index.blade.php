@@ -9,11 +9,11 @@
 	 <ul class="item" data-role="listview" data-inset="true">
 	 	 <li><a href='{{ URL::to("commission/$dealrecord->id/deal") }}' >{{$dealrecord->id}}</a></li>
     	<li>
-			佣金信息
+				房间:{{$dealrecord->room()["fname_l2"]}}
 		</li>
 		<li>
     	<div class="ui-grid-a">
-		    <div class="ui-block-a">xxx</div>
+		    <div class="ui-block-a">相关信息...</div>
 		    <div class="ui-block-b"></div>
 		</div>
 		</li>
