@@ -13,14 +13,14 @@
     	<li data-role="list-divider">意向房源</li>
 		<li>
 			<div class="ui-grid-a">
-			    <div class="ui-block-a">{{ Form::select('',H::prepend($sellproject,'小区'),'',array('id'=>'sel_sellproject','data-native-menu'=>'false'))}}</div>
-			    <div class="ui-block-b">{{ Form::select('',H::prepend(null,'楼栋'),'',array('id'=>'sel_building','data-native-menu'=>'false'))}}</div>
+			    <div class="ui-block-a">{{ Form::select('',H::prepend($sellprojectSet,'小区'),$room['fsellprojectid'],array('id'=>'sel_sellproject','data-native-menu'=>'false'))}}</div>
+			    <div class="ui-block-b">{{ Form::select('',H::prepend($buildingSet,'楼栋'),$room['fbuildingid'],array('id'=>'sel_building','data-native-menu'=>'false'))}}</div>
 			</div>
 		</li>
 		<li>
 			<div class="ui-grid-a">
-			    <div class="ui-block-a">{{ Form::select('',H::prepend(null,'单元'),'',array('id'=>'sel_buildingunit','data-native-menu'=>'false'))}}</div>
-			    <div class="ui-block-b">{{ Form::select('room_id',H::prepend(null,'房间'),$purposeroom->room_id,array('id'=>'sel_room','data-native-menu'=>'false'))}}</div>
+			    <div class="ui-block-a">{{ Form::select('',H::prepend($buildingunitSet,'单元'),$room['fbuildunitid'],array('id'=>'sel_buildingunit','data-native-menu'=>'false'))}}</div>
+			    <div class="ui-block-b">{{ Form::select('room_id',H::prepend($roomSet,'房间'),$room['fid'],array('id'=>'sel_room','data-native-menu'=>'false'))}}</div>
 			</div>
 		</li>
 		<li>

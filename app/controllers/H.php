@@ -17,5 +17,13 @@ class H {
 		}
 		return $arr;
 	}
+
+	public static function  toSet($arr){
+		$ret=array();
+		foreach ($arr as $item){
+			$ret[$item['id']]=$item['name'];
+		}
+		return $ret;
+	}
 }
 
