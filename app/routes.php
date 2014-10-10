@@ -81,7 +81,9 @@ Route::get('selroom/room','SelRoomController@room');
 
 //
 Route::get('curl',function (){
-	$url="http://172.22.1.30/ser/public/serroom/sellproject";
+	//$url="http://172.22.1.30/ser/public/serroom/sellproject";
+
+	$url="http://172.22.1.14:8080/fyg/FdcInfoQuery?infoType=1";
 
 	//  Initiate curl
 	$ch = curl_init();
@@ -102,3 +104,8 @@ Route::get('curl',function (){
 	s($x);
 	return ;
 });
+
+	Route::get('demo',function (){
+
+		return View::make('demo');
+	});

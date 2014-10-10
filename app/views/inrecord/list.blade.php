@@ -3,7 +3,7 @@
 @section('content')
 <div data-role="page" class="purpose_list" data-url='{{ URL::to("customer/$customer_id/inrecord/list") }}'>
     <div data-role="content">
-     <h3 class="ui-bar ui-bar-a">回访记录</h3>
+     <h3 class="ui-bar ui-bar-a">跟进记录</h3>
 
 	 <a href='{{ URL::to("customer/$customer_id/inrecord/add") }}' data-ajax="true" class="ui-btn ui-shadow ui-corner-all">新增</a>
 

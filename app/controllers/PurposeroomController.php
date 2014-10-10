@@ -10,7 +10,7 @@ class PurposeroomController extends Controller{
 		->with('customer_id',$customer_id);
 	}
 
-	public function toAdd($customer_id){
+	public function toAdd($customer_id){// $x=S::sellProject(); d($x); return;
 
 		$purposeroom=new Purposeroom;
 		$view=View::make('purposeroom.edit')

@@ -56,7 +56,7 @@
 			$("#sel_buildingunit,#sel_room").find("option:gt(0)").remove();
 			$("#sel_buildingunit,#sel_room").selectmenu('refresh', true);
 			if($(this).val()=="") return;
-			$.get('{{URL::to("selroom/buildingunit")}}',{'val':$(this).val()},function(data){
+			$.get('{{URL::to("selroom/buildingunit")}}',{'val':$(this).val(),'roomstatus':"Purchase"},function(data){
 				if(data.type=="unit"){
 					var toSelect=$("#sel_buildingunit");
 					for(var i=0;i<data.arr.length;i++){
@@ -77,7 +77,7 @@
 			$("#sel_room").find("option:gt(0)").remove();
 			$("#sel_room").selectmenu('refresh', true);
 			if($(this).val()=="") return;
-			$.get('{{URL::to("selroom/room")}}',{val:$(this).val(),tag:'room'},function(data){
+			$.get('{{URL::to("selroom/room")}}',{val:$(this).val(),'roomstatus':"Purchase"},function(data){
 				var toSelect=$("#sel_room");
 				for(var i=0;i<data.length;i++){
 					toSelect.append($("<option value='"+data[i].id+"'>"+data[i].name+"</option>"));
