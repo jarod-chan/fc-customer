@@ -8,10 +8,21 @@
 	 <a href='{{ URL::to("customer/$customer_id/purposeroom/add") }}' data-ajax="true" class="ui-btn ui-shadow ui-corner-all">新增</a>
 
 	@foreach($purposeroomList as $purposeroom)
+   <?php
+    	$room=$purposeroom->room();//d($room);
+    ?>
 	 <ul class="item" data-role="listview" data-inset="true">
 	 	 <li><a href='{{ URL::to("customer/$customer_id/purposeroom/$purposeroom->id/edit") }}' >{{$purposeroom->id}}</a></li>
     	<li>
-				房间:{{$purposeroom->room()["fname_l2"]}}
+		@if($room)
+		房间:{{$room['project_name'].$room['building_name'].$room['buildingunit_name'].$room['room_name']}}
+		@endif
+		</li>
+		<li>
+    	<div class="ui-grid-a">
+		    <div class="ui-block-a">面积:{{$room['buildingArea']}}</div>
+		    <div class="ui-block-b">总价:{{$room['totalAmount']}}</div>
+		</div>
 		</li>
 		<li>
     	<div class="ui-grid-a">

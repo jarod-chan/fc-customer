@@ -16,12 +16,9 @@ class DealrecordController extends Controller{
 		->with('customer_id',$customer_id)
 		->with('dealrecord',$dealrecord);
 
-		$room=array();
-		$room['fid']='';
-		$room['fsellprojectid']='';
-		$room['fbuildingid']='';
-		$room['fbuildunitid']='';
-		$view->with('room',$room);
+		$room=array('roomid'=>'','projectid'=>'','buildingid'=>'','buildunitid'=>'');
+	   	$view->with('room',$room);
+
 		$sellprojectSet=H::toSet(S::sellProject());
 		$view->with('sellprojectSet',$sellprojectSet);
 		$view->with('buildingSet',null);
@@ -63,15 +60,15 @@ class DealrecordController extends Controller{
 			$sellprojectSet=H::toSet(S::sellProject());
 			$view->with('sellprojectSet',$sellprojectSet);
 
-			$buildingSet=H::toSet(S::building($room["fsellprojectid"]));
+			$buildingSet=H::toSet(S::building($room["projectid"]));
 			$view->with('buildingSet',$buildingSet);
 
-			$ret=S::buildingunit($room["fbuildingid"]);
+			$ret=S::buildingunit($room["buildingid"],'Purchase');
 			if($ret["type"]=="unit"){
 				$buildingunitSet=H::toSet($ret['arr']);
 				$view->with('buildingunitSet',$buildingunitSet);
 
-				$roomSet=H::toSet(S::room($room["fbuildunitid"]));
+				$roomSet=H::toSet(S::room($room["buildunitid"],'Purchase'));
 				$view->with('roomSet',$roomSet);
 			}elseif ($ret["type"]=="room"){
 				$view->with('buildingunitSet',null);
@@ -81,6 +78,15 @@ class DealrecordController extends Controller{
 			}
 
 			$view->with("room",$room);
+		}else {
+			$room=array('roomid'=>'','projectid'=>'','buildingid'=>'','buildunitid'=>'');
+			$view->with('room',$room);
+
+			$sellprojectSet=H::toSet(S::sellProject());
+			$view->with('sellprojectSet',$sellprojectSet)
+			->with('buildingSet',null)
+			->with('buildingunitSet',null)
+			->with('roomSet',null);
 		}
 
 		return $view;

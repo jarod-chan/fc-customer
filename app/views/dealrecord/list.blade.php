@@ -8,11 +8,34 @@
 	 <a href='{{ URL::to("customer/$customer_id/dealrecord/add") }}' data-ajax="true" class="ui-btn ui-shadow ui-corner-all">新增</a>
 
 	@foreach($dealrecordList as $dealrecord)
+	<?php
+    	$room=$dealrecord->room();//d($room);
+
+    ?>
 	 <ul class="item" data-role="listview" data-inset="true">
 	 	 <li><a href='{{ URL::to("customer/$customer_id/dealrecord/$dealrecord->id/edit") }}' >{{$dealrecord->id}}</a></li>
     	<li>
-			房间:{{$dealrecord->room()["fname_l2"]}}
+		<div class="ui-grid-a">
+		    <div class="ui-block-a">客户:{{$room['customer']}}</div>
+		    <div class="ui-block-b">状态:{{$room['purchaseState']}}</div>
+		</div>
 		</li>
+		<li>
+		<div class="ui-grid-a">
+		    <div class="ui-block-a">总价:{{$room['contractTotalAmount']}}</div>
+		    <div class="ui-block-b">未付:{{$room['totalUnRevAmount']}}</div>
+		</div>
+		</li>
+		<li data-role="list-divider">收款明细</li>
+		@foreach($room['payList'] as $item)
+		<li>
+		<div class="ui-grid-b">
+		    <div class="ui-block-a">{{$item['moneyDefine']}}</div>
+		    <div class="ui-block-b">{{$item['revAmount']}}</div>
+		    <div class="ui-block-c">{{H::nullStr($item,'revDate')}}</div>
+		</div>
+		</li>
+		@endforeach
 	 </ul>
 	 @endforeach
 	</div>

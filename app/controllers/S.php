@@ -5,7 +5,7 @@ class S{
 
 
 	private static function get($model){
-		$url=self::URL.$model;
+		$url=self::URL.'?'.http_build_query($model);
 
 		//  Initiate curl
 		$ch = curl_init();
@@ -24,29 +24,41 @@ class S{
 	}
 
 	public static function sellProject(){
-		return self::get('?infoType=1')['projects'];
+		$param=array("infoType"=>"1");
+		return self::get($param)['projects'];
 	}
 
 	public static function building($sellProject_id){
 		//使用urlencode来编码，防止id特殊字符出现错误
-		return self::get('?infoType=2&projectid='.urlencode($sellProject_id))['buildings'];
+		$param=array("infoType"=>"2","projectid"=>$sellProject_id);
+		return self::get($param)['buildings'];
 	}
 
 	public static function buildingunit($building_id,$roomstatus){
-		$buildingUnits=self::get('?infoType=3&buildingid='.urlencode($building_id))['buildingUnits'];
+		$param=array("infoType"=>"3","buildingid"=>$building_id);
+		$buildingUnits=self::get($param)['buildingUnits'];
 		if(count($buildingUnits)>0){
 			return array('type'=>'unit','arr'=>$buildingUnits);
 		}
-		$room=self::get('?infoType=4&roomStatus='.$roomstatus.'&buildingid='.urlencode($building_id))['rooms'];
+
+		$param=array("infoType"=>"4","buildingid"=>$building_id,"roomStatus"=>$roomstatus);
+		$room=self::get($param)['rooms'];
 		return array('type'=>'room','arr'=>$room);
 	}
 
 	public static function room($buildingunit_id,$roomstatus){
-		return self::get('?infoType=4&roomStatus='.$roomstatus.'&buindunitid='.urlencode($buildingunit_id))['rooms'];
+		$param=array("infoType"=>"4","buindunitid"=>$buildingunit_id,"roomStatus"=>$roomstatus);
+		return self::get($param)['rooms'];
 	}
 
-	public static function roomofid($room_id){
-		return self::get('roomofid?val='.urlencode($room_id));
+	public static function roomInfoPurpose($room_id){
+		$param=array("infoType"=>"5","roomids"=>'(\''.$room_id.'\')');
+		return self::get($param)['rooms'];
+	}
+
+	public static function roomInfoDeal($room_id){
+		$param=array("infoType"=>"6","roomids"=>'(\''.$room_id.'\')');
+		return self::get($param)['rooms'];
 	}
 
 }

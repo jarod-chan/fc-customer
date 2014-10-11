@@ -25,5 +25,12 @@ class H {
 		}
 		return $ret;
 	}
+
+	public static function  nullStr($arr,$key){
+		if(array_key_exists($key,$arr)){
+			return $arr[$key];
+		}
+		return "";
+	}
 }
 

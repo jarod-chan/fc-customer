@@ -25,6 +25,10 @@ class Dealrecord extends Eloquent{
 	}
 
 	public function room(){
-		return S::roomofid($this->room_id);
+		$arr=S::roomInfoDeal($this->room_id);
+		if($arr) {
+			return $arr[0];
+		}
+		return null;
 	}
 }
