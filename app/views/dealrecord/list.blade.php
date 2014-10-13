@@ -10,11 +10,17 @@
 	@foreach($dealrecordList as $dealrecord)
 	<?php
     	$room=$dealrecord->room();//d($room);
-
     ?>
 	 <ul class="item" data-role="listview" data-inset="true">
 	 	 <li><a href='{{ URL::to("customer/$customer_id/dealrecord/$dealrecord->id/edit") }}' >{{$dealrecord->id}}</a></li>
-    	<li>
+
+    	@if($room)
+		<li>
+		房间:{{$room['project_name'].$room['building_name'].H::nullStr($room,'buildunit_name').$room['roomName']}}
+		</li>
+		@endif
+
+		<li>
 		<div class="ui-grid-a">
 		    <div class="ui-block-a">客户:{{$room['customer']}}</div>
 		    <div class="ui-block-b">状态:{{$room['purchaseState']}}</div>
