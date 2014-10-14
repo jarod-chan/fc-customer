@@ -10,6 +10,11 @@
 
 
     <style type="text/css">
+	.controlgroup-textinput{
+	    padding-top:.22em;
+	    padding-bottom:.22em;
+	}
+
 	.ui-li-static.ui-collapsible > .ui-collapsible-heading {
 	    margin: 0;
 	}

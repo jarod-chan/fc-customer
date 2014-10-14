@@ -22,13 +22,9 @@ Route::get('menu/to','MenuController@to');
 Route::get('customer/add','CustomerController@toAdd');
 Route::post('customer/save','CustomerController@save');
 Route::get('customer/{id}/edit','CustomerController@toEdit');
+Route::get('customer/{state}','CustomerController@index');
 
-//意向客户
-Route::get('customer/purpose','CPurposeController@index');
-//签约客户
-Route::get('customer/sign','CSignController@index');
-//公共客户
-Route::get('customer/public','CPublicController@index');
+
 
 //佣金结算
 Route::get('commission','CommissionController@index');
