@@ -1,7 +1,7 @@
 @extends('layouts.mobile')
 
 @section('content')
-<div data-role="page"  data-url='{{ URL::to("commission") }}'>
+<div data-role="page"  data-url='{{ URL::to("commission") }}'  >
     <div data-role="content">
      <h3 class="ui-bar ui-bar-a">佣金结算</h3>
 
@@ -28,6 +28,18 @@
 		<div class="ui-grid-a">
 		    <div class="ui-block-a">总价:{{$room['contractTotalAmount']}}</div>
 		    <div class="ui-block-b">未付:{{$room['totalUnRevAmount']}}</div>
+		</div>
+		</li>
+		<li>
+		<div class="ui-grid-a">
+		    <div class="ui-block-a">应结佣金:</div>
+		    <div class="ui-block-b">结算状态:</div>
+		</div>
+		</li>
+		<li>
+		<div class="ui-grid-a">
+		    <div class="ui-block-a">已结:</div>
+		    <div class="ui-block-b">未结:</div>
 		</div>
 		</li>
 

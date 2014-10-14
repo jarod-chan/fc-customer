@@ -1,7 +1,8 @@
 <?php
 class S{
 	//const URL = 'http://172.22.1.30/ser/public/serroom/';
-	const URL = 'http://172.22.1.14:8080/fyg/FdcInfoQuery';
+	//const URL = 'http://172.22.1.14:8080/fyg/FdcInfoQuery';
+	const URL = 'http://172.16.0.162:9080/test/FdcInfoQuery';
 
 
 	private static function get($model){
