@@ -7,7 +7,7 @@
 
 	@foreach($dealrecordList as $dealrecord)
 	<?php
-    	$room=$dealrecord->room();//d($room);
+    	$room=$dealrecord->room();//d($dealrecord);
     ?>
 	 <ul class="item" data-role="listview" data-inset="true">
 	 	 <li><a href='{{ URL::to("commission/$dealrecord->id/deal") }}' >{{$dealrecord->id}}</a></li>
@@ -32,14 +32,14 @@
 		</li>
 		<li>
 		<div class="ui-grid-a">
-		    <div class="ui-block-a">应结佣金:</div>
-		    <div class="ui-block-b">结算状态:</div>
+		    <div class="ui-block-a">应结佣金:{{H::trimz($dealrecord->commission)}}</div>
+		    <div class="ui-block-b">结算状态:{{$dealrecord->state()}}</div>
 		</div>
 		</li>
 		<li>
 		<div class="ui-grid-a">
-		    <div class="ui-block-a">已结:</div>
-		    <div class="ui-block-b">未结:</div>
+		    <div class="ui-block-a">已结:{{H::trimz($dealrecord->inamt)}}</div>
+		    <div class="ui-block-b">未结:{{H::trimz($dealrecord->leftamt)}}</div>
 		</div>
 		</li>
 

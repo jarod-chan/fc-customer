@@ -25,10 +25,7 @@ class CommissionController extends Controller{
 	}
 
 	public function save($dr_id){
-		$dealrecord=Dealrecord::find($dr_id);
-		$arr=Input::only("percent","commission");
-		$dealrecord->fill($arr);
-		$dealrecord->save();
+
 
 		$commissionSet=Input::get('commissionSet');
 		$commissionIds=Commission::where('dealrecord_id',$dr_id)->lists('id');
@@ -50,6 +47,11 @@ class CommissionController extends Controller{
 			Commission::destroy($commissionIds);
 		}
 
+		$dealrecord=Dealrecord::find($dr_id);
+		$arr=Input::only("percent","commission");
+		$dealrecord->fill($arr);
+		$dealrecord->doCalculation();
+		$dealrecord->save();
 
 		Session::flash('message', '保存成功');
 		return Redirect::action('CommissionController@index');

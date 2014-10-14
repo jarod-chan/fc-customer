@@ -41,6 +41,7 @@ class DealrecordController extends Controller{
 			$arr['create_at']=new DateTime();
 			$arr['updater_id']=$counselor_id;
 			$arr['update_at']=new DateTime();
+			$arr['state']='no';
 			$dealrecord=new Dealrecord;
 		}
 

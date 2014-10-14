@@ -20,10 +20,10 @@
 		总价:{{$room['contractTotalAmount']}}
 		</li>
 		<li>
-		{{ Form::text('percent',$dealrecord->percent,array('placeholder'=>'佣金比率','id'=>'percent')) }}
+		{{ Form::text('percent',H::trimz($dealrecord->percent),array('placeholder'=>'佣金比率','id'=>'percent')) }}
 		</li>
 		<li>
-		应结佣金:<span id="span_commission">{{$dealrecord->commission}}</span><input type="hidden" id="commission" name="commission" value="{{$dealrecord->commission}}"  >
+		应结佣金:<span id="span_commission">{{H::trimz($dealrecord->commission)}}</span><input type="hidden" id="commission" name="commission" value="{{$dealrecord->commission}}"  >
 		</li>
     </ul>
 
@@ -33,11 +33,11 @@
 		<li data-icon="delete" class="btn_delete"><a href="#">&nbsp;</a></li>
 		<li>
 			<input type="hidden"  name="commissionSet[-][id]" value="{{$commission->id}}"  >
-			<input type="text" class="item_percent" name="commissionSet[-][percent]" value="{{$commission->percent}}"  placeholder="结算比例">
+			<input type="text" class="item_percent" name="commissionSet[-][percent]" value="{{H::trimz($commission->percent)}}"  placeholder="结算比例">
 		</li>
 		<li>
 			<input type="hidden"  class="item_commission"   name="commissionSet[-][commission]" value="{{$commission->commission}}">
-			金额：<span class="sp_item_commission">{{$commission->commission}}</span>
+			金额：<span class="sp_item_commission">{{H::trimz($commission->commission)}}</span>
 		</li>
 		<li>{{ Form::select("commissionSet[-][counselor_id]",H::prepend($counselorSet,"销售顾问"),$commission->counselor_id,array("data-native-menu"=>"false"))}}</li>
 		<li><input type="date"  name="commissionSet[-][comdate_at]" value="{{$commission->comdate_at}}"  placeholder="日期"></li>
@@ -58,7 +58,13 @@
 		var sp_commission=page.find('#span_commission');
 		var ip_commission=page.find('#commission');
 
-		var commission={{$dealrecord->commission}};
+		@if($dealrecord->commission)
+			var commission={{$dealrecord->commission}};
+		@else
+			var commission='0';
+		@endif
+
+
 		page.find('#percent').blur(function(){
 			var ts=$(this);
 			var percent=ts.val();

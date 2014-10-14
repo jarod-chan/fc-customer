@@ -32,5 +32,11 @@ class H {
 		}
 		return "";
 	}
+
+	public static function trimz($s) {
+		$s=explode('.',$s);
+		if (count($s)==2 && ($s[1]=rtrim($s[1],'0'))) return implode('.',$s);
+		return $s[0];
+	}
 }
 
