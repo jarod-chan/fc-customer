@@ -77,7 +77,10 @@
 			commission=calc.mul(tamount,percent);
 			sp_commission.html(commission);
 			ip_commission.val(commission);
-			page.find(".item_percent").triggerHandler('blur');
+
+			page.find(".item_percent").each(function(){
+				$(this).triggerHandler('blur');
+			});
 		});
 
 		//------------------------------------------------------
