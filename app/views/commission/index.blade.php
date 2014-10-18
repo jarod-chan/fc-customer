@@ -10,7 +10,7 @@
     	$room=$dealrecord->room();//d($dealrecord);
     ?>
 	 <ul class="item" data-role="listview" data-inset="true">
-	 	 <li><a href='{{ URL::to("commission/$dealrecord->id/deal") }}' >{{$dealrecord->id}}</a></li>
+	 	 <li class="fy_sm"><a href='{{ URL::to("commission/$dealrecord->id/deal") }}' >{{$dealrecord->id}}</a></li>
 
 	 	 @if($room)
 		<li>

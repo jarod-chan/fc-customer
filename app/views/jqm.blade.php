@@ -13,7 +13,7 @@
 /* 	.ui-content{
 		padding: 0;
 	}
- */
+
 	.ui-field-contain>label{
 		text-align: right;
 	}
@@ -36,6 +36,8 @@
 	.ui-li-static.ui-collapsible > .ui-collapsible-content {
 	    border-bottom-width: 0;
 	}
+
+	 */
 	</style>
 </head>
 <body>

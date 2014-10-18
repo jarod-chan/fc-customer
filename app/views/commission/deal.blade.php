@@ -20,7 +20,7 @@
 		总价:{{$room['contractTotalAmount']}}
 		</li>
 		<li>
-		{{ Form::text('percent',H::trimz($dealrecord->percent),array('placeholder'=>'佣金比率','id'=>'percent')) }}
+		{{ Form::text('percent',H::trimz($dealrecord->percent),array('placeholder'=>'佣金比率','id'=>'percent', 'data-mini'=>'true' )) }}
 		</li>
 		<li>
 		应结佣金:<span id="span_commission">{{H::trimz($dealrecord->commission)}}</span><input type="hidden" id="commission" name="commission" value="{{$dealrecord->commission}}"  >
@@ -30,24 +30,24 @@
     <div class="item_div">
     @foreach($dealrecord->commissions as $commission)
     <ul class="dl_item" data-role="listview" data-inset="true">
-		<li data-icon="delete" class="btn_delete"><a href="#">&nbsp;</a></li>
+		<li data-icon="delete" class="btn_delete fy_sm"><a href="#">&nbsp;</a></li>
 		<li>
 			<input type="hidden"  name="commissionSet[-][id]" value="{{$commission->id}}"  >
-			<input type="text" class="item_percent" name="commissionSet[-][percent]" value="{{H::trimz($commission->percent)}}"  placeholder="结算比例">
+			<input type="text" class="item_percent" name="commissionSet[-][percent]" value="{{H::trimz($commission->percent)}}"  data-mini="true"  placeholder="结算比例">
 		</li>
 		<li>
 			<input type="hidden"  class="item_commission"   name="commissionSet[-][commission]" value="{{$commission->commission}}">
 			金额：<span class="sp_item_commission">{{H::trimz($commission->commission)}}</span>
 		</li>
-		<li>{{ Form::select("commissionSet[-][counselor_id]",H::prepend($counselorSet,"销售顾问"),$commission->counselor_id,array("data-native-menu"=>"false"))}}</li>
+		<li>{{ Form::select("commissionSet[-][counselor_id]",H::prepend($counselorSet,"销售顾问"),$commission->counselor_id,array("data-native-menu"=>"false","data-mini"=>"true"))}}</li>
 		<li><input type="date"  name="commissionSet[-][comdate_at]" value="{{$commission->comdate_at}}"  placeholder="日期"></li>
     </ul>
     @endforeach
     </div>
-    <button  class="btn_add ui-btn  ui-shadow  ui-corner-all" >新增</button>
+    <button  class="btn_add ui-btn ui-mini ui-corner-all"   >新增</button>
 
 
-    <p>{{ Form::submit('保存') }}</p>
+   <input type="submit"   data-mini="true" value="保存" />
 
   	{{ Form::close() }}
 	<script type="text/javascript">
@@ -108,11 +108,11 @@
 
 		page.find(".btn_add").click(function(){
 			var ul=$('<ul data-role="listview" data-inset="true"></ul>');
-			$('<li data-icon="delete" class="btn_delete"><a href="#">&nbsp;</a></li>').appendTo(ul);
-			$('<li><input type="hidden"  name="commissionSet[-][id]" value="" ><input type="text"  class="item_percent"  name="commissionSet[-][percent]" value=""  placeholder="结算比例"></li>').appendTo(ul);
+			$('<li data-icon="delete" class="btn_delete fy_sm"><a href="#">&nbsp;</a></li>').appendTo(ul);
+			$('<li><input type="hidden"  name="commissionSet[-][id]" value="" ><input type="text"  class="item_percent"  name="commissionSet[-][percent]"  data-mini="true" placeholder="结算比例"></li>').appendTo(ul);
 			$('<li><input type="hidden" class="item_commission" name="commissionSet[-][commission]" value="" >金额：<span class="sp_item_commission"></span></li>').appendTo(ul);
-			$('<li>{{ Form::select("commissionSet[-][counselor_id]",H::prepend($counselorSet,"销售顾问"),'',array("data-native-menu"=>"false"))}}</li>').appendTo(ul);
-			$('<li><input type="date"  name="commissionSet[-][comdate_at]" value=""  placeholder="日期"></li>').appendTo(ul);
+			$('<li>{{ Form::select("commissionSet[-][counselor_id]",H::prepend($counselorSet,"销售顾问"),'',array("data-native-menu"=>"false","data-mini"=>"true"))}}</li>').appendTo(ul);
+			$('<li><input type="date"  name="commissionSet[-][comdate_at]"  data-mini="true"  placeholder="日期"></li>').appendTo(ul);
 
 			(function(){
 				var item_percent=ul.find(".item_percent");

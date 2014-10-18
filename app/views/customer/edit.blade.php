@@ -15,15 +15,19 @@
 	</div>
 	@endif
 
-    {{ Form::open(array('data-ajax'=>'true')) }}
+    {{ Form::open(array('url' => 'customer/save','data-ajax'=>'true')) }}
 	{{ Form::hidden('id',$customer->id) }}
     <ul data-role="listview" data-inset="true">
     	<li data-role="list-divider">客户信息</li>
     	<li>
-		{{ Form::text('name',$customer->name,array('placeholder'=>'姓名')) }}
+    	<div class="fy_grid">
+		 <p class='a'>姓名</p>{{ Form::text('name',$customer->name) }}
+		</div>
 		</li>
 		<li>
-		{{ Form::text('phone',$customer->phone,array('placeholder'=>'手机号')) }}
+		<div class="fy_grid">
+		 <p class='a'>手机</p>{{ Form::text('phone',$customer->phone) }}
+		</div>
 		</li>
 		<li class="ui-field-contain">
 			{{ Form::select('counselor_id',H::prepend($counselorSet,'销售顾问'),$customer->counselor_id,array('data-native-menu'=>'false'))}}
@@ -37,22 +41,34 @@
 		    <h2>更多</h2>
 		    <ul data-role="listview">
 	     		<li>
-				{{ Form::text('qq',$customer->qq,array('placeholder'=>'QQ')) }}
+	     		<div class="fy_grid">
+				<p class='a'>QQ</p>{{ Form::text('qq',$customer->qq) }}
+				</div>
 				</li>
 				<li>
-				{{ Form::text('email',$customer->email,array('placeholder'=>'邮箱')) }}
+				<div class="fy_grid">
+				<p class='a'>邮箱</p>{{ Form::text('email',$customer->email) }}
+				</div>
 				</li>
 				<li>
-				{{ Form::text('weixin',$customer->weixin,array('placeholder'=>'微信')) }}
+				<div class="fy_grid">
+				<p class='a'>微信</p>{{ Form::text('weixin',$customer->weixin) }}
+				</div>
 				</li>
 				<li>
-				{{ Form::text('from',$customer->from,array('placeholder'=>'来源')) }}
+				<div class="fy_grid">
+				<p class='a'>来源</p>{{ Form::text('from',$customer->from) }}
+				</div>
 				</li>
 				<li>
-				{{ Form::text('way',$customer->way,array('placeholder'=>'途径')) }}
+				<div class="fy_grid">
+				<p class='a'>途径</p>{{ Form::text('way',$customer->way) }}
+				</div>
 				</li>
-				<li class="ui-field-contain">
-					登记人:{{$customer->register->name}}
+				<li>
+				<div class="fy_grid">
+					<p class='c'>登记人：{{$customer->register->name}}</p>
+				</div>
 				</li>
 		    </ul>
 		  </li>
@@ -65,7 +81,7 @@
 	    <li><a href='{{ URL::to("customer/$customer->id/dealrecord/list") }}'>成交记录</a></li>
 	</ul>
 
-    <p><button class="btn_delete ui-btn  ui-shadow  ui-corner-all"  >保存</button></p>
+    <p><button class="fy-btn ui-btn  ui-shadow  ui-corner-all"  >保存</button></p>
 
   	{{ Form::close() }}
   	<script type="text/javascript">

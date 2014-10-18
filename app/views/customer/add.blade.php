@@ -4,15 +4,19 @@
 <div data-role="page">
   <div data-role="content">
 
-  {{ Form::open(array('url' => 'customer/save', 'files'=>true,'data-ajax'=>'true')) }}
+  {{ Form::open(array('url' => 'customer/save','data-ajax'=>'true')) }}
 
     <ul data-role="listview" data-inset="true" >
     	<li data-role="list-divider">客户信息</li>
     	<li>
-		{{ Form::text('name','',array('placeholder'=>'姓名')) }}
-		</li>
+    	<div class="fy_grid">
+	         <p class='a'>姓名</p>{{ Form::text('name','') }}
+	    </div>
+	    </li>
 		<li>
-		{{ Form::text('phone','',array('placeholder'=>'手机号')) }}
+		<div class="fy_grid">
+			<p class='a'>手机</p>{{ Form::text('phone','') }}
+		</div>
 		</li>
 		<li class="ui-field-contain">
 			{{ Form::select('counselor_id',H::prepend($counselorSet,'销售顾问'),$counselor->id,array('data-native-menu'=>'false'))}}
@@ -24,28 +28,41 @@
 			 <h2>更多</h2>
 				<ul data-role="listview">
 				<li>
-				{{ Form::text('qq','',array('placeholder'=>'QQ')) }}
+				<div class="fy_grid">
+				<p class='a'>QQ</p>{{ Form::text('qq','') }}
+				</div>
 				</li>
 				<li>
-				{{ Form::text('email','',array('placeholder'=>'邮箱')) }}
+				<div class="fy_grid">
+				<p class='a'>邮箱</p>{{ Form::text('email','') }}
+				</div>
 				</li>
 				<li>
-				{{ Form::text('weixin','',array('placeholder'=>'微信')) }}
+				<div class="fy_grid">
+				<p class='a'>微信</p>{{ Form::text('weixin','') }}
+				</div>
 				</li>
 				<li>
-				{{ Form::text('from','',array('placeholder'=>'来源')) }}
+				<div class="fy_grid">
+				<p class='a'>来源</p>{{ Form::text('from','') }}
+				</div>
 				</li>
 				<li>
-				{{ Form::text('way','',array('placeholder'=>'途径')) }}
+				<div class="fy_grid">
+				<p class='a'>途径</p>{{ Form::text('way','') }}
+				</div>
 				</li>
-				<li class="ui-field-contain">
-					登记人:{{$counselor->name}}
+				<li>
+				<div class="fy_grid">
+					<p class='c'>登记人：{{$counselor->name}}</p>
+				</div>
 				</li>
 			 </ul>
 		 </li>
     </ul>
 
-    <p>{{ Form::submit('保存') }}</p>
+    <p><button class="ui-btn  ui-shadow  ui-corner-all fy-btn"  >保存</button></p>
+
 
   	{{ Form::close() }}
 

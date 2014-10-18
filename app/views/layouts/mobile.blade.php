@@ -10,11 +10,12 @@
 
 
     <style type="text/css">
-	.controlgroup-textinput{
-	    padding-top:.22em;
-	    padding-bottom:.22em;
+ 	/*页面边距*/
+	.ui-content{
+		padding: 0.4em;
 	}
 
+	/**/
 	.ui-li-static.ui-collapsible > .ui-collapsible-heading {
 	    margin: 0;
 	}
@@ -28,6 +29,79 @@
 	.ui-li-static.ui-collapsible > .ui-collapsible-content {
 	    border-bottom-width: 0;
 	}
+
+	/*重新定义间距*/
+	.ui-listview > .ui-li-static {
+	    padding: 0.5em 0.6em;
+	}
+
+	.ui-listview > .fy_sm >.ui-btn {
+	    padding: 0.2em 0.2em;
+	}
+
+	/*阴影效果*/
+	.ui-shadow,.ui-shadow-inset{
+	 text-shadow: none;
+	 box-shadow: none;
+	 -webkit-box-shadow: none;
+	}
+
+	.ui-input-text{
+		margin:0px;
+		border-width: 0px;
+	}
+
+	.ui-input-text input{
+		background-color:#F6F6F6;
+	}
+
+	/*自定义布局*/
+	.fy_grid>.a{
+		float:left;
+		width:3.0em;
+		padding-left:0.8em;
+		font-size: 1em;
+		margin: 0.4em 0;
+	}
+	.fy_grid>div{
+		margin-left:3.8em;
+	}
+
+	.fy_grid>.c{
+		float:left;
+		padding-left:0.8em;
+		font-size: 1em;
+		margin: 0.4em 0;
+	}
+
+
+	/* 按钮 */
+	.ui-page-theme-a .fy-btn,
+	.ui-page-theme-a .fy-btn:visited {
+		background-color: #3388cc /*{a-bup-background-color}*/;
+		text-shadow: none;
+		color:white;
+	}
+
+	.ui-body-a,
+	.ui-page-theme-a .ui-body-inherit,
+	html .ui-bar-a .ui-body-inherit,
+	html .ui-body-a .ui-body-inherit,
+	html body .ui-group-theme-a .ui-body-inherit,
+	html .ui-panel-page-container-a {
+		border-top-color:#f0f0f0;
+	}
+
+	/*select 无边框*/
+	.ui-select .ui-btn {
+		border: none;
+	}
+
+	/*字体设置*/
+	.ui-listview > .ui-li-divider {
+	    font-size: 1em;
+	}
+
 	</style>
 </head>
 <body>

@@ -46,11 +46,18 @@
 		    <div class="ui-block-b">
 		    <div class="ui-field-contain">
 		    <label>金额:</label>
-		    <input type="text"  name="commissionSet[-][commission]" value=""  placeholder='金额'>
+		    <input type="text"  name="commissionSet[-][commission]" value="" placeholder='金额'>
 		    </div>
 		    </div>
 		</div>
 		</li>
+		<li>
+		 <div class="ui-field-contain">
+	         <label for="text-12">Text input:</label>
+	         <input type="text" name="text-12" id="text-12" value="">
+	    </div>
+		</li>
+
 		<li>{{ Form::select("commissionSet[-][counselor_id]",H::prepend(null,"销售顾问"),'',array("data-native-menu"=>"false"))}}</li>
 		<li><input type="date"  name="commissionSet[-][comdate_at]" value=""  placeholder="日期"></li>
     </ul>
@@ -68,6 +75,32 @@
         <li><a href="#">Mouse</a></li>
     </ul>
 </div><!-- /collapsible -->
+
+<form>
+    <div class="ui-field-contain">
+         <label for="text-12">Text input:</label>
+         <input type="text" name="text-12" id="text-12" value="">
+    </div>
+    <div class="ui-field-contain">
+         <label for="text-13">Text input: data-clear-btn="true"</label>
+         <input type="text" data-clear-btn="true" name="text-13" id="text-13" value="">
+    </div>
+    <div class="ui-field-contain">
+         <label for="search-8">Search:</label>
+         <input type="search" name="search-8" id="search-8" value="">
+    </div>
+    <div class="ui-field-contain">
+        <label for="textarea-12">Textarea:</label>
+        <textarea cols="40" rows="8" name="textarea-12" id="textarea-12"></textarea>
+    </div>
+</form>
+
+<div class="ui-grid-c">
+    <div class="ui-block-a"><p>结算比例:</p></div>
+    <div class="ui-block-b"><input type="text" name="text-12" id="text-12" value=""></div>
+    <div class="ui-block-c"><p>结算比例:</p></div>
+    <div class="ui-block-d"><input type="text" name="text-12" id="text-12" value=""></div>
+</div>
 
 
   </div>
