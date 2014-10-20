@@ -24,20 +24,24 @@
 			</div>
 		</li>
 		<li>
-			{{ Form::text('level',$purposeroom->level,array('placeholder'=>'意向级别')) }}
+		<div class="fy_grid4">
+			<p class='a'>意向级别</p>{{ Form::text('level',$purposeroom->level) }}
+		</div>
 		</li>
 		<li>
-			{{ Form::text('reason',$purposeroom->reason,array('placeholder'=>'考虑因素')) }}
+		<div class="fy_grid4">
+			<p class='a'>考虑因素</p>{{ Form::text('reason',$purposeroom->reason) }}
+		</div>
 		</li>
     </ul>
 
-    <p>{{ Form::submit('保存') }}</p>
+    <p><button class="fy-btn ui-btn  ui-shadow  ui-corner-all" >保存</button></p>
 
   	{{ Form::close() }}
 
   	 @if($purposeroom->id)
   	{{ Form::open(array('url' => "customer/$customer_id/purposeroom/$purposeroom->id/delete",'data-ajax'=>'true')) }}
-  	<p>{{ Form::submit('删除') }}</p>
+  	 <p><button class="fy-btn ui-btn  ui-shadow  ui-corner-all" >删除</button></p>
 	{{ Form::close() }}
   	@endif
 

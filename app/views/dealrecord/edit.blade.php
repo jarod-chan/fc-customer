@@ -25,13 +25,13 @@
 		</li>
     </ul>
 
-    <p>{{ Form::submit('保存') }}</p>
+    <p><button class="fy-btn ui-btn  ui-shadow  ui-corner-all" >保存</button></p>
 
   	{{ Form::close() }}
 
   	 @if($dealrecord->id)
   	{{ Form::open(array('url' => "customer/$customer_id/dealrecord/$dealrecord->id/delete",'data-ajax'=>'true')) }}
-  	<p>{{ Form::submit('删除') }}</p>
+    <p><button class="fy-btn ui-btn  ui-shadow  ui-corner-all" >删除</button></p>
 	{{ Form::close() }}
   	@endif
 

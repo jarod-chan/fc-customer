@@ -5,7 +5,7 @@
     <div data-role="content">
      <h3 class="ui-bar ui-bar-a">跟进记录</h3>
 
-	 <a href='{{ URL::to("customer/$customer_id/inrecord/add") }}' data-ajax="true" class="ui-btn ui-shadow ui-corner-all">新增</a>
+	 <p><button class="fy-btn ui-btn  ui-shadow  ui-corner-all" onclick="changePage('{{ URL::to("customer/$customer_id/inrecord/add") }}')">新增</button></p>
 
 	@foreach($inrecordList as $inrecord)
 	 <ul class="item" data-role="listview" data-inset="true">

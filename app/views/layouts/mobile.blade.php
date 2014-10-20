@@ -8,6 +8,11 @@
     {{HTML::script('js/jquery.mobile-1.4.3.min.js')}}
     {{HTML::script('js/myplug.js')}}
 
+    <script type="text/javascript">
+	function changePage(url){
+		$.mobile.changePage(url);
+	}
+    </script>
 
     <style type="text/css">
  	/*页面边距*/
@@ -33,10 +38,6 @@
 	/*重新定义间距*/
 	.ui-listview > .ui-li-static {
 	    padding: 0.5em 0.6em;
-	}
-
-	.ui-listview > .fy_sm >.ui-btn {
-	    padding: 0.2em 0.2em;
 	}
 
 	/*阴影效果*/
@@ -68,6 +69,24 @@
 	}
 
 	.fy_grid>.c{
+		float:left;
+		padding-left:0.8em;
+		font-size: 1em;
+		margin: 0.4em 0;
+	}
+
+	/*描述文字为四个字时*/
+	.fy_grid4>.a{
+		float:left;
+		width:4em;
+		padding-left:0.8em;
+		font-size: 1em;
+		margin: 0.4em 0;
+	}
+	.fy_grid4>div{
+		margin-left:5em;
+	}
+	.fy_grid4>.c{
 		float:left;
 		padding-left:0.8em;
 		font-size: 1em;
