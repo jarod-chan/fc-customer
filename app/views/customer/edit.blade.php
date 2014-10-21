@@ -3,6 +3,7 @@
 @section('content')
 <div data-role="page" class="customer_edit" data-url='{{ URL::to("customer/$customer->id/edit") }}' >
     <div data-role="content">
+     <script type="text/javascript">changeTitle('客户信息');</script>
 
     @if (Session::has('message'))
   	<div class="ui-corner-all custom-corners" >
@@ -15,6 +16,7 @@
 	</div>
 	@endif
 
+	<div class="fy-body">
     {{ Form::open(array('url' => 'customer/save','data-ajax'=>'true')) }}
 	{{ Form::hidden('id',$customer->id) }}
     <ul data-role="listview" data-inset="true">
@@ -94,7 +96,7 @@
 		});
 	})
 	</script>
-
+	</div>
   </div>
 </div>
 

@@ -3,7 +3,7 @@
 @section('content')
 <div data-role="page"  data-url='{{ URL::to("commission") }}'  >
     <div data-role="content">
-     <h3 class="ui-bar ui-bar-a">佣金结算</h3>
+     <script type="text/javascript">changeTitle('佣金结算');</script>
 
 	@foreach($dealrecordList as $dealrecord)
 	<?php

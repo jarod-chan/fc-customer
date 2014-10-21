@@ -3,6 +3,7 @@
 @section('content')
 <div data-role="page">
   <div data-role="content">
+  <script type="text/javascript">changeTitle('客户信息');</script>
 
   {{ Form::open(array('url' => 'customer/save','data-ajax'=>'true')) }}
 

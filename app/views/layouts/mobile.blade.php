@@ -3,6 +3,7 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" id="viewport" content="width=device-width, initial-scale=1.0,  maximum-scale=1" />
+	<title id="fy_title"></title>
 	{{HTML::style('css/jquery.mobile-1.4.3.min.css')}}
     {{HTML::script('js/jquery-1.11.1.min.js')}}
     {{HTML::script('js/jquery.mobile-1.4.3.min.js')}}
@@ -12,13 +13,17 @@
 	function changePage(url){
 		$.mobile.changePage(url);
 	}
+	function changeTitle(title){
+		$("#fy_title").html(title);
+	}
     </script>
 
     <style type="text/css">
  	/*页面边距*/
 	.ui-content{
-		padding: 0.4em;
+		padding: 0 0.6em 0 0.6em;
 	}
+
 
 	/**/
 	.ui-li-static.ui-collapsible > .ui-collapsible-heading {
@@ -120,6 +125,45 @@
 	.ui-listview > .ui-li-divider {
 	    font-size: 1em;
 	}
+
+	.pl-02em{
+		padding-left: 0.2em;
+	}
+	.pt-07em{
+		padding-top: 0.7em;
+	}
+	.pt-02em{
+		padding-top: 0.2em;
+	}
+
+	/*查询行*/
+	.fy-query>.a{
+		float:left;
+		width: 5.5em;
+	}
+	.fy-query>.a>.ui-select{
+		margin-top: 0.3em;
+		margin-bottom: 0em;
+	}
+	.fy-query>.a>.ui-select>.ui-btn{
+		background-color: #f0f0f0;
+		padding-left: 5px;
+	}
+
+	.fy-query>.b>div>input{
+		height: 2.56em;
+	}
+	.fy-query>.b{
+		padding-top: 0.3em;
+		margin-left: 5.7em;
+		margin-right: 4.5em;
+	}
+
+	.fy-query>.b>.fy-btn{
+		float:right;height:2.6em;width: 4em;margin-top:-2.6em;margin-right: -4.3em;padding: 0px;
+	}
+
+
 
 	</style>
 </head>

@@ -3,7 +3,7 @@
 @section('content')
 <div data-role="page" class="purpose_list" data-url='{{ URL::to("customer/$customer_id/purposeroom/list") }}'>
     <div data-role="content">
-     <h3 class="ui-bar ui-bar-a">意向房源</h3>
+     <script type="text/javascript">changeTitle('意向房源')</script>
 
 	  <p><button class="fy-btn ui-btn  ui-shadow  ui-corner-all" onclick="changePage('{{ URL::to("customer/$customer_id/purposeroom/add") }}')">新增</button></p>
 
