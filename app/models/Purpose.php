@@ -20,4 +20,12 @@ class Purpose extends Eloquent{
 		return $this->belongsTo('Counselor', 'updater_id');
 	}
 
+	public static function enum($key){
+		return Syenum::vals('purpose_'.$key);
+	}
+
+	public function name($key){
+		return Syenum::key('purpose_'.$key,$this->$key);
+	}
+
 }

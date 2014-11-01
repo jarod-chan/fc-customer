@@ -119,6 +119,13 @@
 	/*select 无边框*/
 	.ui-select .ui-btn {
 		border: none;
+		padding-top: 0.5em;
+		padding-bottom: 0.5em;
+	}
+
+	.ui-select {
+	    margin-bottom: 0.2em;
+	    margin-top: 0.2em;
 	}
 
 	/*字体设置*/
@@ -163,7 +170,10 @@
 		float:right;height:2.6em;width: 4em;margin-top:-2.6em;margin-right: -4.3em;padding: 0px;
 	}
 
-
+	/* 去掉边框阴影 */
+    .ui-page-theme-a .ui-btn:focus, html .ui-bar-a .ui-btn:focus, html .ui-body-a .ui-btn:focus, html body .ui-group-theme-a .ui-btn:focus, html head + body .ui-btn.ui-btn-a:focus, .ui-page-theme-a .ui-focus, html .ui-bar-a .ui-focus, html .ui-body-a .ui-focus, html body .ui-group-theme-a .ui-focus, html head + body .ui-btn-a.ui-focus, html head + body .ui-body-a.ui-focus {
+	    box-shadow: 0 0 0 0 #FFF;
+	}
 
 	</style>
 </head>
