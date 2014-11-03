@@ -1,7 +1,7 @@
 @extends('layouts.mobile')
 
 @section('content')
-<div data-role="page">
+<div data-role="page" class="purpose_edit">
   <div data-role="content">
 
   {{ Form::open(array('url' => "customer/$customer_id/purpose/save",'data-ajax'=>'true')) }}
@@ -13,12 +13,12 @@
     	<li style="padding-left:1.5em" data-role="list-divider">意向信息</li>
     	<li>
     	<div class="fy_grid4">
-		<p class='a'>客户级别</p>{{ Form::select('khjb',H::prepend(Purpose::enum('khjb'),'客户级别'),$purpose->khjb,array('data-native-menu'=>'false'))}}
+		<p class='a'>客户级别</p>{{ Form::select('khjb',H::prepend(Purpose::enum('khjb'),'客户级别'),$purpose->khjb,array('id'=>'khjb','data-native-menu'=>'false'))}}
 		</div>
     	</li>
     	<li>
     	<div class="fy_grid4">
-    	<p class='a'>意向强度</p>{{ Form::select('yxqd',H::prepend(Purpose::enum('yxqd'),'意向强度'),$purpose->yxqd,array('data-native-menu'=>'false'))}}
+    	<p class='a'>意向强度</p>{{ Form::select('yxqd',H::prepend(Purpose::enum('yxqd'),'意向强度'),$purpose->yxqd,array('id'=>'yxqd','data-native-menu'=>'false'))}}
     	</div>
     	</li>
     	<li>
@@ -73,7 +73,7 @@
     	</li>
     	<li>
     	<div class="fy_grid4">
-    	<p class='a'>开盘时间</p><input type="date"  name="kpsj" value="{{$purpose->kpsj}}" >
+    	<p class='a'>开盘时间</p><input type="date"  id="kpsj" name="kpsj" value="{{$purpose->kpsj}}" >
     	</div>
     	</li>
     	<li>
@@ -92,6 +92,25 @@
   	 <p><button class="fy-btn ui-btn  ui-shadow  ui-corner-all"  >删除</button></p>
 	{{ Form::close() }}
   	@endif
+
+  	@include('common.pop')
+
+  	<script type="text/javascript">
+	$(function(){
+		var page= $(".purpose_edit").last();
+		page.find('form:eq(0)').submit(function(){
+ 			var msg=V.require_all(page,[
+ 	 	 			{sl:'#khjb',name:'客户级别'},
+ 	 	 			{sl:'#yxqd',name:'意向强度'},
+ 	 	 			{sl:'#kpsj',name:'开盘时间'}
+ 	 	 	]);
+ 			if(msg!==""){
+ 				pop.open(msg);
+ 				return false;
+ 			}
+		});
+	})
+	</script>
 
   </div>
 </div>

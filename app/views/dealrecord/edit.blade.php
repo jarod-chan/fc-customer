@@ -1,7 +1,7 @@
 @extends('layouts.mobile')
 
 @section('content')
-<div data-role="page">
+<div data-role="page" class="dealrecord_edit">
   <div data-role="content">
 
   {{ Form::open(array('url' => "customer/$customer_id/dealrecord/save",'data-ajax'=>'true')) }}
@@ -35,8 +35,19 @@
 	{{ Form::close() }}
   	@endif
 
+	 @include('common.pop')
   	<script type="text/javascript">
 	$(function(){
+		var page= $(".dealrecord_edit").last();
+		page.find('form:eq(0)').submit(function(){
+ 			var msg=V.require_all(page,[
+ 	 	 			{sl:'#sel_room',name:'房间'}
+ 	 	 	]);
+ 			if(msg!==""){
+ 				pop.open(msg);
+ 				return false;
+ 			}
+		});
 
 		$("#sel_sellproject").change(function(){
 			$("#sel_building,#sel_buildingunit,#sel_room").find("option:gt(0)").remove();

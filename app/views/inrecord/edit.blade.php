@@ -1,7 +1,7 @@
 @extends('layouts.mobile')
 
 @section('content')
-<div data-role="page">
+<div data-role="page" class="inrecord_edit">
   <div data-role="content">
 
    {{ Form::open(array('url' => "customer/$customer_id/inrecord/save",'data-ajax'=>'true')) }}
@@ -18,7 +18,7 @@
 		</div>
 		</li>
     	<li class="fy_grid4">
-    	<p class="a">跟进方式</p>{{ Form::select('type',H::prepend(Inrecord::typeEnums(),'跟进方式'),$inrecord->type,array('data-native-menu'=>'false'))}}
+    	<p class="a">跟进方式</p>{{ Form::select('type',H::prepend(Inrecord::typeEnums(),'跟进方式'),$inrecord->type,array('id'=>'type','data-native-menu'=>'false'))}}
     	</li>
     	<li>
     	<div class="fy_grid4">
@@ -41,6 +41,22 @@
   	 <p><button class="fy-btn ui-btn  ui-shadow  ui-corner-all" >删除</button></p>
 	{{ Form::close() }}
 	 @endif
+
+	 @include('common.pop')
+	<script type="text/javascript">
+	$(function(){
+		var page= $(".inrecord_edit").last();
+		page.find('form:eq(0)').submit(function(){
+ 			var msg=V.require_all(page,[
+ 	 	 			{sl:'#type',name:'跟进方式'}
+ 	 	 	]);
+ 			if(msg!==""){
+ 				pop.open(msg);
+ 				return false;
+ 			}
+		});
+	})
+	</script>
   </div>
 </div>
 @stop

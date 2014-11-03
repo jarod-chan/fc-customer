@@ -23,19 +23,19 @@
     	<li  style="padding-left:1.5em" data-role="list-divider">客户信息</li>
     	<li>
     	<div class="fy_grid">
-		 <p class='a'>姓名</p>{{ Form::text('name',$customer->name) }}
+		 <p class='a'>姓名</p>{{ Form::text('name',$customer->name,array('id'=>'name')) }}
 		</div>
 		</li>
 		<li>
 		<div class="fy_grid">
-		 <p class='a'>手机</p>{{ Form::text('phone',$customer->phone) }}
+		 <p class='a'>手机</p>{{ Form::text('phone',$customer->phone,array('id'=>'phone')) }}
 		</div>
 		</li>
 		<li class="fy_grid">
 			<p class='a'>顾问</p>{{ Form::select('counselor_id',H::prepend($counselorSet,'顾问'),$customer->counselor_id,array('data-native-menu'=>'false'))}}
 		</li>
 		<li class="fy_grid">
-			<p class='a'>状态</p>{{ Form::select('state',H::prepend($stateSet,'状态'),$customer->state,array('data-native-menu'=>'false'))}}
+			<p class='a'>状态</p>{{ Form::select('state',H::prepend($stateSet,'状态'),$customer->state,array('id'=>'state','data-native-menu'=>'false'))}}
 		</li>
 
 
@@ -83,14 +83,26 @@
 	    <li><a href='{{ URL::to("customer/$customer->id/dealrecord/list") }}'>成交记录</a></li>
 	</ul>
 
-    <p><button class="fy-btn ui-btn  ui-shadow  ui-corner-all"  >保存</button></p>
-
+	<p><button class="fy-btn btn_save ui-btn  ui-shadow  ui-corner-all"  >保存</button></p>
   	{{ Form::close() }}
+
+	@include('common.pop')
   	<script type="text/javascript">
 	$(function(){
+
 		var page=$(".customer_edit").last();
 		var form=page.find("form");
- 		page.find(".btn_delete").click(function(){
+ 		page.find(".btn_save").click(function(){
+ 			var msg=V.require_all(page,[
+ 	 			           	 		{sl:'#name',name:'姓名'},
+ 	 			           	 		{sl:'#phone',name:'手机'},
+ 	 			           	 		{sl:'#state',name:'状态'}
+ 	 			           	 		]);
+			if(msg!==""){
+				pop.open(msg);
+				return false;
+			}
+
 			$("body").pagecontainer("change",'{{ URL::to("customer/save") }}',{type:'post',data:form.serialize(),changeHash:false});
 			return false;
 		});

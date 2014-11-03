@@ -8,6 +8,7 @@
     {{HTML::script('js/jquery-1.11.1.min.js')}}
     {{HTML::script('js/jquery.mobile-1.4.3.min.js')}}
     {{HTML::script('js/myplug.js')}}
+    {{HTML::script('js/common.js')}}
 
     <script type="text/javascript">
 	function changePage(url){

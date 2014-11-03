@@ -1,7 +1,7 @@
 @extends('layouts.mobile')
 
 @section('content')
-<div data-role="page">
+<div data-role="page" class="customer_add">
   <div data-role="content">
   <script type="text/javascript">changeTitle('客户信息');</script>
 
@@ -11,19 +11,19 @@
     	<li  style="padding-left:1.5em" data-role="list-divider">客户信息</li>
     	<li>
     	<div class="fy_grid">
-	         <p class='a'>姓名</p>{{ Form::text('name','') }}
+	         <p class='a'>姓名</p>{{ Form::text('name','',array('id'=>'name')) }}
 	    </div>
 	    </li>
 		<li>
 		<div class="fy_grid">
-			<p class='a'>手机</p>{{ Form::text('phone','') }}
+			<p class='a'>手机</p>{{ Form::text('phone','',array('id'=>'phone')) }}
 		</div>
 		</li>
 		<li class="fy_grid">
 			<p class='a'>顾问</p>{{ Form::select('counselor_id',H::prepend($counselorSet,'顾问'),$counselor->id,array('data-native-menu'=>'false'))}}
 		</li>
 		<li class="fy_grid">
-			<p class='a'>状态</p>{{ Form::select('state',H::prepend($stateSet,'状态'),'',array('data-native-menu'=>'false'))}}
+			<p class='a'>状态</p>{{ Form::select('state',H::prepend($stateSet,'状态'),'',array('id'=>'state','data-native-menu'=>'false'))}}
 		</li>
 		<li data-role="collapsible" data-iconpos="right" data-inset="false">
 			 <h2>更多</h2>
@@ -66,6 +66,25 @@
 
 
   	{{ Form::close() }}
+
+  	@include('common.pop')
+
+  	<script type="text/javascript">
+	$(function(){
+		var page= $(".customer_add").last();
+		page.find('form').submit(function(){
+ 			var msg=V.require_all(page,[
+ 	 	 			{sl:'#name',name:'姓名'},
+ 	 	 			{sl:'#phone',name:'手机'},
+ 	 	 			{sl:'#state',name:'状态'}
+ 	 	 	]);
+ 			if(msg!==""){
+ 				pop.open(msg);
+ 				return false;
+ 			}
+		});
+	})
+	</script>
 
   </div>
 </div>

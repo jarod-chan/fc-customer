@@ -18,11 +18,16 @@ class Syenum extends Eloquent{
 	}
 
 	public function scopeKey($query,$type,$key){
-		return $query->where('type',$type)
+		$syenum=$query->where('type',$type)
 		->where('key',$key)
 		->select('name')
-		->first()
-		->name;
+		->first();
+
+ 		if($syenum){
+			return $syenum->name;
+		}else{
+			return " ";
+		}
 	}
 
 	public function scopeVals($query,$type){
