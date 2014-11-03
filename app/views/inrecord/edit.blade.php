@@ -10,15 +10,15 @@
    @endif
 
     <ul data-role="listview" data-inset="true">
-    	<li data-role="list-divider">跟进记录</li>
+    	<li style="padding-left:1.5em" data-role="list-divider">跟进记录</li>
     	<li>
     	<div class="ui-grid-a">
 		    <div class="ui-block-a fy_grid"><p class="c">跟进人:{{$inrecord->updater->name}}<p></div>
 		    <div class="ui-block-b fy_grid"><p class="c">跟进日期:{{$inrecord->update_at}}<p></div>
 		</div>
 		</li>
-    	<li>
-    	{{ Form::select('type',H::prepend(Inrecord::typeEnums(),'跟进方式'),$inrecord->type,array('data-native-menu'=>'false'))}}
+    	<li class="fy_grid4">
+    	<p class="a">跟进方式</p>{{ Form::select('type',H::prepend(Inrecord::typeEnums(),'跟进方式'),$inrecord->type,array('data-native-menu'=>'false'))}}
     	</li>
     	<li>
     	<div class="fy_grid4">

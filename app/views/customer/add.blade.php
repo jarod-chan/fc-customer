@@ -8,7 +8,7 @@
   {{ Form::open(array('url' => 'customer/save','data-ajax'=>'true')) }}
 
     <ul data-role="listview" data-inset="true" >
-    	<li data-role="list-divider">客户信息</li>
+    	<li  style="padding-left:1.5em" data-role="list-divider">客户信息</li>
     	<li>
     	<div class="fy_grid">
 	         <p class='a'>姓名</p>{{ Form::text('name','') }}
@@ -19,11 +19,11 @@
 			<p class='a'>手机</p>{{ Form::text('phone','') }}
 		</div>
 		</li>
-		<li class="ui-field-contain">
-			{{ Form::select('counselor_id',H::prepend($counselorSet,'销售顾问'),$counselor->id,array('data-native-menu'=>'false'))}}
+		<li class="fy_grid">
+			<p class='a'>顾问</p>{{ Form::select('counselor_id',H::prepend($counselorSet,'顾问'),$counselor->id,array('data-native-menu'=>'false'))}}
 		</li>
-		<li class="ui-field-contain">
-			{{ Form::select('state',H::prepend($stateSet,'状态'),'',array('data-native-menu'=>'false'))}}
+		<li class="fy_grid">
+			<p class='a'>状态</p>{{ Form::select('state',H::prepend($stateSet,'状态'),'',array('data-native-menu'=>'false'))}}
 		</li>
 		<li data-role="collapsible" data-iconpos="right" data-inset="false">
 			 <h2>更多</h2>
