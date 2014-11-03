@@ -56,7 +56,7 @@
 		</li>
 		<li>
 		<div class="fy_grid4">
-		<p class="a">日期</p><input type="date"  name="commissionSet[-][comdate_at]" value="{{$commission->comdate_at}}" >
+		<p class="a">日期</p><input type="date"  class="item_date" name="commissionSet[-][comdate_at]" value="{{$commission->comdate_at}}" >
 		</div>
 		</li>
     </ul>
@@ -66,6 +66,8 @@
    <button class="fy-btn ui-btn   ui-corner-all" >保存</button>
 
   	{{ Form::close() }}
+
+  	@include('common.pop')
 	<script type="text/javascript">
 	$(function(){
 		//------------------------------------------------------
@@ -128,7 +130,7 @@
 			$('<li><div class="fy_grid4"><p class="a">结算比例</p><input type="text" class="item_percent" name="commissionSet[-][percent]" value=""></div></li>').appendTo(ul);
 			$('<li><div class="fy_grid4"><p class="c">金额：<input type="hidden"  class="item_commission"   name="commissionSet[-][commission]" value=""><span class="sp_item_commission"></span></p></div></li>').appendTo(ul);
 			$('<li><div class="fy_grid4"><p class="a">顾问</p>{{ Form::select("commissionSet[-][counselor_id]",H::prepend($counselorSet,"顾问"),'',array("data-native-menu"=>"false"))}}</li>').appendTo(ul);
-			$('<li><div class="fy_grid4"><p class="a">日期</p><input type="date"  name="commissionSet[-][comdate_at]" value="" ></div></li>').appendTo(ul);
+			$('<li><div class="fy_grid4"><p class="a">日期</p><input type="date"  class="item_date"  name="commissionSet[-][comdate_at]" value="" ></div></li>').appendTo(ul);
 
 			(function(){
 				var item_percent=ul.find(".item_percent");
@@ -157,8 +159,23 @@
 			return false;
 		});
 
+
 		var form=page.find("form");
 		form.submit(function(){
+			var msg=V.require_all(page,[
+			       {sl:'#percent',name:'佣金比率'}
+			]);
+
+			item.find("ul").each(function(i){
+				var ul=$(this);
+				msg+=V.require(ul.find('.item_percent'),'行'+(i+1)+'结算比例');
+				msg+=V.require(ul.find('select'),'行'+(i+1)+'顾问');
+				msg+=V.require(ul.find('.item_date'),'行'+(i+1)+'日期');
+			});
+ 	 	 	if(msg!==""){
+ 	 	 	 	pop.open(msg);
+ 	 	 	 	return false;
+ 	 	 	 }
 			item.find('ul').formatName();
 		})
 
