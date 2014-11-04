@@ -11,6 +11,8 @@ class Syenum extends Eloquent{
 
 	public static function allTypes(){
 		return array(
+				array('val'=>'customer_from','name'=>'客户信息-来源'),
+				array('val'=>'customer_way','name'=>'客户信息-途径'),
 				array('val'=>'purpose_khjb','name'=>'意向信息-客户级别'),
 				array('val'=>'purpose_yxqd','name'=>'意向信息-意向强度'),
 				array('val'=>'purpose_gfdj','name'=>'意向信息-购房动机'),
@@ -19,7 +21,8 @@ class Syenum extends Eloquent{
 				array('val'=>'purpose_jzfg','name'=>'意向信息-建筑风格'),
 				array('val'=>'purpose_jzx','name'=>'意向信息-精装修'),
 				array('val'=>'purpose_yhld','name'=>'意向信息-优惠力度'),
-				array('val'=>'purpose_xqf','name'=>'意向信息-学区房')
+				array('val'=>'purpose_xqf','name'=>'意向信息-学区房'),
+				array('val'=>'purposeroom_level','name'=>'意向房源-意向级别')
 		);
 	}
 

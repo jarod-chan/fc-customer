@@ -27,4 +27,12 @@ class Purposeroom extends Eloquent{
 		return null;
 	}
 
+	public static function enum($key){
+		return Syenum::vals('purposeroom_'.$key);
+	}
+
+	public function name($key){
+		return Syenum::key('purposeroom_'.$key,$this->$key);
+	}
+
 }

@@ -17,6 +17,14 @@ class Customer extends Eloquent{
 		return self::stateEnums()[$this->state];
 	}
 
+	public static function enum($key){
+		return Syenum::vals('customer_'.$key);
+	}
+
+	public function name($key){
+		return Syenum::key('customer_'.$key,$this->$key);
+	}
+
 	//顾问
 	public function counselor(){
 		return $this->belongsTo('Counselor', 'counselor_id');

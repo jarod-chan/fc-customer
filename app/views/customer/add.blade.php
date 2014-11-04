@@ -45,12 +45,12 @@
 				</li>
 				<li>
 				<div class="fy_grid">
-				<p class='a'>来源</p>{{ Form::text('from','') }}
+				<p class='a'>来源</p>{{ Form::select('from',H::prepend(Customer::enum('from'),'来源'),'',array('data-native-menu'=>'false'))}}
 				</div>
 				</li>
 				<li>
 				<div class="fy_grid">
-				<p class='a'>途径</p>{{ Form::text('way','') }}
+				<p class='a'>途径</p>{{ Form::select('way',H::prepend(Customer::enum('way'),'途径'),'',array('data-native-menu'=>'false'))}}
 				</div>
 				</li>
 				<li>

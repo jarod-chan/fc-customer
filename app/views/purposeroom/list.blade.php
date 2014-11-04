@@ -28,7 +28,7 @@
 		</li>
 		<li>
     	<div class="ui-grid-a">
-		    <div class="ui-block-a">意向级别:{{$purposeroom->level}}</div>
+		    <div class="ui-block-a">意向级别:{{$purposeroom->name('level')}}</div>
 		    <div class="ui-block-b">考虑因素:{{$purposeroom->reason}}</div>
 		</div>
 		</li>
