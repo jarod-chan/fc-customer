@@ -11,9 +11,15 @@ class Syenum extends Eloquent{
 
 	public static function allTypes(){
 		return array(
-				array('val'=>'accept_from','name'=>'诉求受理-信息来源'),
-				array('val'=>'accept_degree','name'=>'诉求受理-严重程度'),
-				array('val'=>'accept_type','name'=>'诉求受理-诉求类别')
+				array('val'=>'purpose_khjb','name'=>'意向信息-客户级别'),
+				array('val'=>'purpose_yxqd','name'=>'意向信息-意向强度'),
+				array('val'=>'purpose_gfdj','name'=>'意向信息-购房动机'),
+				array('val'=>'purpose_zzlx','name'=>'意向信息-住宅类型'),
+				array('val'=>'purpose_hxlx','name'=>'意向信息-户型类型'),
+				array('val'=>'purpose_jzfg','name'=>'意向信息-建筑风格'),
+				array('val'=>'purpose_jzx','name'=>'意向信息-精装修'),
+				array('val'=>'purpose_yhld','name'=>'意向信息-优惠力度'),
+				array('val'=>'purpose_xqf','name'=>'意向信息-学区房')
 		);
 	}
 

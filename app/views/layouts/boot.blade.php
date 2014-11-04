@@ -41,35 +41,22 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="#">客户诉求系统</a>
+          <a class="navbar-brand" href="#">客户跟踪系统</a>
         </div>
 
         <div class="navbar-collapse collapse">
-       @if (!Auth::guest())
-         	 <ul class="nav navbar-nav">
-	              <li class="dropdown">
-	              <a href="#" class="dropdown-toggle" data-toggle="dropdown">诉求处理 <span class="caret"></span></a>
+        @if (!Auth::guest())
+       	@endif
+        <ul class="nav navbar-nav">
+	            <li class="dropdown">
+	              <a href="#" class="dropdown-toggle" data-toggle="dropdown">系统配置<span class="caret"></span></a>
 	              <ul class="dropdown-menu" role="menu">
-	                <li><a href="{{ URL::to('complaint/list') }}">客户诉求</a></li>
-	                <li><a href="{{ URL::to('accept/list') }}">诉求受理</a></li>
+	                <li><a href="{{ URL::to('counselor/list') }}">销售顾问</a></li>
+	                <li><a href="{{ URL::to('syenum/list') }}">配置选项</a></li>
 	              </ul>
 	            </li>
-
-             <li class="dropdown">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown">系统配置 <span class="caret"></span></a>
-              <ul class="dropdown-menu" role="menu">
-                <li><a href="{{ URL::to('syuser/list') }}">系统用户</a></li>
-                <li><a href="{{ URL::to('sytag/list') }}">系统标签</a></li>
-                <li><a href="{{ URL::to('state/list') }}">诉求受理状态</a></li>
-                <li><a href="{{ URL::to('grade/list') }}">投诉处理满意度</a></li>
-                <li><a href="{{ URL::to('registeruser/list') }}">注册用户</a></li>
-                <li><a href="{{ URL::to('sellproject/list') }}">小区管理</a></li>
-                <li><a href="{{ URL::to('syenum/list') }}">诉求受理配置选项</a></li>
-              </ul>
-            </li>
-
 		 </ul>
-		@endif
+
 
           @if ( Auth::guest() )
           <div  class="navbar-collapse collapse navbar-right">

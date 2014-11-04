@@ -9,9 +9,12 @@ class Counselor extends Eloquent{
 
 	protected $fillable = array('name','role','openid');
 
+	public static function roleEnums(){
+		return array('s' =>'销售顾问','m'=>'销售经理');
+	}
 
 	public function getRoleName(){
-		$arr=array('s' =>'置业顾问','m'=>'销售经理');
+		$arr=array('s' =>'销售顾问','m'=>'销售经理');
 		return   $arr[$this->role];
 	}
 

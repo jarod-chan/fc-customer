@@ -71,11 +71,18 @@ Route::get('selroom/building','SelRoomController@building');
 Route::get('selroom/buildingunit','SelRoomController@buildingunit');
 Route::get('selroom/room','SelRoomController@room');
 
+//销售顾问
+Route::get('counselor/list','CounselorController@toList');
+Route::get('counselor/add','CounselorController@toAdd');
+Route::get('counselor/{id}/edit','CounselorController@toEdit');
+Route::post('counselor/save','CounselorController@save');
+
+//配置选项
+Route::get('syenum/list','SyenumController@toList');
+Route::get('syenum/vals/{type}','SyenumController@toVals');
+Route::post('syenum/vals/{type}','SyenumController@saveVal');
 
 
-
-
-//
 Route::get('curl',function (){
 	//$url="http://172.22.1.30/ser/public/serroom/sellproject";
 
