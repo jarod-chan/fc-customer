@@ -13,27 +13,27 @@
     	<li style="padding-left:1.5em" data-role="list-divider">意向信息</li>
     	<li>
     	<div class="fy_grid4">
-		<p class='a'>客户级别</p>{{ Form::select('khjb',H::prepend(Purpose::enum('khjb'),'客户级别'),$purpose->khjb,array('id'=>'khjb','data-native-menu'=>'false'))}}
+		<p class='a'>客户级别</p>{{ Form::select('khjb',Purpose::enum('khjb'),$purpose->khjb,array('id'=>'khjb','data-native-menu'=>'false'))}}
 		</div>
     	</li>
     	<li>
     	<div class="fy_grid4">
-    	<p class='a'>意向强度</p>{{ Form::select('yxqd',H::prepend(Purpose::enum('yxqd'),'意向强度'),$purpose->yxqd,array('id'=>'yxqd','data-native-menu'=>'false'))}}
+    	<p class='a'>意向强度</p>{{ Form::select('yxqd',Purpose::enum('yxqd'),$purpose->yxqd,array('id'=>'yxqd','data-native-menu'=>'false'))}}
     	</div>
     	</li>
     	<li>
     	<div class="fy_grid4">
-    	<p class='a'>购房动机</p>{{ Form::select('gfdj',H::prepend(Purpose::enum('gfdj'),'购房动机'),$purpose->gfdj,array('data-native-menu'=>'false'))}}
+    	<p class='a'>购房动机</p>{{ Form::select('gfdj',Purpose::enum('gfdj'),$purpose->gfdj,array('data-native-menu'=>'false'))}}
     	</div>
     	</li>
     	<li>
     	<div class="fy_grid4">
-    	<p class='a'>住宅类型</p>{{ Form::select('zzlx',H::prepend(Purpose::enum('zzlx'),'住宅类型'),$purpose->zzlx,array('data-native-menu'=>'false'))}}
+    	<p class='a'>住宅类型</p>{{ Form::select('zzlx',Purpose::enum('zzlx'),$purpose->zzlx,array('data-native-menu'=>'false'))}}
     	</div>
     	</li>
     	<li>
     	<div class="fy_grid4">
-    	<p class='a'>户型类型</p>{{ Form::select('hxlx',H::prepend(Purpose::enum('hxlx'),'户型类型'),$purpose->hxlx,array('data-native-menu'=>'false'))}}
+    	<p class='a'>户型类型</p>{{ Form::select('hxlx',Purpose::enum('hxlx'),$purpose->hxlx,array('data-native-menu'=>'false'))}}
     	</div>
     	</li>
     	<li>
@@ -58,17 +58,17 @@
     	</li>
     	<li>
     	<div class="fy_grid4">
-    	<p class='a'>建筑风格</p>{{ Form::select('jzfg',H::prepend(Purpose::enum('jzfg'),'建筑风格'),$purpose->jzfg,array('data-native-menu'=>'false'))}}
+    	<p class='a'>建筑风格</p>{{ Form::select('jzfg',Purpose::enum('jzfg'),$purpose->jzfg,array('data-native-menu'=>'false'))}}
     	</div>
     	</li>
     	<li>
     	<div class="fy_grid4">
-    	<p class='a'>精装修</p>{{ Form::select('jzx',H::prepend(Purpose::enum('jzx'),'精装修'),$purpose->jzx,array('data-native-menu'=>'false'))}}
+    	<p class='a'>精装修</p>{{ Form::select('jzx',Purpose::enum('jzx'),$purpose->jzx,array('data-native-menu'=>'false'))}}
     	</div>
     	</li>
     	<li>
     	<div class="fy_grid4">
-    	<p class='a'>优惠力度</p>{{ Form::select('yhld',H::prepend(Purpose::enum('yhld'),'优惠力度'),$purpose->yhld,array('data-native-menu'=>'false'))}}
+    	<p class='a'>优惠力度</p>{{ Form::select('yhld',Purpose::enum('yhld'),$purpose->yhld,array('data-native-menu'=>'false'))}}
     	</div>
     	</li>
     	<li>

@@ -18,7 +18,7 @@
 		</div>
 		</li>
     	<li class="fy_grid4">
-    	<p class="a">跟进方式</p>{{ Form::select('type',H::prepend(Inrecord::typeEnums(),'跟进方式'),$inrecord->type,array('id'=>'type','data-native-menu'=>'false'))}}
+    	<p class="a">跟进方式</p>{{ Form::select('type',Inrecord::typeEnums(),$inrecord->type,array('id'=>'type','data-native-menu'=>'false'))}}
     	</li>
     	<li>
     	<div class="fy_grid4">

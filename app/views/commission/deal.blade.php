@@ -51,7 +51,7 @@
 		</li>
 		<li>
 		<div class="fy_grid4">
-			<p class='a'>顾问</p>{{ Form::select("commissionSet[-][counselor_id]",H::prepend($counselorSet,"顾问"),$commission->counselor_id,array("data-native-menu"=>"false"))}}
+			<p class='a'>顾问</p>{{ Form::select("commissionSet[-][counselor_id]",$counselorSet,$commission->counselor_id,array("data-native-menu"=>"false"))}}
 		</div>
 		</li>
 		<li>
@@ -129,7 +129,7 @@
 			$('<li data-icon="delete" class="btn_delete"><a href="#">&nbsp;<input type="hidden"  name="commissionSet[-][id]" value=""  ></a></li>').appendTo(ul);
 			$('<li><div class="fy_grid4"><p class="a">结算比例</p><input type="text" class="item_percent" name="commissionSet[-][percent]" value=""></div></li>').appendTo(ul);
 			$('<li><div class="fy_grid4"><p class="c">金额：<input type="hidden"  class="item_commission"   name="commissionSet[-][commission]" value=""><span class="sp_item_commission"></span></p></div></li>').appendTo(ul);
-			$('<li><div class="fy_grid4"><p class="a">顾问</p>{{ Form::select("commissionSet[-][counselor_id]",H::prepend($counselorSet,"顾问"),'',array("data-native-menu"=>"false"))}}</li>').appendTo(ul);
+			$('<li><div class="fy_grid4"><p class="a">顾问</p>{{ Form::select("commissionSet[-][counselor_id]",$counselorSet,'',array("data-native-menu"=>"false"))}}</li>').appendTo(ul);
 			$('<li><div class="fy_grid4"><p class="a">日期</p><input type="date"  class="item_date"  name="commissionSet[-][comdate_at]" value="" ></div></li>').appendTo(ul);
 
 			(function(){

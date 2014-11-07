@@ -86,7 +86,7 @@ Route::post('syenum/vals/{type}','SyenumController@saveVal');
 Route::get('curl',function (){
 	//$url="http://172.22.1.30/ser/public/serroom/sellproject";
 
-	$url="http://172.22.1.14:8080/fyg/FdcInfoQuery?infoType=1";
+	$url="http://221.12.111.109:8000/menu?openid=a2";
 
 	//  Initiate curl
 	$ch = curl_init();
@@ -101,6 +101,7 @@ Route::get('curl',function (){
 	// Closing
 	curl_close($ch);
 
+	var_dump($result);
 
 	// Will dump a beauty json :3
 	$x=json_decode($result, true);
@@ -108,7 +109,5 @@ Route::get('curl',function (){
 	return ;
 });
 
-	Route::get('demo',function (){
 
-		return View::make('demo');
-	});
+

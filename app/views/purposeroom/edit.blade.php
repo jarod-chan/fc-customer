@@ -25,7 +25,7 @@
 		</li>
 		<li>
 		<div class="fy_grid4">
-			<p class='a'>意向级别</p>{{ Form::select('level',H::prepend(Purposeroom::enum('level'),'意向级别'),$purposeroom->level,array('data-native-menu'=>'false'))}}
+			<p class='a'>意向级别</p>{{ Form::select('level',Purposeroom::enum('level'),$purposeroom->level,array('data-native-menu'=>'false'))}}
 		</div>
 		</li>
 		<li>
