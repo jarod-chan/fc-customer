@@ -13,7 +13,7 @@
     	<li>
     	<div class="ui-grid-a">
 		    <div class="ui-block-a">跟进人:{{$inrecord->updater->name}}</div>
-		    <div class="ui-block-b">跟进日期:{{$inrecord->update_at}}</div>
+		    <div class="ui-block-b">跟进日期:{{H::fmt($inrecord->update_at)}}</div>
 		</div>
 		</li>
 		<li>

@@ -62,6 +62,10 @@
 		background-color:#F6F6F6;
 	}
 
+	.fy_grid4 textarea{
+		background-color:#F6F6F6;
+	}
+
 	/*自定义布局*/
 	.fy_grid>.a{
 		float:left;
@@ -98,7 +102,10 @@
 		font-size: 1em;
 		margin: 0.4em 0;
 	}
-
+	/*textarea 输入框背景颜色*/
+	.ui-page-theme-a .fy_grid4 textarea{
+		background-color:#F6F6F6;
+	}
 
 	/* 按钮 */
 	.ui-page-theme-a .fy-btn,

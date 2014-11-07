@@ -14,21 +14,19 @@
     	<li>
     	<div class="ui-grid-a">
 		    <div class="ui-block-a fy_grid"><p class="c">跟进人:{{$inrecord->updater->name}}<p></div>
-		    <div class="ui-block-b fy_grid"><p class="c">跟进日期:{{$inrecord->update_at}}<p></div>
+		    <div class="ui-block-b fy_grid"><p class="c">跟进日期:{{H::fmt($inrecord->update_at)}}<p></div>
 		</div>
 		</li>
     	<li class="fy_grid4">
     	<p class="a">跟进方式</p>{{ Form::select('type',Inrecord::typeEnums(),$inrecord->type,array('id'=>'type','data-native-menu'=>'false'))}}
     	</li>
-    	<li>
-    	<div class="fy_grid4">
-    	<p class="a">跟进说明</p>{{ Form::text('description',$inrecord->description) }}
-    	</div>
+    	<li style="padding-left:1.5em" data-role="list-divider">跟进说明</li>
+    	<li class="fy_grid4">
+    	{{ Form::textarea('description',$inrecord->description) }}
     	</li>
-    	<li>
-    	<div class="fy_grid4">
-    	<p class="a">跟进成果</p>{{ Form::text('result',$inrecord->result) }}
-    	</div>
+    	<li style="padding-left:1.5em" data-role="list-divider">跟进成果</li>
+    	<li class="fy_grid4">
+    	{{ Form::textarea('result',$inrecord->result) }}
     	</li>
     </ul>
 

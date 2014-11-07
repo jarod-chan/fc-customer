@@ -38,5 +38,13 @@ class H {
 		if (count($s)==2 && ($s[1]=rtrim($s[1],'0'))) return implode('.',$s);
 		return $s[0];
 	}
+
+	public static function fmt($date){
+		if($date){
+			return date('n-j',strtotime($date));
+		}else {
+			return '';
+		}
+	}
 }
 
