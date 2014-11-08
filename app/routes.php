@@ -82,6 +82,9 @@ Route::get('syenum/list','SyenumController@toList');
 Route::get('syenum/vals/{type}','SyenumController@toVals');
 Route::post('syenum/vals/{type}','SyenumController@saveVal');
 
+//号码查询
+Route::get('query','QueryController@query');
+
 
 Route::get('curl',function (){
 	//$url="http://172.22.1.30/ser/public/serroom/sellproject";
