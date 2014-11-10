@@ -62,7 +62,7 @@
 		 </li>
     </ul>
 
-    <p><button class="ui-btn  ui-shadow  ui-corner-all fy-btn"  >保存</button></p>
+    <p><button class="btn_save ui-btn  ui-shadow  ui-corner-all fy-btn"  >保存</button></p>
 
 
   	{{ Form::close() }}
@@ -72,7 +72,7 @@
   	<script type="text/javascript">
 	$(function(){
 		var page= $(".customer_add").last();
-		page.find('form').submit(function(){
+		page.find('.btn_save').click(function(){
  			var msg=V.require_all(page,[
  	 	 			{sl:'#name',name:'姓名'},
  	 	 			{sl:'#phone',name:'手机'},
@@ -82,6 +82,26 @@
  				pop.open(msg);
  				return false;
  			}
+			msg=V.phone($("#phone"),'手机号码');
+			if(msg!==""){
+ 				pop.open(msg);
+ 				return false;
+ 			}
+			$.get('{{URL::to("verify")}}',{phone:$("#phone").val()},function(ret){
+				if(ret.result){
+					var data=ret.data;
+					msg="<p>该手机号与以下客户相同：</p>";
+					msg+="<p>姓名："+data.name+"</p>";
+					msg+="<p>手机："+data.phone+"</p>";
+					msg+="<p>顾问："+data.counselor+"</p>";
+					msg+="<p>状态："+data.state+"</p>";
+					pop.open(msg);
+	 				return false;
+				}else{
+					page.find("form").submit();
+				}
+			});
+			return false;
 		});
 	})
 	</script>

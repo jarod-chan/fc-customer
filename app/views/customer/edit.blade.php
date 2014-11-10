@@ -102,8 +102,26 @@
 				pop.open(msg);
 				return false;
 			}
+			msg=V.phone($("#phone"),'手机号码');
+			if(msg!==""){
+ 				pop.open(msg);
+ 				return false;
+ 			}
 
-			$("body").pagecontainer("change",'{{ URL::to("customer/save") }}',{type:'post',data:form.serialize(),changeHash:false});
+			$.get('{{URL::to("verify")}}',{phone:$("#phone").val(),customer_id:{{$customer->id}}},function(ret){
+				if(ret.result){
+					var data=ret.data;
+					msg="<p>该手机号与以下客户相同：</p>";
+					msg+="<p>姓名："+data.name+"</p>";
+					msg+="<p>手机："+data.phone+"</p>";
+					msg+="<p>顾问："+data.counselor+"</p>";
+					msg+="<p>状态："+data.state+"</p>";
+					pop.open(msg);
+	 				return false;
+				}else{
+					$("body").pagecontainer("change",'{{ URL::to("customer/save") }}',{type:'post',data:form.serialize(),changeHash:false});
+				}
+			});
 			return false;
 		});
 	})

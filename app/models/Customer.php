@@ -14,7 +14,11 @@ class Customer extends Eloquent{
 	}
 
 	public function getStateName(){
-		return self::stateEnums()[$this->state];
+		if($this->state){
+			return self::stateEnums()[$this->state];
+		}else{
+			return "";
+		}
 	}
 
 	public static function enum($key){

@@ -2,7 +2,7 @@
 class S{
 	//const URL = 'http://172.22.1.30/ser/public/serroom/';
 	//const URL = 'http://172.22.1.14:8080/fyg/FdcInfoQuery';
-	const URL = 'http://172.16.0.162:9080/test/FdcInfoQuery';
+	const URL = 'http://app.fyg.cn:9080/webdemo/FdcInfoQuery';
 
 
 	private static function get($model){
