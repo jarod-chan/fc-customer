@@ -115,5 +115,11 @@ Route::get('curl',function (){
 	return ;
 });
 
+Route::get('php',function (){
+	echo  phpinfo();
+	return;
+});
+
+
 
 

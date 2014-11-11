@@ -82,12 +82,12 @@
  				pop.open(msg);
  				return false;
  			}
-			msg=V.phone($("#phone"),'手机号码');
+			msg=V.phone(page.find("#phone"),'手机号码');
 			if(msg!==""){
  				pop.open(msg);
  				return false;
  			}
-			$.get('{{URL::to("verify")}}',{phone:$("#phone").val()},function(ret){
+			$.get('{{URL::to("verify")}}',{phone:page.find("#phone").val()},function(ret){
 				if(ret.result){
 					var data=ret.data;
 					msg="<p>该手机号与以下客户相同：</p>";
