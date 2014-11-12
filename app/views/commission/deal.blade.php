@@ -25,7 +25,7 @@
 		</li>
 		<li>
 		<div class="fy_grid4">
-		   <p class="a">佣金比率</p>{{ Form::text('percent',H::trimz($dealrecord->percent),array('id'=>'percent')) }}</p>
+		   <p class="a">佣金比率</p>{{ Form::text('percent',H::trimz($dealrecord->percent),array('id'=>'percent','placeholder'=>'%')) }}</p>
 		</div>
 		</li>
 		<li>
@@ -41,7 +41,7 @@
 		<li data-icon="delete" class="btn_delete"><a href="#">&nbsp;<input type="hidden"  name="commissionSet[-][id]" value="{{$commission->id}}"  ></a></li>
 		<li>
 			<div class="fy_grid4">
-			<p class="a">结算比例</p><input type="text" class="item_percent" name="commissionSet[-][percent]" value="{{H::trimz($commission->percent)}}">
+			<p class="a">结算比例</p><input type="text" class="item_percent" name="commissionSet[-][percent]" value="{{H::trimz($commission->percent)}}"  placeholder="%">
 			</div>
 		</li>
 		<li>
@@ -93,6 +93,7 @@
 			percent=$.trim(percent);
 			ts.val(percent);
 			commission=calc.mul(tamount,percent);
+			commission=calc.mul(commission,'0.01');
 			sp_commission.html(commission);
 			ip_commission.val(commission);
 
@@ -115,6 +116,7 @@
 				percent=$.trim(percent);
 				ts.val(percent);
 				item_commission=calc.mul(commission,percent);
+				item_commission=calc.mul(item_commission,'0.01');
 				ip_item_commission.val(item_commission);
 				ip_item_commission.next().html(item_commission);
 			});
@@ -127,7 +129,7 @@
 		page.find(".btn_add").click(function(){
 			var ul=$('<ul data-role="listview" data-inset="true"></ul>');
 			$('<li data-icon="delete" class="btn_delete"><a href="#">&nbsp;<input type="hidden"  name="commissionSet[-][id]" value=""  ></a></li>').appendTo(ul);
-			$('<li><div class="fy_grid4"><p class="a">结算比例</p><input type="text" class="item_percent" name="commissionSet[-][percent]" value=""></div></li>').appendTo(ul);
+			$('<li><div class="fy_grid4"><p class="a">结算比例</p><input type="text" class="item_percent" name="commissionSet[-][percent]" value=""  placeholder="%"></div></li>').appendTo(ul);
 			$('<li><div class="fy_grid4"><p class="c">金额：<input type="hidden"  class="item_commission"   name="commissionSet[-][commission]" value=""><span class="sp_item_commission"></span></p></div></li>').appendTo(ul);
 			$('<li><div class="fy_grid4"><p class="a">顾问</p>{{ Form::select("commissionSet[-][counselor_id]",$counselorSet,'',array("data-native-menu"=>"false"))}}</li>').appendTo(ul);
 			$('<li><div class="fy_grid4"><p class="a">日期</p><input type="date"  class="item_date"  name="commissionSet[-][comdate_at]" value="" ></div></li>').appendTo(ul);
@@ -145,6 +147,7 @@
 					percent=$.trim(percent);
 					ts.val(percent);
 					item_commission=calc.mul(commission,percent);
+					item_commission=calc.mul(item_commission,'0.01');
 					ip_item_commission.val(item_commission);
 					ip_item_commission.next().html(item_commission);
 				});
