@@ -14,7 +14,7 @@
     	<li>
     	<div class="ui-grid-a">
 		    <div class="ui-block-a fy_grid"><p class="c">跟进人:{{$inrecord->updater->name}}<p></div>
-		    <div class="ui-block-b fy_grid"><p class="c">跟进日期:{{H::fmt($inrecord->update_at)}}<p></div>
+		    <div class="ui-block-b fy_grid"><p class="c">跟进日期:{{H::fmt($inrecord->create_at)}}<p></div>
 		</div>
 		</li>
     	<li class="fy_grid4">

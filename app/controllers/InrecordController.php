@@ -22,6 +22,7 @@ class InrecordController extends Controller{
 	public function save($customer_id){
 		$counselor_id=Session::get("counselor_id");
 		$arr=Input::all();
+		$customer_last_update=null;
 		if(Input::has("id")){
 			$arr['updater_id']=$counselor_id;
 			$arr['update_at']=new DateTime();
@@ -33,10 +34,18 @@ class InrecordController extends Controller{
 			$arr['updater_id']=$counselor_id;
 			$arr['update_at']=new DateTime();
 			$inrecord=new Inrecord;
+
+			$customer_last_update=$arr['create_at'];
 		}
 
 		$inrecord->fill($arr);
 		$inrecord->save($arr);
+
+		if($customer_last_update){
+			//更新对应的客户更新时间
+			Customer::find($customer_id)->update(array('update_at' => $customer_last_update));
+		}
+
 		return Redirect::action('InrecordController@toList', array('customer_id'=>$customer_id));
 	}
 
@@ -49,6 +58,9 @@ class InrecordController extends Controller{
 
 	public function delete($customer_id,$id){
 		Inrecord::destroy($id);
+		//更新对应的客户更新时间
+		$max_create_at=Inrecord::where('customer_id',$customer_id)->max('create_at');
+		Customer::find($customer_id)->update(array('update_at' => $max_create_at));
 		return Redirect::action('InrecordController@toList', array('customer_id'=>$customer_id));
 	}
 
