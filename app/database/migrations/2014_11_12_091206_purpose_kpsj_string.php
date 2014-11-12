@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class PurposeKpsj extends Migration {
+class PurposeKpsjString extends Migration {
 
 	/**
 	 * Run the migrations.
@@ -19,7 +19,7 @@ class PurposeKpsj extends Migration {
 			}
 		});
 		Schema::table('fc_purpose',function ($table){
-		 	$table->date('kpsj')->nullable();
+		 	$table->string('kpsj')->nullable();
 		 });
 	}
 
