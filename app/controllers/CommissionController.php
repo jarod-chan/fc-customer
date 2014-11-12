@@ -16,12 +16,17 @@ class CommissionController extends Controller{
 	}
 
 	public function toDeal($dr_id){
+		$dealrecord=Dealrecord::find($dr_id);
 		$counselorSet=Counselor::orderBy("id")
 		->lists('name','id');
-		$dealrecord=Dealrecord::find($dr_id);
-		return View::make('commission.deal')
-		->with('dealrecord',$dealrecord)
-		->with('counselorSet',$counselorSet);
+		if(C::isSale()){
+			return View::make('commission.view')
+			->with('dealrecord',$dealrecord);
+		}else {
+			return View::make('commission.deal')
+			->with('dealrecord',$dealrecord)
+			->with('counselorSet',$counselorSet);
+		}
 	}
 
 	public function save($dr_id){
