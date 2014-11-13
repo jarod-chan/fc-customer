@@ -46,7 +46,13 @@ class DealrecordController extends Controller{
 		}
 
 		$dealrecord->fill($arr);
-		$dealrecord->save($arr);
+		$room=$dealrecord->room();
+		if($room){
+			$dealrecord->customer_name=$room['customer'];
+		}else {
+			$dealrecord->customer_name='';
+		}
+		$dealrecord->save();
 		return Redirect::action('DealrecordController@toList', array('customer_id'=>$customer_id));
 	}
 

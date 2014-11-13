@@ -2,18 +2,49 @@
 class CommissionController extends Controller{
 
 	public function index(){
-
-		$customer_ids = Customer::where('counselor_id',C::counselorId())->lists('id');
+		$key=trim(Input::get("key"));
 		if(C::isSale()){
-			$query=Dealrecord::whereIn('customer_id',$customer_ids)
-			->orderBy('id','desc');
-		}else {
-			$query=Dealrecord::orderBy('id','desc');
+			$dealrecordList=$this->saleDealRecord();
+		}else{
+			$dealrecordList=$this->managerDealRecord();
 		}
-		$dealrecordList=$query->get();
+
 		return View::make('commission.index')
-		->with('dealrecordList',$dealrecordList);
+		->with('dealrecordList',$dealrecordList)
+		->with('key',$key);
 	}
+
+
+	private function saleDealRecord(){
+		$query=Dealrecord::whereRaw('1=1');
+		$customer_ids = Customer::where('counselor_id',C::counselorId())
+			->lists("id");
+		if(count($customer_ids)==0){
+			return array();
+		}else{
+			$query->whereIn('customer_id',$customer_ids);
+		}
+
+		$key=trim(Input::get("key"));
+		if($key!=''){
+			$query->where('customer_name',$key);
+		}
+		$query->orderBy('id','desc');
+		return $query->get();
+	}
+
+	private function managerDealRecord(){
+		$query=Dealrecord::whereRaw('1=1');
+
+		$key=trim(Input::get("key"));
+		if($key!=''){
+			$query->where('customer_name',$key);
+		}
+
+		$query->orderBy('id','desc');
+		return $query->get();
+	}
+
 
 	public function toDeal($dr_id){
 		$dealrecord=Dealrecord::find($dr_id);

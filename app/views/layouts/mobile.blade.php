@@ -178,6 +178,18 @@
 		float:right;height:2.6em;width: 4em;margin-top:-2.6em;margin-right: -4.3em;padding: 0px;
 	}
 
+	.fy-query>.c{
+		float:left;
+		width: 5.5em;
+	}
+	.fy-query>.c>div{
+		color:#333;
+		margin-top:0.3em;
+		margin-left:0.5em;
+		padding:8px 40px 8px 5px;
+		font-weight: 700;
+	}
+
 	/* 去掉边框阴影 */
     .ui-page-theme-a .ui-btn:focus, html .ui-bar-a .ui-btn:focus, html .ui-body-a .ui-btn:focus, html body .ui-group-theme-a .ui-btn:focus, html head + body .ui-btn.ui-btn-a:focus, .ui-page-theme-a .ui-focus, html .ui-bar-a .ui-focus, html .ui-body-a .ui-focus, html body .ui-group-theme-a .ui-focus, html head + body .ui-btn-a.ui-focus, html head + body .ui-body-a.ui-focus {
 	    box-shadow: 0 0 0 0 #FFF;

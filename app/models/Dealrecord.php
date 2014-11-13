@@ -7,7 +7,7 @@ class Dealrecord extends Eloquent{
 
 	public $timestamps = false;
 
-	protected $fillable = array('customer_id','creater_id','create_at','updater_id','update_at','room_id','state','percent','commission','inamt','leftamt');
+	protected $fillable = array('customer_id','creater_id','create_at','updater_id','update_at','room_id','state','percent','commission','inamt','leftamt','customer_name');
 
 	//创建人
 	public function creater(){
