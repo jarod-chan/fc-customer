@@ -28,6 +28,7 @@ Route::get('customer/{state}','CustomerController@index');
 
 //佣金结算
 Route::get('commission','CommissionController@index');
+Route::get('commission/query','CommissionController@query');
 Route::get('commission/{dr_id}/deal','CommissionController@toDeal');
 Route::post('commission/{dr_id}/save','CommissionController@save');
 

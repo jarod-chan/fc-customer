@@ -82,7 +82,7 @@
 		});
 		$("#btn_save").click(function(){
 			$("#tab_main tbody tr").formatName();
-			$("form").submit();
+			//$("form").submit();
 			return false;
 		})
 	})

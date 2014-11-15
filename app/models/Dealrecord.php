@@ -21,7 +21,7 @@ class Dealrecord extends Eloquent{
 
 	//状态
 	public static function  stateEnums(){
-		return array('no' =>'未结算','do'=>'结算中','done'=>'已结算');
+		return array('no' =>'未结算','do'=>'部分结算','done'=>'已结算');
 	}
 
 	public function state(){
@@ -55,7 +55,7 @@ class Dealrecord extends Eloquent{
 
 		//根据百分比的和更新结算状态
 		$compZero=bccomp($tpercent,"0",5);
-		$compOne=bccomp($tpercent,"1",5);
+		$compOne=bccomp($tpercent,"100",5);
 
 		if($compZero==0){
 			$this->state='no';

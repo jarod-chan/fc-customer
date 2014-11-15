@@ -4,7 +4,7 @@
 <div data-role="page" class="commmission_deal">
   <div data-role="content"  >
 
-  {{ Form::open(array('url' => "commission/$dealrecord->id/save",'data-ajax'=>'true')) }}
+  {{ Form::open(array('url' => "commission/$dealrecord->id/save?state=$state&key=$key",'data-ajax'=>'true')) }}
   <?php
      $room=$dealrecord->room();//d($room);
   ?>
