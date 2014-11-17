@@ -17,14 +17,8 @@ class QueryController extends Controller{
 		$customerSet=Customer::where('phone',$param)
 			->orWhere('name', $param)
 			->get();
-		if(!$customerSet){
-			return array(
-					'result'=>false,
-					'message'=>"客户不存在！"
-			);
-		}
 
-		if($customerSet){
+		if(!$customerSet->isEmpty()){
 			$result=array('result'=>true);
 			$result['data']=$this->fmtCustomer($customerSet,$counselor_id);
 			return $result;
