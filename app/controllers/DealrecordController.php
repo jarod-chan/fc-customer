@@ -100,6 +100,7 @@ class DealrecordController extends Controller{
 	}
 
 	public function delete($customer_id,$id){
+		Commission::where('dealrecord_id', $id)->delete();
 		Dealrecord::destroy($id);
 		return Redirect::action('DealrecordController@toList', array('customer_id'=>$customer_id));
 	}
