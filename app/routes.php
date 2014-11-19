@@ -72,6 +72,12 @@ Route::get('selroom/building','SelRoomController@building');
 Route::get('selroom/buildingunit','SelRoomController@buildingunit');
 Route::get('selroom/room','SelRoomController@room');
 
+//用户登录
+Route::get('','LoginController@index');
+Route::get('login','LoginController@login');
+Route::post('login','LoginController@loginPost');
+Route::post('logout','LoginController@logout');
+
 //销售顾问
 Route::get('counselor/list','CounselorController@toList');
 Route::get('counselor/add','CounselorController@toAdd');
@@ -89,37 +95,6 @@ Route::get('query','QueryController@query');
 //号码校验
 Route::get('verify','VerifyController@verify');
 
-
-Route::get('curl',function (){
-	//$url="http://172.22.1.30/ser/public/serroom/sellproject";
-
-	$url="http://221.12.111.109:8000/menu?openid=a2";
-
-	//  Initiate curl
-	$ch = curl_init();
-	// Disable SSL verification
-	curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
-	// Will return the response, if false it print the response
-	curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-	// Set the url
-	curl_setopt($ch, CURLOPT_URL,$url);
-	// Execute
-	$result=curl_exec($ch);
-	// Closing
-	curl_close($ch);
-
-	var_dump($result);
-
-	// Will dump a beauty json :3
-	$x=json_decode($result, true);
-	s($x);
-	return ;
-});
-
-Route::get('php',function (){
-	echo  phpinfo();
-	return;
-});
 
 
 

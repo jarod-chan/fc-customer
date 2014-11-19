@@ -13,9 +13,6 @@
     {{HTML::script('js/bootstrap.min.js')}}
     {{HTML::script('js/myplug.js')}}
 
-    {{HTML::style('plug/lightbox/ekko-lightbox.min.css')}}
-    {{HTML::script('plug/lightbox/ekko-lightbox.min.js')}}
-
     <style type="text/css">
 	body { padding-top: 50px; }
    </style>
@@ -41,12 +38,11 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="#">客户跟踪系统</a>
+          <a class="navbar-brand" href="#">客户跟踪系统后台</a>
         </div>
 
         <div class="navbar-collapse collapse">
-        @if (!Auth::guest())
-       	@endif
+        @if (C::isLogin())
         <ul class="nav navbar-nav">
 	            <li class="dropdown">
 	              <a href="#" class="dropdown-toggle" data-toggle="dropdown">系统配置<span class="caret"></span></a>
@@ -56,35 +52,22 @@
 	              </ul>
 	            </li>
 		 </ul>
+  		@endif
 
-
-          @if ( Auth::guest() )
-          <div  class="navbar-collapse collapse navbar-right">
-          {{ HTML::link('/login', '登录',array('class'=>'btn btn-sm btn-default navbar-btn')) }}
-          </div>
-          @else
+          @if (C::isLogin())
           <div  class="navbar-collapse collapse navbar-right">
           <button id="btn_logout" class="btn btn-sm btn-default navbar-btn">退出</button>
          </div>
-		  <p class="navbar-text navbar-right">用户：{{Auth::user()->name}}&nbsp;&nbsp;</p>
+		  <p class="navbar-text navbar-right">用户：管理员&nbsp;&nbsp;</p>
 		  @endif
         </div><!--/.nav-collapse -->
       </div>
     </div>
 
-
-
-  		@yield('content')
+  	@yield('content')
 
 
   		  <script type="text/javascript">
-            $(document).ready(function ($) {
-				$(document).delegate('*[data-toggle="lightbox"]', 'click', function(event) {
-					event.preventDefault();
-					return $(this).ekkoLightbox();
-				});
-			});
-
             $(function () {
                 $("#btn_logout").click(function(){
                 	$('<form/>',{action:"{{ URL::to('logout') }}",method:'post'})

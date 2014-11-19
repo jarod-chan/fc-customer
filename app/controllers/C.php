@@ -12,4 +12,15 @@ class C{
 	public static function counselorId(){
 		return Session::get('counselor_id');
 	}
+
+	public static function isLogin(){
+		return self::getKeyFromSession('is_login',false);
+	}
+
+	private static function getKeyFromSession($key,$default){
+		if(Session::has($key)){
+			return Session::get($key);
+		}
+		return $default;
+	}
 }
