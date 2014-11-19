@@ -9,9 +9,13 @@ class CustomerController  extends Controller {
 		if($key!=''){
 			$query->where($type,'like', '%'.$key.'%');
 		}
-		if(C::isSale()){
-			$query->where('counselor_id',C::counselorId());
+
+		if(!$this->isQueryPublicCustomer($state)){
+			if(C::isSale()){
+				$query->where('counselor_id',C::counselorId());
+			}
 		}
+
 		$query->orderBy("update_at","desc");
 		$customerSet=$query->get();
 
@@ -20,6 +24,10 @@ class CustomerController  extends Controller {
 	 	->with('state',$state)
 	 	->with('type',$type)
 	 	->with('key',$key);
+	}
+
+	private function isQueryPublicCustomer($state){
+		return $state=='public';
 	}
 
 	public function  toAdd(){
