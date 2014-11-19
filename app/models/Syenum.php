@@ -26,6 +26,16 @@ class Syenum extends Eloquent{
 		);
 	}
 
+	public static function typeName($key){
+		$allTypes=self::allTypes();
+		foreach ($allTypes as $type){
+			if($type['val']==$key){
+				return $type['name'];
+			}
+		}
+		return '';
+	}
+
 	public function scopeKey($query,$type,$key){
 		$syenum=$query->where('type',$type)
 		->where('key',$key)
