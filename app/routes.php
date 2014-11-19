@@ -18,22 +18,25 @@ Route::pattern('id', '[0-9]+');
 Route::get('menu','MenuController@index');
 Route::get('menu/to','MenuController@to');
 
-//添加客户
-Route::get('customer/add','CustomerController@toAdd');
-Route::post('customer/save','CustomerController@save');
-Route::get('customer/{id}/edit','CustomerController@toEdit');
-Route::get('customer/{state}','CustomerController@index');
+Route::group(array('before' => 'ismobile'), function()
+{
+	//添加客户
+	Route::get('customer/add','CustomerController@toAdd');
+	Route::post('customer/save','CustomerController@save');
+	Route::get('customer/{id}/edit','CustomerController@toEdit');
+	Route::get('customer/{state}','CustomerController@index');
 
 
 
-//佣金结算
-Route::get('commission','CommissionController@index');
-Route::get('commission/query','CommissionController@query');
-Route::get('commission/{dr_id}/deal','CommissionController@toDeal');
-Route::post('commission/{dr_id}/save','CommissionController@save');
+	//佣金结算
+	Route::get('commission','CommissionController@index');
+	Route::get('commission/query','CommissionController@query');
+	Route::get('commission/{dr_id}/deal','CommissionController@toDeal');
+	Route::post('commission/{dr_id}/save','CommissionController@save');
+});
 
 
-Route::group(array('prefix' => 'customer/{customer_id}'), function()
+Route::group(array('before' => 'ismobile','prefix' => 'customer/{customer_id}'), function()
 {
 	//客户意向
 	Route::get('purpose/list','PurposeController@toList');
@@ -99,7 +102,7 @@ Route::get('query','QueryController@query');
 //号码校验
 Route::get('verify','VerifyController@verify');
 
-
-
+//失效访问页面
+Route::get('fail/mobile','FailController@mobile');
 
 

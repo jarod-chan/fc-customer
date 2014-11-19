@@ -13,6 +13,10 @@ class C{
 		return Session::get('counselor_id');
 	}
 
+	public static function isMobile(){
+		return Session::has('counselor_role')&&Session::has('counselor_id');
+	}
+
 	public static function isLogin(){
 		return self::getKeyFromSession('is_login',false);
 	}
