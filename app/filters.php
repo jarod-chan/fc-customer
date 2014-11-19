@@ -92,3 +92,13 @@ Route::filter('csrf', function()
 });
 
 
+Route::filter('islogin', function()
+{
+	if (!C::isLogin()){
+		Session::flash('message', '请先登录系统!');
+		return Redirect::action('LoginController@login');
+	}
+});
+
+
+

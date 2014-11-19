@@ -78,16 +78,20 @@ Route::get('login','LoginController@login');
 Route::post('login','LoginController@loginPost');
 Route::post('logout','LoginController@logout');
 
-//销售顾问
-Route::get('counselor/list','CounselorController@toList');
-Route::get('counselor/add','CounselorController@toAdd');
-Route::get('counselor/{id}/edit','CounselorController@toEdit');
-Route::post('counselor/save','CounselorController@save');
+Route::group(array('before' => 'islogin'), function()
+{
+	//销售顾问
+	Route::get('counselor/list','CounselorController@toList');
+	Route::get('counselor/add','CounselorController@toAdd');
+	Route::get('counselor/{id}/edit','CounselorController@toEdit');
+	Route::post('counselor/save','CounselorController@save');
 
-//配置选项
-Route::get('syenum/list','SyenumController@toList');
-Route::get('syenum/vals/{type}','SyenumController@toVals');
-Route::post('syenum/vals/{type}','SyenumController@saveVal');
+	//配置选项
+	Route::get('syenum/list','SyenumController@toList');
+	Route::get('syenum/vals/{type}','SyenumController@toVals');
+	Route::post('syenum/vals/{type}','SyenumController@saveVal');
+
+});
 
 //号码查询
 Route::get('query','QueryController@query');
