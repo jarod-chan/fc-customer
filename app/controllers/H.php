@@ -25,5 +25,26 @@ class H {
 		}
 		return $ret;
 	}
+
+	public static function  nullStr($arr,$key){
+		if(array_key_exists($key,$arr)){
+			return $arr[$key];
+		}
+		return "";
+	}
+
+	public static function trimz($s) {
+		$s=explode('.',$s);
+		if (count($s)==2 && ($s[1]=rtrim($s[1],'0'))) return implode('.',$s);
+		return $s[0];
+	}
+
+	public static function fmt($date){
+		if($date){
+			return date('n-j',strtotime($date));
+		}else {
+			return '';
+		}
+	}
 }
 

@@ -3,9 +3,9 @@
 @section('content')
 <div data-role="page" class="purpose_list" data-url='{{ URL::to("customer/$customer_id/inrecord/list") }}'>
     <div data-role="content">
-     <h3 class="ui-bar ui-bar-a">回访记录</h3>
+     <script type="text/javascript">changeTitle('跟进记录')</script>
 
-	 <a href='{{ URL::to("customer/$customer_id/inrecord/add") }}' data-ajax="true" class="ui-btn ui-shadow ui-corner-all">新增</a>
+	 <p><button class="fy-btn ui-btn  ui-shadow  ui-corner-all" onclick="changePage('{{ URL::to("customer/$customer_id/inrecord/add") }}')">新增</button></p>
 
 	@foreach($inrecordList as $inrecord)
 	 <ul class="item" data-role="listview" data-inset="true">
@@ -13,7 +13,7 @@
     	<li>
     	<div class="ui-grid-a">
 		    <div class="ui-block-a">跟进人:{{$inrecord->updater->name}}</div>
-		    <div class="ui-block-b">跟进日期:{{$inrecord->update_at}}</div>
+		    <div class="ui-block-b">跟进日期:{{H::fmt($inrecord->create_at)}}</div>
 		</div>
 		</li>
 		<li>

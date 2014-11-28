@@ -8,4 +8,9 @@ class Commission extends Eloquent{
 	public $timestamps = false;
 
 	protected $fillable = array('dealrecord_id','percent','commission','counselor_id','comdate_at');
+
+	//顾问
+	public function counselor(){
+		return $this->belongsTo('Counselor', 'counselor_id');
+	}
 }

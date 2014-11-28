@@ -20,7 +20,19 @@ class Purposeroom extends Eloquent{
 	}
 
 	public function room(){
-		return S::roomofid($this->room_id);
+		$arr=S::roomInfoPurpose($this->room_id);
+		if($arr) {
+			return $arr[0];
+		}
+		return null;
+	}
+
+	public static function enum($key){
+		return Syenum::vals('purposeroom_'.$key);
+	}
+
+	public function name($key){
+		return Syenum::key('purposeroom_'.$key,$this->$key);
 	}
 
 }

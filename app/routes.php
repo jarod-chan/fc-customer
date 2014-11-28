@@ -18,25 +18,25 @@ Route::pattern('id', '[0-9]+');
 Route::get('menu','MenuController@index');
 Route::get('menu/to','MenuController@to');
 
-//添加客户
-Route::get('customer/add','CustomerController@toAdd');
-Route::post('customer/save','CustomerController@save');
-Route::get('customer/{id}/edit','CustomerController@toEdit');
-
-//意向客户
-Route::get('customer/purpose','CPurposeController@index');
-//签约客户
-Route::get('customer/sign','CSignController@index');
-//公共客户
-Route::get('customer/public','CPublicController@index');
-
-//佣金结算
-Route::get('commission','CommissionController@index');
-Route::get('commission/{dr_id}/deal','CommissionController@toDeal');
-Route::post('commission/{dr_id}/save','CommissionController@save');
+Route::group(array('before' => 'ismobile'), function()
+{
+	//添加客户
+	Route::get('customer/add','CustomerController@toAdd');
+	Route::post('customer/save','CustomerController@save');
+	Route::get('customer/{id}/edit','CustomerController@toEdit');
+	Route::get('customer/{state}','CustomerController@index');
 
 
-Route::group(array('prefix' => 'customer/{customer_id}'), function()
+
+	//佣金结算
+	Route::get('commission','CommissionController@index');
+	Route::get('commission/query','CommissionController@query');
+	Route::get('commission/{dr_id}/deal','CommissionController@toDeal');
+	Route::post('commission/{dr_id}/save','CommissionController@save');
+});
+
+
+Route::group(array('before' => 'ismobile','prefix' => 'customer/{customer_id}'), function()
 {
 	//客户意向
 	Route::get('purpose/list','PurposeController@toList');
@@ -75,30 +75,34 @@ Route::get('selroom/building','SelRoomController@building');
 Route::get('selroom/buildingunit','SelRoomController@buildingunit');
 Route::get('selroom/room','SelRoomController@room');
 
+//用户登录
+Route::get('','LoginController@index');
+Route::get('login','LoginController@login');
+Route::post('login','LoginController@loginPost');
+Route::post('logout','LoginController@logout');
 
+Route::group(array('before' => 'islogin'), function()
+{
+	//销售顾问
+	Route::get('counselor/list','CounselorController@toList');
+	Route::get('counselor/add','CounselorController@toAdd');
+	Route::get('counselor/{id}/edit','CounselorController@toEdit');
+	Route::post('counselor/save','CounselorController@save');
 
+	//配置选项
+	Route::get('syenum/list','SyenumController@toList');
+	Route::get('syenum/vals/{type}','SyenumController@toVals');
+	Route::post('syenum/vals/{type}','SyenumController@saveVal');
 
-
-//
-Route::get('curl',function (){
-	$url="http://172.22.1.30/ser/public/serroom/sellproject";
-
-	//  Initiate curl
-	$ch = curl_init();
-	// Disable SSL verification
-	curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
-	// Will return the response, if false it print the response
-	curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-	// Set the url
-	curl_setopt($ch, CURLOPT_URL,$url);
-	// Execute
-	$result=curl_exec($ch);
-	// Closing
-	curl_close($ch);
-
-
-	// Will dump a beauty json :3
-	$x=json_decode($result, true);
-	s($x);
-	return ;
 });
+
+//号码查询
+Route::get('query','QueryController@query');
+
+//号码校验
+Route::get('verify','VerifyController@verify');
+
+//失效访问页面
+Route::get('fail/mobile','FailController@mobile');
+
+

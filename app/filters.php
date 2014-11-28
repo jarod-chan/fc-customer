@@ -92,3 +92,21 @@ Route::filter('csrf', function()
 });
 
 
+Route::filter('islogin', function()
+{
+	if (!C::isLogin()){
+		Session::flash('message', '页面失效，请先登录系统!');
+		return Redirect::action('LoginController@login');
+	}
+});
+
+Route::filter('ismobile', function()
+{
+	if (!C::isMobile()){
+		Session::flash('message', '你无权访问或者页面失效，请到微信界面点击重试!');
+		return Redirect::action('FailController@mobile');
+	}
+});
+
+
+

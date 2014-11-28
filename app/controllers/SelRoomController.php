@@ -12,12 +12,14 @@ class SelRoomController extends Controller{
 
 	public function buildingunit(){
 		$val=Input::get("val");
-		return S::buildingunit($val);
+		$roomstatus=Input::get("roomstatus");
+		return S::buildingunit($val,$roomstatus);
 	}
 
 	public function room(){
 		$val=Input::get("val");
-		return S::room($val);
+		$roomstatus=Input::get("roomstatus");
+		return S::room($val,$roomstatus);
 	}
 
 

@@ -22,7 +22,8 @@ class CreateDealrecord extends Migration {
 			$table->dateTime('update_at');//创建时间
 
 			$table->string('room_id');//房间
-			$table->decimal('amount',15,5)->nullable();//金额
+			$table->string('state')->nullable();//状态 no未结算 do结算中 done已结算
+
 			$table->decimal('percent',15,10)->nullable();//比例
 			$table->decimal('commission',15,5)->nullable();//佣金
 			$table->decimal('inamt',15,5)->nullable();//已结算金额

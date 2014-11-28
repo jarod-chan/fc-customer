@@ -14,7 +14,19 @@ class Customer extends Eloquent{
 	}
 
 	public function getStateName(){
-		return self::stateEnums()[$this->state];
+		if($this->state){
+			return self::stateEnums()[$this->state];
+		}else{
+			return "";
+		}
+	}
+
+	public static function enum($key){
+		return Syenum::vals('customer_'.$key);
+	}
+
+	public function name($key){
+		return Syenum::key('customer_'.$key,$this->$key);
 	}
 
 	//顾问
