@@ -25,7 +25,8 @@ class QueryController extends Controller{
 		}else{
 			return array(
 					'result'=>false,
-					'message'=>"该客户不存在！"
+					'message'=>"该客户不存在！",
+					'url'=>URL::to("menu/to?counselor_id=$counselor->id&to=customer/add")
 			);
 		}
 	}
