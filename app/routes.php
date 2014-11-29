@@ -94,6 +94,10 @@ Route::group(array('before' => 'islogin'), function()
 	Route::get('syenum/vals/{type}','SyenumController@toVals');
 	Route::post('syenum/vals/{type}','SyenumController@saveVal');
 
+	//配置选项
+	Route::get('projectpct/list','PorjectpctController@toList');
+	Route::get('projectpct/edit','PorjectpctController@toEdit');
+	Route::post('projectpct/save','PorjectpctController@save');
 });
 
 //号码查询

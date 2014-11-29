@@ -49,6 +49,7 @@
 	              <ul class="dropdown-menu" role="menu">
 	                <li><a href="{{ URL::to('counselor/list') }}">销售顾问</a></li>
 	                <li><a href="{{ URL::to('syenum/list') }}">配置选项</a></li>
+	                <li><a href="{{ URL::to('projectpct/list') }}">佣金比率</a></li>
 	              </ul>
 	            </li>
 		 </ul>
