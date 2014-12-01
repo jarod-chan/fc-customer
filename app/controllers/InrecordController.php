@@ -43,7 +43,12 @@ class InrecordController extends Controller{
 
 		if($customer_last_update){
 			//更新对应的客户更新时间
-			Customer::find($customer_id)->update(array('update_at' => $customer_last_update));
+			$customer=Customer::find($customer_id);
+			$customer->update(array('update_at' => $customer_last_update));
+			//如果是公共客户，则把它更新为当前的顾问的意向客户
+			if($customer->state=='public'){
+				$customer->update(array('state' =>'purpose','counselor_id'=>$counselor_id));
+			}
 		}
 
 		return Redirect::action('InrecordController@toList', array('customer_id'=>$customer_id));
