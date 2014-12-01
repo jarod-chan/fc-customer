@@ -47,6 +47,10 @@ class DealrecordController extends Controller{
 
 		$dealrecord->fill($arr);
 		$room=$dealrecord->room();
+		if(!Input::has("id")){
+			$dealrecord->doInitPercent($room);
+		}
+
 		if($room){
 			$dealrecord->customer_name=$room['customer'];
 		}else {

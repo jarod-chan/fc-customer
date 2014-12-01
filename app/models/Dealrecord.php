@@ -44,6 +44,25 @@ class Dealrecord extends Eloquent{
 		return null;
 	}
 
+	public function  doInitPercent($room){
+		$default_percent=bcadd("0","0",5);
+		if($room){
+			$totalamout=bcadd($room['contractTotalAmount'],'0',5);
+
+			$projectid=$room['projectid'];
+			$projectpct=ProjectPct::find($projectid);
+			if($projectpct){
+				$default_percent=bcadd("0",$projectpct->percent,5);
+			}
+			$commission=bcmul('0.01',$projectpct->percent,5);//百分比存储,除以100获得数值
+			$commission=bcmul($totalamout,$commission,5);
+
+			$this->percent = $default_percent;
+			$this->commission = $commission;
+		}
+	}
+
+
 	public function doCalculation(){
 		$inamt="0";
 		$leftamt="0";

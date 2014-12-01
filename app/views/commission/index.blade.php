@@ -29,7 +29,7 @@
 	<div id="item_div">
 	@foreach($dealrecordList as $dealrecord)
 	<?php
-    	$room=$dealrecord->room();//d($dealrecord);
+    	$room=$dealrecord->room();//d($room);
     ?>
 	 <ul class="item" data-role="listview" data-inset="true">
 	 	 <li><a href='{{ URL::to("commission/$dealrecord->id/deal?state=$state&key=$key") }}' >{{$dealrecord->id}}</a></li>
