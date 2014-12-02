@@ -3,7 +3,7 @@ class PorjectpctController extends Controller{
 
 	public function toList(){
 		$sellProjectSet=S::sellProject();
-		$projectPctSet=ProjectPct::all()->lists('percent','sellproject_id');;
+		$projectPctSet=ProjectPct::all()->lists('percent','sellproject_id');
 		$this->addProjectpct($sellProjectSet,$projectPctSet);
 
 
@@ -49,6 +49,7 @@ class PorjectpctController extends Controller{
 			$projectpct->percent=$percent;
 		}
 		$projectpct->save();
+		Session::flash('message', '保存成功');
 		return Redirect::action('PorjectpctController@toList');
 	}
 

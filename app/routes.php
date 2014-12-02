@@ -98,6 +98,11 @@ Route::group(array('before' => 'islogin'), function()
 	Route::get('projectpct/list','PorjectpctController@toList');
 	Route::get('projectpct/edit','PorjectpctController@toEdit');
 	Route::post('projectpct/save','PorjectpctController@save');
+
+	//全局参数
+	Route::get('sysparam/list','SysparamController@toList');
+	Route::get('sysparam/edit/{key}','SysparamController@toEdit');
+	Route::post('sysparam/save','SysparamController@save');
 });
 
 //号码查询
