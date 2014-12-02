@@ -15,7 +15,7 @@ class QueryController extends Controller{
 
 		$param=Input::get("param");
 		$customerSet=Customer::where('phone',$param)
-			->orWhere('name', $param)
+			->orWhere('name','like', '%'.$param.'%')
 			->get();
 
 		if(!$customerSet->isEmpty()){
