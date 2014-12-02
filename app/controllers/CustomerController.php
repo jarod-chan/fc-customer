@@ -52,6 +52,8 @@ class CustomerController  extends Controller {
 		}else{
 			$arr['register_id']=$counselor_id;
 			$arr['register_at']=new DateTime();
+			$arr['updater_id']=$counselor_id;
+			$arr['update_at']=new DateTime();
 			$customer=new Customer;
 		}
 		$customer->fill($arr);
