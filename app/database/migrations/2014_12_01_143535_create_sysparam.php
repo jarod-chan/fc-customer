@@ -14,8 +14,8 @@ class CreateSysparam extends Migration {
 	{
 		Schema::create('fc_sysparam', function($table)
 		{
-			$table->string('key');//销售项目，来自eas的数据
-			$table->string('value');//比例
+			$table->string('key');
+			$table->string('value');
 
 			$table->primary('key');
 		});
