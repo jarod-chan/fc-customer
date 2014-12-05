@@ -22,7 +22,20 @@
 		</li>
     </ul>
 
-
+  	 @if($hasCommission)
+  	 <div class="ui-corner-all custom-corners">
+			<div class="ui-bar ui-bar-a">
+				<h3>系统信息</h3>
+			</div>
+			<div class="ui-body ui-body-a">
+				<p>该成交记录存在佣金记录，无法删除或者修改。</p>
+			</div>
+	</div>
+  	 @else
+  	{{ Form::open(array('url' => "customer/$customer_id/dealrecord/$dealrecord_id/delete",'data-ajax'=>'true')) }}
+    <p><button class="fy-btn ui-btn  ui-shadow  ui-corner-all" >删除</button></p>
+	{{ Form::close() }}
+  	@endif
 
   </div>
 </div>

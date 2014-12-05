@@ -28,31 +28,26 @@ class DealrecordController extends Controller{
 		return $view;
 	}
 
+	//只处理新增，无法修改，只能删除后重新添加
 	public function save($customer_id){
 		$counselor_id=Session::get("counselor_id");
 		$arr=Input::all();
-		if(Input::has("id")){
-			$arr['updater_id']=$counselor_id;
-			$arr['update_at']=new DateTime();
-			$dealrecord=Dealrecord::find(Input::get("id"));
-		}else{
-			$arr['customer_id']=$customer_id;
-			$arr['creater_id']=$counselor_id;
-			$arr['create_at']=new DateTime();
-			$arr['updater_id']=$counselor_id;
-			$arr['update_at']=new DateTime();
-			$arr['state']='no';
-			$dealrecord=new Dealrecord;
-		}
 
+		$arr['customer_id']=$customer_id;
+		$arr['creater_id']=$counselor_id;
+		$arr['create_at']=new DateTime();
+		$arr['updater_id']=$counselor_id;
+		$arr['update_at']=new DateTime();
+		$arr['state']='no';
+
+		$dealrecord=new Dealrecord;
 		$dealrecord->fill($arr);
 		$room=$dealrecord->room();
-		if(!Input::has("id")){
-			$dealrecord->doInitPercent($room);
-		}
-
 		if($room){
+			//保存客户的真实姓名
 			$dealrecord->customer_name=$room['customer'];
+			//计算初始化的佣金比率
+			$dealrecord->doInitPercent($room);
 		}else {
 			$dealrecord->customer_name='';
 		}
@@ -68,57 +63,16 @@ class DealrecordController extends Controller{
 			$hasCommission=false;
 		}
 
-		if($hasCommission){
-			return $this->getViewforView($dealrecord);
-		}
-
-
-		$view=View::make('dealrecord.edit')
-		->with('customer_id',$customer_id)
-		->with('dealrecord',$dealrecord);
-
 		$room=$dealrecord->room();
-		if($room){
-			$sellprojectSet=H::toSet(S::sellProject());
-			$view->with('sellprojectSet',$sellprojectSet);
-
-			$buildingSet=H::toSet(S::building($room["projectid"]));
-			$view->with('buildingSet',$buildingSet);
-
-			$ret=S::buildingunit($room["buildingid"],'Purchase');
-			if($ret["type"]=="unit"){
-				$buildingunitSet=H::toSet($ret['arr']);
-				$view->with('buildingunitSet',$buildingunitSet);
-
-				$roomSet=H::toSet(S::room($room["buildunitid"],'Purchase'));
-				$view->with('roomSet',$roomSet);
-			}elseif ($ret["type"]=="room"){
-				$view->with('buildingunitSet',null);
-
-				$roomSet=H::toSet($ret['arr']);
-				$view->with('roomSet',$roomSet);
-			}
-
-			$view->with("room",$room);
-		}else {
-			$room=array('roomid'=>'','projectid'=>'','buildingid'=>'','buildunitid'=>'');
-			$view->with('room',$room);
-
-			$sellprojectSet=H::toSet(S::sellProject());
-			$view->with('sellprojectSet',$sellprojectSet)
-			->with('buildingSet',null)
-			->with('buildingunitSet',null)
-			->with('roomSet',null);
-		}
-
-		return $view;
-	}
-
-	private function getViewforView($dealrecord){
-		$room=$dealrecord->room();
+		$dealrecord_id=$dealrecord->id;
 		return View::make('dealrecord.view')
-			->with('room',$room);
+		->with('customer_id',$customer_id)
+		->with('room',$room)
+		->with('dealrecord_id',$dealrecord_id)
+		->with('hasCommission',$hasCommission);
 	}
+
+
 
 
 
