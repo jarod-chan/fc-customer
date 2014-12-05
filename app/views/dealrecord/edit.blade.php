@@ -9,7 +9,7 @@
    {{ Form::hidden('id',$dealrecord->id) }}
    @endif
 
-    <ul data-role="listview" data-inset="true">
+    <ul data-role="listview" data-inset="true" >
     	<li data-role="list-divider">成交记录</li>
 		<li>
 			<div class="ui-grid-a">
@@ -28,6 +28,7 @@
     <p><button class="fy-btn ui-btn  ui-shadow  ui-corner-all" >保存</button></p>
 
   	{{ Form::close() }}
+
 
   	 @if($dealrecord->id)
   	{{ Form::open(array('url' => "customer/$customer_id/dealrecord/$dealrecord->id/delete",'data-ajax'=>'true')) }}

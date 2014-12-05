@@ -62,6 +62,17 @@ class DealrecordController extends Controller{
 
 	public function toEdit($customer_id,$id){
 		$dealrecord=Dealrecord::find($id);
+		//判断是否存在佣金记录
+		$hasCommission=true;
+		if($dealrecord->commissions->isEmpty()){
+			$hasCommission=false;
+		}
+
+		if($hasCommission){
+			return $this->getViewforView($dealrecord);
+		}
+
+
 		$view=View::make('dealrecord.edit')
 		->with('customer_id',$customer_id)
 		->with('dealrecord',$dealrecord);
@@ -102,6 +113,15 @@ class DealrecordController extends Controller{
 
 		return $view;
 	}
+
+	private function getViewforView($dealrecord){
+		$room=$dealrecord->room();
+		return View::make('dealrecord.view')
+			->with('room',$room);
+	}
+
+
+
 
 	public function delete($customer_id,$id){
 		DB::transaction(function() use ($id){
