@@ -58,7 +58,7 @@
     	</li>
     	<li>
     	<div class="fy_grid4">
-    	<p class='a'>建筑风格</p>{{ Form::select('jzfg',Purpose::enum('jzfg'),$purpose->jzfg,array('data-native-menu'=>'false'))}}
+    	<p class='a'>楼层</p>{{ Form::select('jzfg',Purpose::enum('jzfg'),$purpose->jzfg,array('data-native-menu'=>'false'))}}
     	</div>
     	</li>
     	<li>

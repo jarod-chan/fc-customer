@@ -37,7 +37,7 @@
 		<li>
     	<div class="ui-grid-a">
 		    <div class="ui-block-a">地段:{{$purpose->dd}}</div>
-			<div class="ui-block-b">建筑风格:{{$purpose->name('jzfg')}}</div>
+			<div class="ui-block-b">楼层:{{$purpose->name('jzfg')}}</div>
 		</div>
 		</li>
 		<li>
