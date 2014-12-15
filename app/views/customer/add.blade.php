@@ -8,9 +8,8 @@
   {{ Form::open(array('url' => 'customer/save','data-ajax'=>'true')) }}
 
   <?php
-  	$counselor_select=array('data-native-menu'=>'false');
   	if(C::isSale()){
-		$counselor_select=array('data-native-menu'=>'false', 'disabled'=>"disabled");
+		$counselorSet=H::only($counselorSet,$counselor->id);
   	}
   ?>
 
@@ -27,7 +26,7 @@
 		</div>
 		</li>
 		<li class="fy_grid">
-			<p class='a'>顾问</p>{{ Form::select('counselor_id',$counselorSet,$counselor->id,$counselor_select)}}
+			<p class='a'>顾问</p>{{ Form::select('counselor_id',$counselorSet,$counselor->id,array('data-native-menu'=>'false'))}}
 		</li>
 		<li class="fy_grid">
 			<p class='a'>状态</p>{{ Form::select('state',$stateSet,'',array('id'=>'state','data-native-menu'=>'false'))}}

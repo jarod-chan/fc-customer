@@ -39,12 +39,21 @@ class H {
 		return $s[0];
 	}
 
+
 	public static function fmt($date){
 		if($date){
 			return date('n-j',strtotime($date));
 		}else {
 			return '';
 		}
+	}
+
+	//用于过滤是销售顾问时，过滤掉其他选项，使他自能选择自己
+	public static  function only($arr,$key){
+		if($arr[$key]){
+			return array($key=>$arr[$key]);
+		}
+		return $arr;
 	}
 }
 

@@ -21,9 +21,8 @@
 	{{ Form::hidden('id',$customer->id) }}
 
 	 <?php
-	  	$counselor_select=array('data-native-menu'=>'false');
 	  	if(C::isSale()){
-			$counselor_select=array('data-native-menu'=>'false', 'disabled'=>"disabled");
+			$counselorSet=H::only($counselorSet,$customer->counselor_id);
 	  	}
 	  ?>
     <ul data-role="listview" data-inset="true">
@@ -39,7 +38,7 @@
 		</div>
 		</li>
 		<li class="fy_grid">
-			<p class='a'>顾问</p>{{ Form::select('counselor_id',$counselorSet,$customer->counselor_id,$counselor_select)}}
+			<p class='a'>顾问</p>{{ Form::select('counselor_id',$counselorSet,$customer->counselor_id,array('data-native-menu'=>'false'))}}
 		</li>
 		<li class="fy_grid">
 			<p class='a'>状态</p>{{ Form::select('state',$stateSet,$customer->state,array('id'=>'state','data-native-menu'=>'false'))}}
