@@ -54,7 +54,7 @@ class Dealrecord extends Eloquent{
 			if($projectpct){
 				$default_percent=bcadd("0",$projectpct->percent,5);
 			}
-			$commission=bcmul('0.01',$projectpct->percent,5);//百分比存储,除以100获得数值
+			$commission=bcmul('0.01',$default_percent,5);//百分比存储,除以100获得数值
 			$commission=bcmul($totalamout,$commission,5);
 
 			$this->percent = $default_percent;
