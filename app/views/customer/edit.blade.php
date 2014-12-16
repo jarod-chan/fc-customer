@@ -5,19 +5,9 @@
     <div data-role="content">
      <script type="text/javascript">changeTitle('客户信息');</script>
 
-    @if (Session::has('message'))
-  	<div class="ui-corner-all custom-corners" >
-	  <div class="ui-bar ui-bar-a">
-	    <h3>系统信息</h3>
-	  </div>
-	  <div class="ui-body ui-body-a">
-	    <p>{{Session::get('message')}}</p>
-	  </div>
-	</div>
-	@endif
-
+    @include('common.tpl-message')
 	<div class="fy-body">
-    {{ Form::open(array('url' => 'customer/save','data-ajax'=>'true')) }}
+    {{ Form::open(array('url' => 'customer/update','data-ajax'=>'true')) }}
 	{{ Form::hidden('id',$customer->id) }}
 
 	 <?php
@@ -125,7 +115,7 @@
 					pop.open(msg);
 	 				return false;
 				}else{
-					$("body").pagecontainer("change",'{{ URL::to("customer/save") }}',{type:'post',data:form.serialize(),changeHash:false});
+					$("body").pagecontainer("change",'{{ URL::to("customer/update") }}',{type:'post',data:form.serialize(),changeHash:false});
 				}
 			});
 			return false;

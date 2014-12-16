@@ -39,4 +39,18 @@ class Customer extends Eloquent{
 		return $this->belongsTo('Counselor', 'register_id');
 	}
 
+	//判断是否重复
+	public function isPhoneExist(){
+		$query=Customer::where('phone',$this->phone);
+		if($this->id){
+			$query->where('id', '!=', $this->id);
+		}
+		$customer=$query->first();
+		if($customer){
+			return true;
+		}else {
+			return false;
+		}
+	}
+
 }

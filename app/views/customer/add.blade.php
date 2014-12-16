@@ -13,6 +13,7 @@
   	}
   ?>
 
+ 	 @include('common.tpl-message')
     <ul data-role="listview" data-inset="true" >
     	<li  style="padding-left:1.5em" data-role="list-divider">客户信息</li>
     	<li>

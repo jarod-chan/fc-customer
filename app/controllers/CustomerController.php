@@ -47,18 +47,22 @@ class CustomerController  extends Controller {
 	public function save(){
 		$counselor_id=Session::get("counselor_id");
 		$arr=Input::all();
-		if(Input::has("id")){
-			$customer=Customer::find(Input::get("id"));
-		}else{
-			$arr['register_id']=$counselor_id;
-			$arr['register_at']=new DateTime();
-			$arr['updater_id']=$counselor_id;
-			$arr['update_at']=new DateTime();
-			$customer=new Customer;
-		}
-		$customer->fill($arr);
-		$customer->save();
+		$nowtime=new DateTime();
 
+		$customer=new Customer;
+		$arr['register_id']=$counselor_id;
+		$arr['register_at']=$nowtime;
+		$arr['updater_id']=$counselor_id;
+		$arr['update_at']=$nowtime;
+		$customer->fill($arr);
+
+		//检查是否有重复的号码，防止数据的重复提交
+		if($customer->isPhoneExist()){
+			Session::flash('message', '保存失败,客户手机存在重复');
+			return Redirect::to('customer/add')->withInput();
+		}
+
+		$customer->save();
 		Session::flash('message', '保存成功');
 		return Redirect::action('CustomerController@toEdit', array('id'=>$customer->id));
 	}
@@ -76,4 +80,20 @@ class CustomerController  extends Controller {
 		->with('stateSet',$stateSet);
 	}
 
+	public function update(){
+		$counselor_id=Session::get("counselor_id");
+		$customer=Customer::find(Input::get("id"));
+		$arr=Input::all();
+		$customer->fill($arr);
+
+		//检查是否有重复的号码，防止数据的重复提交
+		if($customer->isPhoneExist()){
+			Session::flash('message', '保存失败,客户手机存在重复');
+			return Redirect::to('customer/'.$customer->id.'/edit')->withInput();
+		}
+
+		$customer->save();
+		Session::flash('message', '保存成功');
+		return Redirect::action('CustomerController@toEdit', array('id'=>$customer->id));
+	}
 }

@@ -24,6 +24,7 @@ Route::group(array('before' => 'ismobile'), function()
 	Route::get('customer/add','CustomerController@toAdd');
 	Route::post('customer/save','CustomerController@save');
 	Route::get('customer/{id}/edit','CustomerController@toEdit');
+	Route::post('customer/update','CustomerController@update');
 	Route::get('customer/{state}','CustomerController@index');
 
 
