@@ -10,7 +10,7 @@ class Inrecord extends Eloquent{
 	protected $fillable = array('customer_id','creater_id','create_at','updater_id','update_at','type','description','result');
 
 	public static function  typeEnums(){
-		return array('dhhf' =>'电话回访','gksm'=>'顾客上门');
+		return array('dhhf' =>'电话回访','gksm'=>'顾客上门','dx'=>'短信','wx'=>'微信');
 	}
 
 	public function getTypeName(){

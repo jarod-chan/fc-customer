@@ -73,10 +73,6 @@ class DealrecordController extends Controller{
 	}
 
 
-
-
-
-
 	public function delete($customer_id,$id){
 		DB::transaction(function() use ($id){
 			Commission::where('dealrecord_id', $id)->delete();
