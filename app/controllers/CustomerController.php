@@ -58,7 +58,7 @@ class CustomerController  extends Controller {
 
 		//检查是否有重复的号码，防止数据的重复提交
 		if($customer->isPhoneExist()){
-			Session::flash('message', '保存失败,客户手机存在重复');
+			Session::flash('message', '保存失败,客户电话存在重复');
 			return Redirect::to('customer/add')->withInput();
 		}
 
@@ -88,7 +88,7 @@ class CustomerController  extends Controller {
 
 		//检查是否有重复的号码，防止数据的重复提交
 		if($customer->isPhoneExist()){
-			Session::flash('message', '保存失败,客户手机存在重复');
+			Session::flash('message', '保存失败,客户电话存在重复');
 			return Redirect::to('customer/'.$customer->id.'/edit')->withInput();
 		}
 

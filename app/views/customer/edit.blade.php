@@ -24,7 +24,7 @@
 		</li>
 		<li>
 		<div class="fy_grid">
-		 <p class='a'>手机</p>{{ Form::text('phone',$customer->phone,array('id'=>'phone')) }}
+		 <p class='a'>电话</p>{{ Form::text('phone',$customer->phone,array('id'=>'phone')) }}
 		</div>
 		</li>
 		<li class="fy_grid">
@@ -91,25 +91,20 @@
  		page.find(".btn_save").click(function(){
  			var msg=V.require_all(page,[
  	 			           	 		{sl:'#name',name:'姓名'},
- 	 			           	 		{sl:'#phone',name:'手机'},
+ 	 			           	 		{sl:'#phone',name:'电话'},
  	 			           	 		{sl:'#state',name:'状态'}
  	 			           	 		]);
 			if(msg!==""){
 				pop.open(msg);
 				return false;
 			}
-			msg=V.phone(page.find("#phone"),'手机号码');
-			if(msg!==""){
- 				pop.open(msg);
- 				return false;
- 			}
 
 			$.get('{{URL::to("verify")}}',{phone:page.find("#phone").val(),customer_id:{{$customer->id}}},function(ret){
 				if(ret.result){
 					var data=ret.data;
-					msg="<p>该手机号与以下客户相同：</p>";
+					msg="<p>该电话与以下客户相同：</p>";
 					msg+="<p>姓名："+data.name+"</p>";
-					msg+="<p>手机："+data.phone+"</p>";
+					msg+="<p>电话："+data.phone+"</p>";
 					msg+="<p>顾问："+data.counselor+"</p>";
 					msg+="<p>状态："+data.state+"</p>";
 					pop.open(msg);
