@@ -26,7 +26,7 @@
     	</li>
     	<li style="padding-left:1.5em" data-role="list-divider">跟进成果</li>
     	<li class="fy_grid4">
-    	{{ Form::textarea('result',$inrecord->result) }}
+    	{{ Form::textarea('result',$inrecord->result,array('id'=>'result')) }}
     	</li>
     </ul>
 
@@ -46,7 +46,8 @@
 		var page= $(".inrecord_edit").last();
 		page.find('form:eq(0)').submit(function(){
  			var msg=V.require_all(page,[
- 	 	 			{sl:'#type',name:'跟进方式'}
+ 	 	 			{sl:'#type',name:'跟进方式'},
+ 	 	 			{sl:'#result',name:'跟进成果'}
  	 	 	]);
  			if(msg!==""){
  				pop.open(msg);
