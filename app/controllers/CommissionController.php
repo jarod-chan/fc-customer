@@ -108,7 +108,7 @@ class CommissionController extends Controller{
 	}
 
 	private function getMinId($dealrecordList){
-		if($dealrecordList->count()==self::$limit+1){
+		if(count($dealrecordList)>0 && $dealrecordList->count()==self::$limit+1){
 			$lastDealrecord=$dealrecordList->last();
 			return $lastDealrecord->id;
 		}else{
@@ -117,7 +117,7 @@ class CommissionController extends Controller{
 	}
 
 	private function cutDealRecord($dealrecordList){
-		if($dealrecordList->count()==self::$limit+1){
+		if(count($dealrecordList)>0 && $dealrecordList->count()==self::$limit+1){
 			$dealrecordList->pop();
 		}
 		return $dealrecordList;
