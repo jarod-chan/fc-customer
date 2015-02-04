@@ -21,6 +21,11 @@
 	         <p class='a'>姓名</p>{{ Form::text('name','',array('id'=>'name')) }}
 	    </div>
 	    </li>
+	    <li>
+		<div class="fy_grid">
+			<p class='a'>备注</p>{{ Form::text('remark','',array('id'=>'remark')) }}
+		</div>
+		</li>
 		<li>
 		<div class="fy_grid">
 			<p class='a'>电话</p>{{ Form::text('phone','',array('id'=>'phone')) }}

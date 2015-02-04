@@ -7,7 +7,7 @@ class Customer extends Eloquent{
 
 	public $timestamps = false;
 
-	protected $fillable = array('name','phone','qq','email','weixin','from','way','state','register_id','register_at','counselor_id','update_at');
+	protected $fillable = array('name','phone','qq','email','weixin','from','way','state','register_id','register_at','counselor_id','update_at','remark');
 
 	public static function  stateEnums(){
 		return array('purpose' =>'意向客户','sign'=>'签约客户','public'=>'公共客户');

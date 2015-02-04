@@ -24,6 +24,11 @@
 		</li>
 		<li>
 		<div class="fy_grid">
+			<p class='a'>备注</p>{{ Form::text('remark',$customer->remark,array('id'=>'remark')) }}
+		</div>
+		</li>
+		<li>
+		<div class="fy_grid">
 		 <p class='a'>电话</p>{{ Form::text('phone',$customer->phone,array('id'=>'phone')) }}
 		</div>
 		</li>
