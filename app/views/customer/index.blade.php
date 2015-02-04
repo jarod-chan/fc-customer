@@ -18,7 +18,7 @@
 	@foreach($customerSet as $customer)
 	 <ul class="item" data-role="listview" data-inset="true">
 		<li><a href='{{ URL::to("customer/$customer->id/edit") }}'>
-                <h2>客户：{{$customer->name}}({{$customer->remark}})</h2>
+                <h2>客户：{{$customer->name}}@if(!empty($customer->remark)&&!ctype_space($customer->remark))({{$customer->remark}})@endif</h2>
                 <p>更新时间：{{$customer->update_at}}</p>
             </a>
         </li>
