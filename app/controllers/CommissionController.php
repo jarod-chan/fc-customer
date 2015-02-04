@@ -1,7 +1,7 @@
 <?php
 class CommissionController extends Controller{
 
-	private static $limit=2;
+	private static $limit=20;
 
 	public function index(){
 		$key=trim(Input::get("key"));
