@@ -3,6 +3,7 @@ class QueryController extends Controller{
 
 	public function query(){
 		$openid=Input::get("openid");
+		log::info(':'.$openid.':');
 		$counselor=Counselor::where('openid',$openid)
 			->first();
 		if(!$counselor){
