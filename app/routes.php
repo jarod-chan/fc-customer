@@ -115,4 +115,6 @@ Route::get('verify','VerifyController@verify');
 //失效访问页面
 Route::get('fail/mobile','FailController@mobile');
 
+//微信接口
+Route::any( 'wechat','WechatController@server');
 
