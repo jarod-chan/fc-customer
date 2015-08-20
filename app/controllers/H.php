@@ -26,6 +26,17 @@ class H {
 		return $ret;
 	}
 
+	public static  function  toArr($kvArr,$keyname="key",$valuename="name"){
+		$arr=array();
+		if(!$kvArr) return $arr;
+		foreach ($kvArr as  $k=>$v){
+			$item=array($keyname=>$k,$valuename=>$v);
+			array_push($arr,$item);
+		}
+		return $arr;
+	}
+
+
 	public static function  nullStr($arr,$key){
 		if(array_key_exists($key,$arr)){
 			return $arr[$key];

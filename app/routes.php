@@ -118,3 +118,18 @@ Route::get('fail/mobile','FailController@mobile');
 //微信接口
 Route::any( 'wechat','WechatController@server');
 
+//服务接口
+Route::group(array('prefix' => 'service'), function()
+{
+	Route::post('isregister','RegisterService@isRegister');
+
+	Route::get('syenum','SyenumService@query');
+
+	Route::get('counselor','CounselorService@query');
+
+	Route::get('customer/states','CustomerService@states');
+	Route::post('customer/save',array('before' => 'isapp', 'uses' =>'CustomerService@save'));
+	Route::get('customer/list/{state}',array('before' => 'isapp', 'uses' =>'CustomerService@index'));
+});
+
+
