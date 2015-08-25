@@ -126,10 +126,24 @@ Route::group(array('prefix' => 'service'), function()
 	Route::get('syenum','SyenumService@query');
 
 	Route::get('counselor','CounselorService@query');
+	Route::get('counselor/{id}','CounselorService@counselor');
+
 
 	Route::get('customer/states','CustomerService@states');
 	Route::post('customer/save',array('before' => 'isapp', 'uses' =>'CustomerService@save'));
 	Route::get('customer/list/{state}',array('before' => 'isapp', 'uses' =>'CustomerService@index'));
+
+	Route::get('purpose','PurposeService@index');
+	Route::post('purpose/save',array('before' => 'isapp', 'uses' =>'PurposeService@save'));
+	Route::post('purpose/{id}/delete',array('before' => 'isapp', 'uses' =>'PurposeService@delete'));
+});
+
+Route::group(array('prefix' => 'service/customer/{customer_id}'), function()
+{
+	Route::get('purpose','PurposeService@index');
+	Route::post('purpose/save',array('before' => 'isapp', 'uses' =>'PurposeService@save'));
+	Route::post('purpose/{id}/delete',array('before' => 'isapp', 'uses' =>'PurposeService@delete'));
+
 });
 
 

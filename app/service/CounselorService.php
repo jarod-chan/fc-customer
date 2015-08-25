@@ -8,5 +8,9 @@ class CounselorService extends Controller{
 		return $counselorSet;
 	}
 
+	public function  counselor($id){
+		return Counselor::find($id);
+	}
+
 
 }

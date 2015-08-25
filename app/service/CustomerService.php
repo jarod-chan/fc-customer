@@ -62,7 +62,7 @@ class CustomerService extends Controller{
 			);
 		}
 
-		//$customer->save();
+		$customer->save();
 		return  array(
 				"result"=>true,
 				"data"=>array("id"=>$customer->id)
