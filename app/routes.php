@@ -136,6 +136,8 @@ Route::group(array('prefix' => 'service'), function()
 	Route::get('purpose','PurposeService@index');
 	Route::post('purpose/save',array('before' => 'isapp', 'uses' =>'PurposeService@save'));
 	Route::post('purpose/{id}/delete',array('before' => 'isapp', 'uses' =>'PurposeService@delete'));
+
+	Route::get('inrecord/typeenum','InrecordService@typeEnums');
 });
 
 Route::group(array('prefix' => 'service/customer/{customer_id}'), function()
@@ -143,6 +145,10 @@ Route::group(array('prefix' => 'service/customer/{customer_id}'), function()
 	Route::get('purpose','PurposeService@index');
 	Route::post('purpose/save',array('before' => 'isapp', 'uses' =>'PurposeService@save'));
 	Route::post('purpose/{id}/delete',array('before' => 'isapp', 'uses' =>'PurposeService@delete'));
+
+	Route::get('inrecord','InrecordService@index');
+	Route::post('inrecord/save',array('before' => 'isapp', 'uses' =>'InrecordService@save'));
+	Route::post('inrecord/{id}/delete',array('before' => 'isapp', 'uses' =>'InrecordService@delete'));
 
 });
 
