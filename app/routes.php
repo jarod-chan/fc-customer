@@ -152,7 +152,10 @@ Route::group(array('prefix' => 'service/customer/{customer_id}'), function()
 	Route::post('inrecord/save',array('before' => 'isapp', 'uses' =>'InrecordService@save'));
 	Route::post('inrecord/{id}/delete',array('before' => 'isapp', 'uses' =>'InrecordService@delete'));
 
-
+	Route::get('dealrecord','DealrecordService@index');
+	Route::post('dealrecord/save',array('before' => 'isapp', 'uses' =>'DealrecordService@save'));
+	Route::post('dealrecord/{id}/delete',array('before' => 'isapp', 'uses' =>'DealrecordService@delete'));
+	Route::get('dealrecord/{id}/havecommission','DealrecordService@haveCommission');
 
 });
 
