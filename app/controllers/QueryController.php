@@ -52,4 +52,14 @@ class QueryController extends Controller{
 		}
 		return $set;
 	}
+
+	//判断是否销售顾问
+	public function  isCounselor(){
+		$openid=Input::get("openid");
+		$count=Counselor::where('openid',$openid)->count();
+		if($count>0){
+			return array('result'=>true);
+		}
+		return array('result'=>false);
+	}
 }
