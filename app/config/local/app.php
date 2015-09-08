@@ -14,5 +14,7 @@ return array(
 	*/
 
 	'debug' => true,
+	'admin' => "admin",
+	'password' => "123456"
 
 );
