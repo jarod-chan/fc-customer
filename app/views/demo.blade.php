@@ -58,7 +58,7 @@
 	    </div>
 		</li>
 
-		<li>{{ Form::select("commissionSet[-][counselor_id]",H::prepend(null,"销售顾问"),'',array("data-native-menu"=>"false"))}}</li>
+		<li>{{ Form::select("commissionSet[-][counselor_id]",H::prepend(null,"销售顾问"),'',array("data-native-menu"=>"true"))}}</li>
 		<li><input type="date"  name="commissionSet[-][comdate_at]" value=""  placeholder="日期"></li>
     </ul>
     </div>

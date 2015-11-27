@@ -33,10 +33,10 @@
 		</div>
 		</li>
 		<li class="fy_grid">
-			<p class='a'>顾问</p>{{ Form::select('counselor_id',$counselorSet,$customer->counselor_id,array('data-native-menu'=>'false'))}}
+			<p class='a'>顾问</p>{{ Form::select('counselor_id',$counselorSet,$customer->counselor_id,array('data-native-menu'=>'true'))}}
 		</li>
 		<li class="fy_grid">
-			<p class='a'>状态</p>{{ Form::select('state',$stateSet,$customer->state,array('id'=>'state','data-native-menu'=>'false'))}}
+			<p class='a'>状态</p>{{ Form::select('state',$stateSet,$customer->state,array('id'=>'state','data-native-menu'=>'true'))}}
 		</li>
 
 
@@ -60,12 +60,12 @@
 				</li>
 				<li>
 				<div class="fy_grid">
-				<p class='a'>来源</p>{{ Form::select('from',Customer::enum('from'),$customer->from,array('data-native-menu'=>'false'))}}
+				<p class='a'>来源</p>{{ Form::select('from',Customer::enum('from'),$customer->from,array('data-native-menu'=>'true'))}}
 				</div>
 				</li>
 				<li>
 				<div class="fy_grid">
-				<p class='a'>途径</p>{{ Form::select('way',Customer::enum('way'),$customer->way,array('data-native-menu'=>'false'))}}
+				<p class='a'>途径</p>{{ Form::select('way',Customer::enum('way'),$customer->way,array('data-native-menu'=>'true'))}}
 				</div>
 				</li>
 				<li>
