@@ -108,16 +108,6 @@ Route::filter('ismobile', function()
 	}
 });
 
-Route::filter('isapp', function()
-{
-	$counselor_id=Input::get("app_counselor_id");
-	if(!$counselor_id){
-		return  array(
-				"result"=>false,
-				"message"=>"非法调用"
-		);
-	}
-});
 
 
 
