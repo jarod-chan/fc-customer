@@ -116,7 +116,7 @@ Route::get('verify','VerifyController@verify');
 Route::get('fail/mobile','FailController@mobile');
 
 //微信接口
-Route::any( 'wechat','WechatController@server');
+Route::any('wechat/server','WechatController@server');
 
 //服务接口
 Route::group(array('prefix' => 'service'), function()

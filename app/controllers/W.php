@@ -1,28 +1,38 @@
 <?php
-class W extends Wechat{
+include_once "Whandler.php";
 
+class W extends Wechat {
 	protected function onText() {
+		$openid = $this->getRequest ( 'FromUserName' );
+		$content = trim ( $this->getRequest ( 'content' ) );
 
-		if ($received == '测试') {
+		$counselor=Counselor::where('openid',$openid)->first();
 
-			$items = array();
-
-			$get = $connection -> get($openid);
-			$data = $get['data'];
-			for ($i=0; $i < count($data); $i++) {
-				$image_url = 'http://wx4house-image.stor.sinaapp.com/service/'.$i.'.jpg';
-				$name = $data[$i]['name'];
-				//$url = 'http://221.12.111.109:8000/'.$data[$i]['url'];
-				$url = $data[$i]['url'];
-				$items_tmp = array(new NewsResponseItem($name, '方远房产', $image_url, $url));
-				$items = array_merge($items, $items_tmp);
+		if($counselor){
+			$handler = new WCustomerMenu();
+			if ($handler->isPattern($content)) {
+				$result =  $handler->deal($counselor);
+				$this->responseNews ($result);
 			}
-			$this->responseNews($items);
 
+			$handler = new WRoomprice();
+			if ($handler->isPattern($content)) {
+				$result =  $handler->deal($openid,$content);
+				$this->responseText ($result);
+			}
 
+			$handler = new WCustomerQuery();
+			if ($handler->isPattern($content)) {
+				$result =  $handler->deal($counselor,$content);
+				$this->responseText($result);
+			}
+
+			$handler = new WDefault();
+			$result =  $handler->deal();
+			return $this->responseText($result);
+		}else{
+			$this->responseText ( "你的openid是:$openid" );
 		}
 
-
 	}
-
 }
