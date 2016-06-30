@@ -17,6 +17,7 @@ class QueryController extends Controller{
 		$param=Input::get("param");
 		$customerSet=Customer::where('phone',$param)
 			->orWhere('name','like', '%'.$param.'%')
+			->take(10)
 			->get();
 
 		if(!$customerSet->isEmpty()){
@@ -50,5 +51,15 @@ class QueryController extends Controller{
 			array_push($set,$arr);
 		}
 		return $set;
+	}
+
+	//判断是否销售顾问
+	public function  isCounselor(){
+		$openid=Input::get("openid");
+		$count=Counselor::where('openid',$openid)->count();
+		if($count>0){
+			return array('result'=>true);
+		}
+		return array('result'=>false);
 	}
 }

@@ -108,9 +108,12 @@ Route::group(array('before' => 'islogin'), function()
 
 //号码查询
 Route::get('query','QueryController@query');
+Route::get('iscounselor','QueryController@isCounselor');
 
 //号码校验
 Route::get('verify','VerifyController@verify');
+
+
 
 //失效访问页面
 Route::get('fail/mobile','FailController@mobile');

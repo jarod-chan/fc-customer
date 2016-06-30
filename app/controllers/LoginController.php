@@ -11,7 +11,6 @@ class LoginController extends Controller{
 
 	public function login()
 	{
-
 		return View::make('login.login');
 	}
 
@@ -20,8 +19,8 @@ class LoginController extends Controller{
 		$name = Input::get('name');
 		$password = Input::get('password');
 
+		$password = Hash::make($password);
 		$credentials = array('name' => $name, 'password' => $password);
-		$password = Hash::make('secret');
 
 		if($this->isAdmin($credentials))
 		{
@@ -36,7 +35,8 @@ class LoginController extends Controller{
 	}
 
 	private function isAdmin($credentials){
-		return $credentials['name']=='admin'&& $credentials['password']='$2y$10$dQ9JsW5dYpAXEhTaNyvJ4O8pQLF/d3Njp4H5mMtFIkYiOXZkFgiLu';
+		return $credentials['name']==Config::get('app.admin')
+		&& Hash::check(Config::get('app.password'), $credentials['password']);
 	}
 
 	public function logout(){
