@@ -1,18 +1,25 @@
-@extends('layouts.mobile')
+@extends('layouts.mobilescroll')
+
+@section('head')
+   	{{HTML::style('plug/scroll/scroll.css')}}
+    {{HTML::script('plug/scroll/iScrollv4.2.5.js')}}
+    {{HTML::script('views/commission.js')}}
+@stop
 
 @section('content')
 <div data-role="page" class="commission_index" data-url='{{ URL::to("commission?state=$state&key=$key") }}'  >
+	<script type="text/javascript">
+    changeTitle('佣金结算');
+    PG.setUrl('{{URL::to("commission/query")}}').setAll('{{$minId}}','{{$state}}','{{$key}}');
+    </script>
     <div data-role="content" >
-    {{HTML::style('plug/scroll/scroll.css')}}
-    {{HTML::script('plug/scroll/iScrollv4.2.5.js')}}
-    <script type="text/javascript">changeTitle('佣金结算');</script>
 
 	{{ Form::open(array('url' => 'commission','data-ajax'=>'true','method'=>'get')) }}
-	<div class="ui-body ui-body-a" style="padding: 0px;margin: 0 -0.6em 0 -0.6em;background-color: #ededed;height: 5.5em;">
+	<div class="ui-body ui-body-a fy-query-scroll" >
 	<div data-role="navbar">
 	    <ul>
 	    @foreach(Dealrecord::stateEnums() as $state_key=>$state_value)
-			 <li><a href="?state={{$state_key}}"  @if($state_key==$state)  class="ui-btn-active" @endif >{{$state_value}}</a></li>
+			 <li><a id="state_{{$state_key}}" href="?state={{$state_key}}"  >{{$state_value}}</a></li>
 	    @endforeach
 	    </ul>
 	</div>
@@ -69,95 +76,13 @@
 	 @endforeach
 	 </div>
 
-	 <ul id="pullUp"><li class="pullUpIcon"></li><li class="pullUpLabel">上拉可以刷新...</li></ul>
+	 <ul id="pullUp"><li class="pullUpIcon"></li><li class="pullUpLabel">上拉加载更多数据</li></ul>
+	 <div>&nbsp;</div>
+	 
 	 </div>
-	 </div>
+	</div>
 
-	 <script type="text/javascript">
-	 $(function(){
-		 var page=$(".commission_index").last();
-		 var wrapper=page.find("#wrapper");
-		 var itemdiv=page.find("#item_div");
-		 var winHeight=$(window).height();
-		 wrapper.css({
-			overflow: 'hidden',
-			position: 'relative',
-			height:winHeight-90
-		});
-
-		var minId={{$minId}};
-
-		// 添加滚动条
-        pullUpEl = page.find('#pullUp').get(0);
-        pullUpOffset = pullUpEl.offsetHeight;
-
-        if(minId<0){$(pullUpEl).hide()};
-
-		var myscroll=new iScroll(wrapper.get(0),{
-				hScroll        : false,
-	         	vScroll        : true,
-	         	hScrollbar     : false,
-	         	vScrollbar     : false,
-	         	fixedScrollbar : true,
-	         	fadeScrollbar  : false,
-	         	hideScrollbar  : true,
-	         	bounce         : true,
-	         	momentum       : true,
-	         	lockDirection  : true,
-	         	checkDOMChanges: true,
-	         	onRefresh: function () {
-		               	if (pullUpEl.className.match('loading')) {
-		               		pullUpEl.className = '';
-		               		pullUpEl.querySelector('.pullUpLabel').innerHTML = '上拉可以刷新...';
-		               		if(minId<0){$(pullUpEl).hide()};
-		               	}
-		        },
-         	    onScrollMove: function () {
-					//console.log("y:"+this.y);
-					//console.log('maxscrolly:'+this.maxScrollY);
-					if(this.y>0) return;
-        	    	if (this.y < (this.maxScrollY - 20) && !pullUpEl.className.match('flip')) {
-          				pullUpEl.className = 'flip';
-          				pullUpEl.querySelector('.pullUpLabel').innerHTML = '松开可以刷新...';
-          				this.maxScrollY = this.maxScrollY;
-          			} else if (this.y > (this.maxScrollY + 5) && pullUpEl.className.match('flip')) {
-          				pullUpEl.className = '';
-          				pullUpEl.querySelector('.pullUpLabel').innerHTML = '上拉加载更多...';
-          				this.maxScrollY = pullUpOffset;
-          			}
-	              },
-	         	onScrollEnd:function(){
-	         		if (pullUpEl.className.match('flip')) {
-	    				pullUpEl.className = 'loading';
-	    				pullUpEl.querySelector('.pullUpLabel').innerHTML = '加载中...';
-	    				if(minId<0){
-	    					$(pullUpEl).hide();
-	    					return;
-			    		}
-			    		var param={state:'{{$state}}',key:'{{$key}}',min_id:minId};
-	    				$.get('{{URL::to("commission/query")}}',param,function(ret){
-	    					minId=ret.minId;
-							for(var i=0;i<ret.data.length;i++){
-								var item=ret.data[i];
-								var ul=$('<ul class="item" data-role="listview" data-inset="true"></li>');
-								$('<li><a href="commission/'+item.dr_id+'/deal?state={{$state}}&key={{$key}}" >'+item.dr_id+'</a></li>').appendTo(ul);
-								$('<li>房间:'+item.room+'</li>').appendTo(ul);
-								$('<li><div class="ui-grid-a"><div class="ui-block-a">客户:'+item.customer+'</div><div class="ui-block-b">状态:'+item.purchaseState+'</div></div></li>').appendTo(ul);
-								$('<li><div class="ui-grid-a"><div class="ui-block-a">总价:'+item.contractTotalAmount+'</div><div class="ui-block-b">未付:'+item.totalUnRevAmount+'</div></div></li>').appendTo(ul);
-								$('<li><div class="ui-grid-a"><div class="ui-block-a">应结佣金:'+item.commission+'</div><div class="ui-block-b">结算状态:'+item.dr_state+'</div></div></li>').appendTo(ul);
-								$('<li><div class="ui-grid-a"><div class="ui-block-a">已结:'+item.dr_inamt+'</div><div class="ui-block-b">未结:'+item.dr_leftamt+'</div></div></li>').appendTo(ul);
-								itemdiv.append(ul).trigger("create");
-								ul.listview("refresh");
-							}
-							myscroll.refresh();
-							return;
-	    				});
-	    			}
-			    }
-		});
-	 })
-
-	 </script>
+	 
 
 	</div>
 </div>

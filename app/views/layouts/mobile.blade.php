@@ -196,6 +196,8 @@
 	}
 
 	</style>
+
+	@yield('head')
 </head>
 <body>
 		@yield('content')

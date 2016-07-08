@@ -1,11 +1,12 @@
 
 #pullUp {
 	background:#fff;
-	height:40px;
-	line-height:40px;
+	height:30px;
+	line-height:30px;
 	padding:5px 0;
 	border:1px solid #ccc;
 	margin-top:-5px;
+	margin-bottom: 0px;
 	font-weight:bold;
 	font-size:14px;
 	color:#888;
@@ -14,9 +15,9 @@
 }
 #pullUp .pullUpIcon  {
 	display:block; float:left;
-	width:40px; height:40px;
+	width:30px; height:30px;
 	background:url(pull-icon@2x.png) 0 0 no-repeat;
-	-webkit-background-size:40px 80px; background-size:40px 80px;
+	-webkit-background-size:30px 60px; background-size:30px 60px;
 	-webkit-transition-property:-webkit-transform;
 	-webkit-transition-duration:250ms;
 }
