@@ -1,7 +1,60 @@
 <?php
 class CustomerController  extends Controller {
 
+	private static $limit=20;
+
 	public function index($state){
+		$type=trim(Input::get("type"));
+		if($type==""){
+			$type='name';
+		}
+		$key=trim(Input::get("key"));
+
+		$customerSet=$this->queryByParam($state);
+		$offset=$this->getOffset($customerSet);
+
+
+	 	return View::make('customer.index')
+		->with('customerSet',$customerSet)
+		->with('offset',$offset)
+	 	->with('state',$state)
+	 	->with('type',$type)
+	 	->with('key',$key);
+	}
+
+	public function query($state){
+
+		$customerSet=$this->queryByParam($state);
+		$offset=$this->getOffset($customerSet);
+
+		$data=array();
+		foreach ($customerSet as $customer){
+			//格式化备注字段
+			$remark=$customer->remark;
+			if (!H::IsNullOrEmptyString($remark)) {
+				$remark="(".$remark.")";
+			}else{
+				$remark="";
+			}
+
+			$item=array(
+				'id'=>$customer->id,
+				'name'=>$customer->name,
+				'remark'=>$remark,
+				'update_at'=>$customer->update_at
+			);
+
+
+			array_push($data,$item);
+		}
+
+		return array(
+			'offset'=>$offset,
+			'data'=>$data
+		);
+	}
+
+	private function queryByParam($state){
 		$query=Customer::where('state',$state);
 
 		$type=trim(Input::get("type"));
@@ -16,19 +69,36 @@ class CustomerController  extends Controller {
 			}
 		}
 
-		$query->orderBy("update_at","desc");
-		$customerSet=$query->get();
+		$offset=Input::get("offset");
+		if(!$offset||$offset<0){ $offset=0; };
 
-	 	return View::make('customer.index')
-		->with('customerSet',$customerSet)
-	 	->with('state',$state)
-	 	->with('type',$type)
-	 	->with('key',$key);
+		$query->orderBy("update_at","desc");
+	    return $query->offset($offset)->take(self::$limit+1)->get();
 	}
 
 	private function isQueryPublicCustomer($state){
 		return $state=='public';
 	}
+
+
+	private function getOffset($customerSet){
+		$offset=Input::get("offset");
+		if(!$offset||$offset<0){ $offset=0; }
+
+		if(count($customerSet)>0 && $customerSet->count()==self::$limit+1){
+			$customer=$customerSet->pop();
+			return $offset+self::$limit;
+		}else{
+			return -1;
+		}
+	}
+
+
+
+
+
+
+
 
 	public function  toAdd(){
 		$counselorSet=Counselor::orderBy("id")

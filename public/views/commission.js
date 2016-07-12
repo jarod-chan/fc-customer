@@ -26,7 +26,6 @@ var PG={
 $(document).on("pageinit","div.commission_index", function (event) {
 	 var page=$(".ui-page").last();
 
-	 console.log(PG.state);
 	 page.find("#state_"+PG.state).addClass("ui-btn-active");
 
 
@@ -94,7 +93,7 @@ $(document).on("pageinit","div.commission_index", function (event) {
 						PG.minId=ret.minId;
 						for(var i=0;i<ret.data.length;i++){
 							var item=ret.data[i];
-							var ul=$('<ul class="item" data-role="listview" data-inset="true"></li>');
+							var ul=$('<ul class="item" data-role="listview" data-inset="true"></ul>');
 							$('<li><a href="commission/'+item.dr_id+'/deal?state='+PG.state+'&key='+PG.key+'" >'+item.dr_id+'</a></li>').appendTo(ul);
 							$('<li>房间:'+item.room+'</li>').appendTo(ul);
 							$('<li><div class="ui-grid-a"><div class="ui-block-a">客户:'+item.customer+'</div><div class="ui-block-b">状态:'+item.purchaseState+'</div></div></li>').appendTo(ul);
@@ -114,7 +113,7 @@ $(document).on("pageinit","div.commission_index", function (event) {
 
 	setTimeout(function(){ myscroll.refresh();},1000);
 	PG.finish();
-	console.info(PG);
+	//console.info(PG);
 
 }); 
 

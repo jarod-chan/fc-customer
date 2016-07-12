@@ -66,5 +66,10 @@ class H {
 		}
 		return $arr;
 	}
+
+	public static function IsNullOrEmptyString($str){
+	    return (!isset($str) || trim($str)==='');
+	}
+
 }
 

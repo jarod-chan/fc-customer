@@ -23,11 +23,12 @@ Route::group(array('before' => 'ismobile'), function()
 	//添加客户
 	Route::get('customer/add','CustomerController@toAdd');
 	Route::post('customer/save','CustomerController@save');
+
+	Route::get('customer/{state}','CustomerController@index');
+	Route::get('customer/{state}/query','CustomerController@query');
 	Route::get('customer/{id}/edit','CustomerController@toEdit');
 	Route::post('customer/update','CustomerController@update');
-	Route::get('customer/{state}','CustomerController@index');
-
-
+	
 
 	//佣金结算
 	Route::get('commission','CommissionController@index');
