@@ -1,7 +1,7 @@
 <?php
 class CustomerController  extends Controller {
 
-	private static $limit=20;
+	private static $limit=50;
 
 	public function index($state){
 		$type=trim(Input::get("type"));
