@@ -24,6 +24,7 @@ Route::group(array('before' => 'ismobile'), function()
 	Route::get('customer/add','CustomerController@toAdd');
 	Route::post('customer/save','CustomerController@save');
 
+	//客户列表 意向，签约，公共
 	Route::get('customer/{state}','CustomerController@index');
 	Route::get('customer/{state}/query','CustomerController@query');
 	Route::get('customer/{id}/edit','CustomerController@toEdit');
@@ -35,6 +36,11 @@ Route::group(array('before' => 'ismobile'), function()
 	Route::get('commission/query','CommissionController@query');
 	Route::get('commission/{dr_id}/deal','CommissionController@toDeal');
 	Route::post('commission/{dr_id}/save','CommissionController@save');
+
+	//房源列表
+	Route::get('fangyuan/project','FangyuanController@toProject');
+	Route::get('fangyuan/project/rooms','FangyuanController@toRooms');
+
 });
 
 
@@ -100,6 +106,10 @@ Route::group(array('before' => 'islogin'), function()
 	Route::get('projectpct/list','PorjectpctController@toList');
 	Route::get('projectpct/edit','PorjectpctController@toEdit');
 	Route::post('projectpct/save','PorjectpctController@save');
+
+	//项目房源
+	Route::get('projectosh/list','ProjectoshController@toList');
+	Route::post('projectosh/doswitch','ProjectoshController@doswitch');
 
 	//全局参数
 	Route::get('sysparam/list','SysparamController@toList');

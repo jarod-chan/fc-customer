@@ -13,6 +13,8 @@ return array(
 	|
 	*/
 
-	'debug' => true,
+	'debug' => false,
+	'admin' => "admin",
+	'password' => "sys9900"
 
 );

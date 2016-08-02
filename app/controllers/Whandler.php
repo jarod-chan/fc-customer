@@ -5,32 +5,10 @@
  */
 class WCustomerMenu {
 	public function isPattern($content) {
-		return $content == '测试' || $content == '客户';
+		return $content =='kh'|| $content == '客户' || $content == '测试';
 	}
 	public function deal($counselor) {
-		$menuArray = array (
-				array (
-						'name' => '新增客户',
-						'url' => URL::to ( "menu/to?counselor_id=$counselor->id&to=customer/add" )
-				),
-				array (
-						'name' => '意向客户',
-						'url' => URL::to ( "menu/to?counselor_id=$counselor->id&to=customer/purpose" )
-				),
-				array (
-						'name' => '签约客户',
-						'url' => URL::to ( "menu/to?counselor_id=$counselor->id&to=customer/sign" )
-				),
-				array (
-						'name' => '公共客户',
-						'url' => URL::to ( "menu/to?counselor_id=$counselor->id&to=customer/public" )
-				),
-				array (
-						'name' => '佣金结算',
-						'url' => URL::to ( "menu/to?counselor_id=$counselor->id&to=commission" )
-				)
-		);
-
+		include_once "MenuArray.php";
 		$items = array ();
 
 		for($i = 0; $i < count ( $menuArray ); $i ++) {
@@ -64,7 +42,13 @@ class WRoomprice {
 	}
 	public function deal($openid, $param) {
 		$param = $this->getParam ( $param );
-		$data = $this->getData ( $param );
+
+		//此处代码可能由于webdemo部署的问题，只能使用post才能返回正确的数据
+		//可能是tomcat部署webdemo产生的参数问题
+		//应该使用get也可以获得数据
+		$httpClient=new HttpClient();
+		$data=$httpClient->postData ($param);
+
 		$result = $this->format ( $data );
 		return $result;
 	}
@@ -72,22 +56,6 @@ class WRoomprice {
 		return substr ( $param, 2 );
 	}
 
-	// 如果查询数据太多会因为速度慢造成微信返回
-	// 该公众号暂时无法提供服务的提示
-	private function getData($param) {
-		$curlPost = 'infoType=7&args=' . urlencode ( $param );
-
-		$ch = curl_init (); // 初始化curl
-		curl_setopt ( $ch, CURLOPT_URL, 'http://app.fyg.cn:9080/webdemo/FdcInfoQuery' ); // 抓取指定网页
-		curl_setopt ( $ch, CURLOPT_HEADER, 0 ); // 设置header
-		curl_setopt ( $ch, CURLOPT_RETURNTRANSFER, 1 ); // 要求结果为字符串且输出到屏幕上
-		curl_setopt ( $ch, CURLOPT_POST, 1 ); // post提交方式
-		curl_setopt ( $ch, CURLOPT_POSTFIELDS, $curlPost );
-		$data = curl_exec ( $ch ); // 运行curl
-		curl_close ( $ch );
-
-		return json_decode ( $data, true );
-	}
 	private function format($data) {
 		$rooms = $this->get ( $data, 'rooms' );
 		if (! $rooms) {
@@ -158,6 +126,8 @@ class WCustomerQuery {
 }
 
 
+
+
 /**
  * 返回客户查询接口
  * 匹配中文和英文的问号
@@ -166,9 +136,9 @@ class WDefault {
 
 	public function deal() {
 		return "请输入正确的命令格式：\n".
-				"-返回操作菜单：\n  输入[客户]或者[测试]\n".
-				"-查询房间价格：\n  输入[jg 小区 楼栋 单元  房间]\n".
-				"-查询所有客户：\n  输入[?手机号]或者[?姓]或者[?姓名]\n";
+				"\n>返回操作菜单：\n输入[客户]或者[测试]\n".
+				"\n>查询所有客户：\n输入[?手机号]或者[?姓]或者[?姓名]\n".
+				"\n>查询房间价格：\n输入[jg 小区 楼栋 单元  房间]";
 	}
 }
 

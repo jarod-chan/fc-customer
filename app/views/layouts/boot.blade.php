@@ -50,6 +50,7 @@
 	                <li><a href="{{ URL::to('counselor/list') }}">销售顾问</a></li>
 	                <li><a href="{{ URL::to('syenum/list') }}">配置选项</a></li>
 	                <li><a href="{{ URL::to('projectpct/list') }}">佣金比率</a></li>
+                  <li><a href="{{ URL::to('projectosh/list') }}">项目房源</a></li>
 	                <li><a href="{{ URL::to('sysparam/list') }}">全局参数</a></li>
 	              </ul>
 	            </li>

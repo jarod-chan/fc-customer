@@ -1,12 +1,9 @@
 <?php
 class S{
-	//const URL = 'http://172.22.1.30/ser/public/serroom/';
-	//const URL = 'http://172.22.1.14:8080/fyg/FdcInfoQuery';
-	const URL = 'http://app.fyg.cn:9080/webdemo/FdcInfoQuery';
 
 
 	private static function get($model){
-		$url=self::URL.'?'.http_build_query($model);
+		$url=Config::get('eas.url').'?'.http_build_query($model);
 
 		//  Initiate curl
 		$ch = curl_init();
